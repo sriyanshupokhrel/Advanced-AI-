@@ -1,0 +1,13 @@
+# Use LF line endings in the repository and in every checkout (Windows,
+# macOS, Linux), so files - including Prisma migrations, whose checksums are
+# recorded in each local database - are byte-identical on all machines.
+* text=auto eol=lf
+
+# Binary files: never convert.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.ico binary
+*.db binary

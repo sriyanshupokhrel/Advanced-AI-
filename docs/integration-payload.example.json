@@ -1,0 +1,276 @@
+{
+  "contractVersion": "2.0",
+  "targetId": "cmvgmg6a7004omri4jf83ykyr",
+  "generatedAt": "2026-10-20T11:50:27.683Z",
+  "verificationDisclaimer": "Confirmed information has been reviewed by the user. It has not been independently verified by the application or the university.",
+  "readiness": {
+    "status": "READY",
+    "isReady": true,
+    "readySince": "2026-10-20T11:50:27.674Z",
+    "sections": {
+      "confirmed": 7,
+      "total": 7
+    },
+    "images": {
+      "confirmed": 3,
+      "total": 3
+    },
+    "issues": []
+  },
+  "candidate": {
+    "cvProfileId": "cmvgmg68l0045mri4fp4naaj0",
+    "createdAt": "2026-10-20T11:50:27.477Z",
+    "lastUpdatedAt": "2026-10-20T11:50:27.477Z",
+    "profile": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-20T11:50:27.621Z",
+        "basis": "USER_REVIEW"
+      },
+      "fullName": "Alex Morgan",
+      "headline": "Graduate Software Engineer",
+      "contact": {
+        "email": "alex.morgan@example.com",
+        "phone": "+61 400 123 456",
+        "location": "Sydney, NSW",
+        "website": "https://github.com/example-alex"
+      },
+      "professionalSummary": "Final-year software engineering student with internship experience building data dashboards and a passion for accessible web applications."
+    },
+    "education": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-20T11:50:27.621Z",
+        "basis": "USER_REVIEW"
+      },
+      "items": [
+        {
+          "id": "cmvgmg68l0046mri47k5458rk",
+          "institution": "University of Technology Sydney",
+          "qualification": "Bachelor of Engineering (Honours)",
+          "fieldOfStudy": "Software Engineering",
+          "startDate": "2022-02",
+          "endDate": "2025-11",
+          "grade": "Distinction average",
+          "description": null
+        }
+      ]
+    },
+    "workExperience": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-20T11:50:27.638Z",
+        "basis": "USER_REVIEW"
+      },
+      "items": [
+        {
+          "id": "cmvgmg68l0047mri4as8450xq",
+          "jobTitle": "Software Engineering Intern",
+          "employer": "Harbour Data Co.",
+          "location": "Sydney",
+          "startDate": "2024-11",
+          "endDate": "2025-02",
+          "isCurrent": false,
+          "description": "Built React dashboards for logistics KPIs.\nReduced report generation time by automating SQL exports."
+        },
+        {
+          "id": "cmvgmg68l0048mri4wnkcbl23",
+          "jobTitle": "Student Assistant",
+          "employer": "UTS Library",
+          "location": "Sydney",
+          "startDate": "2023-03",
+          "endDate": null,
+          "isCurrent": true,
+          "description": "Help students with digital resources."
+        }
+      ]
+    },
+    "skills": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-20T11:50:27.638Z",
+        "basis": "USER_REVIEW"
+      },
+      "items": [
+        {
+          "id": "cmvgmg68l0049mri4zlvf2wug",
+          "name": "TypeScript",
+          "category": "Languages"
+        },
+        {
+          "id": "cmvgmg68l004amri4rz8678rf",
+          "name": "Python",
+          "category": "Languages"
+        },
+        {
+          "id": "cmvgmg68l004bmri49zdcnisx",
+          "name": "React",
+          "category": "Frameworks"
+        },
+        {
+          "id": "cmvgmg68l004cmri4k11bn2u7",
+          "name": "PostgreSQL",
+          "category": "Databases"
+        }
+      ]
+    },
+    "projects": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-20T11:50:27.638Z",
+        "basis": "USER_REVIEW"
+      },
+      "items": [
+        {
+          "id": "cmvgmg68l004dmri435he3sx9",
+          "name": "Budget Buddy",
+          "role": "Lead developer",
+          "url": "https://github.com/example-alex/budget-buddy",
+          "technologies": "Next.js, Prisma, Chart.js",
+          "description": "A personal finance app that categorises spending and visualises monthly budgets.",
+          "images": [
+            {
+              "imageId": "cmvgmg69c004imri41gg8g8e6",
+              "kind": "PROJECT_SCREENSHOT",
+              "url": "/api/images/cmvgmg69c004imri41gg8g8e6?v=90ce9a3adb8b",
+              "mimeType": "image/png",
+              "originalFileName": "diagram-640x480.png",
+              "sizeBytes": 102936,
+              "width": 640,
+              "height": 480,
+              "sha256": "90ce9a3adb8b98b667d6cd9fcd4c092b748744c2b49b20c15ef7d50317d6686d",
+              "fileAvailable": true,
+              "description": {
+                "altText": "Budget Buddy monthly spending dashboard",
+                "caption": "Monthly view with category breakdown",
+                "source": "USER_PROVIDED"
+              },
+              "provenance": "USER_UPLOADED_UNVERIFIED",
+              "confirmation": {
+                "status": "CONFIRMED",
+                "isConfirmed": true,
+                "confirmedAt": "2026-10-20T11:50:27.658Z",
+                "basis": "USER_REVIEW"
+              },
+              "uploadedAt": "2026-10-20T11:50:27.505Z",
+              "updatedAt": "2026-10-20T11:50:27.659Z"
+            }
+          ]
+        },
+        {
+          "id": "cmvgmg68l004emri4ia0o2rwr",
+          "name": "Campus Navigator",
+          "role": "Team member",
+          "url": null,
+          "technologies": "React Native",
+          "description": "An accessible indoor navigation app for the UTS campus.",
+          "images": [
+            {
+              "imageId": "cmvgmg69p004kmri44qahiz1g",
+              "kind": "PROJECT_SCREENSHOT",
+              "url": "/api/images/cmvgmg69p004kmri44qahiz1g?v=394b31f9b6a2",
+              "mimeType": "image/png",
+              "originalFileName": "screen-300x200.png",
+              "sizeBytes": 107354,
+              "width": 300,
+              "height": 200,
+              "sha256": "394b31f9b6a25037bf5af0a30a3830bbd753fdf35c2c3b794bd7bb4836fa3e42",
+              "fileAvailable": true,
+              "description": {
+                "altText": "Campus Navigator route screen",
+                "caption": null,
+                "source": "USER_PROVIDED"
+              },
+              "provenance": "USER_UPLOADED_UNVERIFIED",
+              "confirmation": {
+                "status": "CONFIRMED",
+                "isConfirmed": true,
+                "confirmedAt": "2026-10-20T11:50:27.666Z",
+                "basis": "USER_REVIEW"
+              },
+              "uploadedAt": "2026-10-20T11:50:27.517Z",
+              "updatedAt": "2026-10-20T11:50:27.667Z"
+            }
+          ]
+        }
+      ]
+    },
+    "achievements": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-20T11:50:27.638Z",
+        "basis": "USER_REVIEW"
+      },
+      "items": [
+        {
+          "id": "cmvgmg68l004fmri4b1zaq0x2",
+          "title": "Dean's Merit List",
+          "issuer": "UTS Faculty of Engineering and IT",
+          "date": "2024-12",
+          "description": null
+        }
+      ]
+    },
+    "otherImages": [
+      {
+        "imageId": "cmvgmg69z004mmri4jhvsmlmm",
+        "kind": "PROFILE_PHOTO",
+        "url": "/api/images/cmvgmg69z004mmri4jhvsmlmm?v=594f2e5812a8",
+        "mimeType": "image/jpeg",
+        "originalFileName": "photo-280x175.jpg",
+        "sizeBytes": 3135,
+        "width": 280,
+        "height": 175,
+        "sha256": "594f2e5812a8850d5e66bc7e55eac2e42000c2ee1cb33f61137d35d26e4862c4",
+        "fileAvailable": true,
+        "description": {
+          "altText": "Headshot of Alex Morgan",
+          "caption": null,
+          "source": "USER_PROVIDED"
+        },
+        "provenance": "USER_UPLOADED_UNVERIFIED",
+        "confirmation": {
+          "status": "CONFIRMED",
+          "isConfirmed": true,
+          "confirmedAt": "2026-10-20T11:50:27.674Z",
+          "basis": "USER_REVIEW"
+        },
+        "uploadedAt": "2026-10-20T11:50:27.527Z",
+        "updatedAt": "2026-10-20T11:50:27.675Z"
+      }
+    ]
+  },
+  "targetJob": {
+    "confirmation": {
+      "status": "CONFIRMED",
+      "isConfirmed": true,
+      "confirmedAt": "2026-10-20T11:50:27.638Z",
+      "basis": "USER_REVIEW"
+    },
+    "jobDescriptionId": "cmvgmg690004gmri4wssaw3pp",
+    "jobTitle": "Graduate Software Engineer",
+    "company": {
+      "name": "Harbourline Analytics",
+      "information": "Sydney-based analytics company, ~120 staff."
+    },
+    "jobReference": "HLA-GRAD-2026",
+    "descriptionText": "Graduate Software Engineer — Harbourline Analytics\n\nAbout the role\nJoin our product team building data visualisation tools used by logistics companies across Australia.\n\nYou will:\n• Build features in TypeScript and React\n• Work with PostgreSQL data models\n• Present your work in fortnightly demos\n\nAbout you\n- Degree in Software Engineering or similar (completed by early 2026)\n- Experience with a modern web framework\n- Clear communicator\n",
+    "createdAt": "2026-10-20T11:50:27.492Z",
+    "lastUpdatedAt": "2026-10-20T11:50:27.492Z"
+  },
+  "fingerprints": {
+    "PROFILE": "59ac0c9bf91765e9d648c73711abeec70d9afa0326138a8d05d9e36a6a0c3dea",
+    "EDUCATION": "616257d60b8e9380d097121413c4aa821d5e1c14e70b0f793c7e8991e889453e",
+    "EXPERIENCE": "54071d1198e8ca83f9c2fec8e6bd67c6a7e1d93b1123541796ed935580be2f4a",
+    "SKILLS": "e2e85e1b08a26aca29ef3a395af800be94eecfc17a8f46a4fb07de9151cfa743",
+    "PROJECTS": "71968009c427ef7864fa6e2b6cbfa8eff510199dcd6f604dc77b81a4ee4dfce0",
+    "ACHIEVEMENTS": "a330dd192b7699ac3ce3efda65e7caaabfe6940f00b188b4063eed9037936ba9",
+    "TARGET_JOB": "ecc80d1386e249fe8fb31b152ee5480f71352e5d8a61faef79f4ad07e5fc2042"
+  }
+}

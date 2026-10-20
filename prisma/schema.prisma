@@ -1,0 +1,206 @@
+// CV Builder data model.
+//
+// Conventions:
+// - Month-precision dates are stored as "YYYY-MM" strings. CVs rarely need day
+//   precision, and plain strings avoid timezone shifts between client and server.
+// - `sortOrder` preserves the order the user arranged items in the editor.
+// - Child records cascade-delete with their CV profile.
+// - Categorical values (e.g. CvImage.kind) are plain strings validated by Zod in
+//   src/lib/validation, which keeps the schema portable across SQLite/Postgres.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model CvProfile {
+  id        String   @id @default(cuid())
+  fullName  String
+  headline  String?
+  email     String?
+  phone     String?
+  location  String?
+  website   String?
+  summary   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  education    Education[]
+  experience   Experience[]
+  skills       Skill[]
+  projects     Project[]
+  achievements Achievement[]
+  images       CvImage[]
+  jobTargets   CvJobTarget[]
+}
+
+model Education {
+  id           String  @id @default(cuid())
+  cvProfileId  String
+  institution  String
+  degree       String
+  fieldOfStudy String?
+  startDate    String?
+  endDate      String?
+  grade        String?
+  description  String?
+  sortOrder    Int     @default(0)
+
+  cvProfile CvProfile @relation(fields: [cvProfileId], references: [id], onDelete: Cascade)
+
+  @@index([cvProfileId])
+}
+
+model Experience {
+  id          String  @id @default(cuid())
+  cvProfileId String
+  employer    String
+  role        String
+  location    String?
+  startDate   String
+  endDate     String?
+  isCurrent   Boolean @default(false)
+  description String?
+  sortOrder   Int     @default(0)
+
+  cvProfile CvProfile @relation(fields: [cvProfileId], references: [id], onDelete: Cascade)
+
+  @@index([cvProfileId])
+}
+
+model Skill {
+  id          String  @id @default(cuid())
+  cvProfileId String
+  name        String
+  category    String?
+  sortOrder   Int     @default(0)
+
+  cvProfile CvProfile @relation(fields: [cvProfileId], references: [id], onDelete: Cascade)
+
+  @@index([cvProfileId])
+}
+
+model Project {
+  id           String  @id @default(cuid())
+  cvProfileId  String
+  name         String
+  role         String?
+  url          String?
+  technologies String?
+  description  String
+  sortOrder    Int     @default(0)
+
+  cvProfile CvProfile @relation(fields: [cvProfileId], references: [id], onDelete: Cascade)
+  images    CvImage[]
+
+  @@index([cvProfileId])
+}
+
+model Achievement {
+  id          String  @id @default(cuid())
+  cvProfileId String
+  title       String
+  issuer      String?
+  date        String?
+  description String?
+  sortOrder   Int     @default(0)
+
+  cvProfile CvProfile @relation(fields: [cvProfileId], references: [id], onDelete: Cascade)
+
+  @@index([cvProfileId])
+}
+
+// Image attached to a CV (e.g. profile photo, project screenshot, certificate).
+// The binary file lives on disk under storage/uploads/<storedFileName>; only
+// metadata is kept in the database. Optional `projectId` links an image to a
+// specific project and is cleared (not deleted) if that project is removed.
+//
+// Uploaded images are user-supplied and unverified. The user confirms each
+// image's description and project link; `confirmedHash` fingerprints exactly
+// what was confirmed (file content, description, project link and the linked
+// project's text). Any later change invalidates the confirmation.
+model CvImage {
+  id             String    @id @default(cuid())
+  cvProfileId    String
+  projectId      String?
+  kind           String    @default("OTHER")
+  storedFileName String    @unique
+  originalName   String
+  mimeType       String
+  sizeBytes      Int
+  // Pixel dimensions and SHA-256 of the file, recorded at upload. Nullable only
+  // for images uploaded before these fields existed.
+  width          Int?
+  height         Int?
+  sha256         String?
+  altText        String
+  caption        String?
+  confirmedAt    DateTime?
+  confirmedHash  String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @default(now()) @updatedAt
+
+  cvProfile CvProfile @relation(fields: [cvProfileId], references: [id], onDelete: Cascade)
+  project   Project?  @relation(fields: [projectId], references: [id], onDelete: SetNull)
+
+  @@index([cvProfileId])
+  @@index([projectId])
+}
+
+// A target job advert pasted by the user. `description` is stored exactly as
+// entered (no trimming or reformatting) so its meaning is never altered.
+model JobDescription {
+  id           String   @id @default(cuid())
+  title        String?
+  companyName  String?
+  companyInfo  String?
+  jobReference String?
+  description  String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  targets CvJobTarget[]
+}
+
+// Pairs one CV with one target job for interview preparation. Deleting either
+// side deletes the pairing. The user reviews and confirms the pair section by
+// section (see TargetSectionConfirmation); images are confirmed on CvImage.
+model CvJobTarget {
+  id               String   @id @default(cuid())
+  cvProfileId      String
+  jobDescriptionId String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  cvProfile            CvProfile                  @relation(fields: [cvProfileId], references: [id], onDelete: Cascade)
+  jobDescription       JobDescription             @relation(fields: [jobDescriptionId], references: [id], onDelete: Cascade)
+  sectionConfirmations TargetSectionConfirmation[]
+
+  @@unique([cvProfileId, jobDescriptionId])
+  @@index([jobDescriptionId])
+}
+
+// The user's confirmation that one section of a CV–job pair is accurate.
+// `section` is one of PROFILE, EDUCATION, EXPERIENCE, SKILLS, PROJECTS,
+// ACHIEVEMENTS, TARGET_JOB (validated in src/lib/validation/job-schema.ts).
+//
+// `confirmedHash` is a SHA-256 fingerprint of exactly the content the user
+// confirmed. When the section is edited, the current fingerprint no longer
+// matches and the section reports CHANGED_SINCE_CONFIRMATION, so edited data
+// is never passed on as confirmed. Confirmation means "reviewed by the user",
+// not independently verified.
+model TargetSectionConfirmation {
+  id            String   @id @default(cuid())
+  targetId      String
+  section       String
+  confirmedHash String
+  confirmedAt   DateTime @default(now())
+
+  target CvJobTarget @relation(fields: [targetId], references: [id], onDelete: Cascade)
+
+  @@unique([targetId, section])
+}
