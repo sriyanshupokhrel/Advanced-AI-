@@ -2,7 +2,7 @@
 import { NextResponse } from "next/server";
 import { runInterviewAIPipeline } from "@/lib/ai/ai-pipeline";
 
-export const runtime = "nodejs";
+
 
 interface RouteContext {
   params: Promise<{ id: string }>;
