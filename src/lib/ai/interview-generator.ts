@@ -1,4 +1,4 @@
-
+import { reviewPresentationClaims } from "./claim-review";
 import "server-only";
 
 import { GoogleGenAI } from "@google/genai";
@@ -100,6 +100,16 @@ export async function generateInterviewPresentation(
       );
     }
   }
+  const review = await reviewPresentationClaims(
+  payload,
+  presentation
+);
 
+if (!review.approved) {
+  throw new Error(
+    "Generated presentation requires evidence review: " +
+    JSON.stringify(review.findings.filter(x => !x.supported))
+  );
+}
   return presentation;
 }
