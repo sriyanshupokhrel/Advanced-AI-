@@ -176,12 +176,34 @@ model CvJobTarget {
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 
-  cvProfile            CvProfile                  @relation(fields: [cvProfileId], references: [id], onDelete: Cascade)
-  jobDescription       JobDescription             @relation(fields: [jobDescriptionId], references: [id], onDelete: Cascade)
+  cvProfile            CvProfile                     @relation(fields: [cvProfileId], references: [id], onDelete: Cascade)
+  jobDescription       JobDescription                @relation(fields: [jobDescriptionId], references: [id], onDelete: Cascade)
   sectionConfirmations TargetSectionConfirmation[]
+  presentations        InterviewPresentationRecord[]
 
   @@unique([cvProfileId, jobDescriptionId])
   @@index([jobDescriptionId])
+}
+
+// One immutable generated original plus its latest user-editable draft.
+// JSON is stored as text so the SQLite and future Postgres representations
+// remain explicit and are always parsed through the shared Zod contracts.
+model InterviewPresentationRecord {
+  id                 String   @id @default(cuid())
+  targetId           String
+  originalJson       String
+  draftJson          String
+  imageAnalysesJson  String
+  sourceSnapshotJson String
+  sourceFingerprint  String
+  revision           Int      @default(1)
+  generatedAt        DateTime
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  target CvJobTarget @relation(fields: [targetId], references: [id], onDelete: Cascade)
+
+  @@index([targetId, createdAt])
 }
 
 // The user's confirmation that one section of a CV–job pair is accurate.

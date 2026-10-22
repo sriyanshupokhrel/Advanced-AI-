@@ -98,7 +98,10 @@ function toTargetDto(target: TargetWithRelations, payload: InterviewPreparationP
   };
 }
 
-const findTarget = (id: string) => prisma.cvJobTarget.findUnique({ where: { id }, include: targetInclude });
+type TargetDbClient = typeof prisma | Prisma.TransactionClient;
+
+const findTarget = (id: string, db: TargetDbClient = prisma) =>
+  db.cvJobTarget.findUnique({ where: { id }, include: targetInclude });
 
 // ---------------------------------------------------------------------------
 // Queries
@@ -123,8 +126,11 @@ export async function getTarget(id: string): Promise<CvJobTargetDto | null> {
  * per-section and per-image confirmation and a readiness verdict.
  * This is the server-side integration interface for other modules.
  */
-export async function getInterviewPreparationPayload(id: string): Promise<InterviewPreparationPayload | null> {
-  const target = await findTarget(id);
+export async function getInterviewPreparationPayload(
+  id: string,
+  db: TargetDbClient = prisma,
+): Promise<InterviewPreparationPayload | null> {
+  const target = await findTarget(id, db);
   return target ? toPayload(target) : null;
 }
 

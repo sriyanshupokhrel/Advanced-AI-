@@ -4,10 +4,11 @@ import "server-only";
 import { getInterviewPreparationPayload } from "@/lib/db/target-repository";
 import { findImageRecord } from "@/lib/db/image-repository";
 import { readImageFile } from "@/lib/storage/image-storage";
+import type { ImageAnalysisResult } from "@/types/interview-generation";
+import { isIsolatedE2EMockAiEnabled } from "./e2e-mock-guard";
 
 import {
   analyseProjectImage,
-  type ImageAnalysisResult,
 } from "./image-analysis";
 
 import {
@@ -28,6 +29,39 @@ export async function runInterviewAIPipeline(
     payload.readiness.status !== "READY"
   ) {
     throw new Error("CV and job must be confirmed.");
+  }
+
+  // Server-only E2E replacement. Request input cannot enable it, and the guard
+  // also requires the runner's isolated temporary database and upload folder.
+  if (isIsolatedE2EMockAiEnabled()) {
+    const project = payload.candidate.projects.items.find((item) => item.images.length > 0);
+    const image = project?.images[0];
+    const imageAnalyses: ImageAnalysisResult[] = project && image ? [{
+      imageId: image.imageId,
+      projectName: project.name,
+      visibleFeatures: ["Synthetic E2E fixture pixels"],
+      relevantSkills: [],
+      presentationCaption: image.description.caption ?? image.description.altText,
+      limitations: ["Mocked test analysis; no model was called."],
+    }] : [];
+    return {
+      generation: {
+        targetId,
+        imageAnalyses,
+        presentation: {
+          title: "Mocked interview presentation",
+          slides: ["Introduction", "Experience", "Projects", "Role fit"].map((heading, index) => ({
+            heading,
+            bullets: [`Mocked test content for ${heading.toLowerCase()}`],
+            speakerNotes: "Synthetic E2E output. No model was called.",
+            sourceIds: index === 2 && project ? [project.id] : [],
+            imageIds: index === 2 && image ? [image.imageId] : [],
+          })),
+        },
+        generatedAt: new Date().toISOString(),
+      },
+      sourceSnapshot: payload,
+    };
   }
 
   const imageAnalyses: ImageAnalysisResult[] = [];
@@ -68,9 +102,13 @@ export async function runInterviewAIPipeline(
   );
 
   return {
-    targetId,
-    imageAnalyses,
-    presentation,
-    generatedAt: new Date().toISOString(),
+    generation: {
+      targetId,
+      imageAnalyses,
+      presentation,
+      generatedAt: new Date().toISOString(),
+    },
+    // The route persists exactly the input used by this run, never a later payload.
+    sourceSnapshot: payload,
   };
 }

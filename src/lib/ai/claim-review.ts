@@ -5,7 +5,7 @@ import { GoogleGenAI } from "@google/genai";
 import { z } from "zod";
 
 import type { InterviewPreparationPayload } from "@/types/integration";
-import type { InterviewPresentation } from "./interview-generator";
+import type { InterviewPresentation } from "@/types/presentation";
 import { selectRelevantEvidence } from "./content-selector";
 
 const ReviewSchema = z.object({

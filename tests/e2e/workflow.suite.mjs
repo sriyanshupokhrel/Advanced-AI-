@@ -4,22 +4,51 @@
 // images, invalid stored data, API errors and deletion consistency.
 // Set E2E_EXAMPLE_OUT to also write the READY payload to a file (used to
 // regenerate docs/integration-payload.example.json from the real API).
-import { renameSync, writeFileSync } from "node:fs";
+import { readFileSync, renameSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import JSZip from "jszip";
 import { base, call, check, finish, fixture, json, kept, phase, testDb, uploadDir } from "./lib.mjs";
 
 const codes = (payload, severity) => payload.readiness.issues.filter((i) => !severity || i.severity === severity).map((i) => i.code);
 const confirm = (targetId, body) => call(`/api/targets/${targetId}`, json("PATCH", body));
 const payloadOf = async (targetId) => (await call(`/api/targets/${targetId}/context`)).body;
+const downloadPptx = async (targetId, presentationId, expectedRevision) => {
+  const response = await fetch(`${base}/api/targets/${targetId}/presentations/${presentationId}/export`, json("POST", { expectedRevision }));
+  const contentType = response.headers.get("content-type") ?? "";
+  if (!response.ok || !contentType.includes("presentationml.presentation")) {
+    const text = await response.text();
+    let body;
+    try { body = JSON.parse(text); } catch { body = { error: text }; }
+    return { status: response.status, body, headers: response.headers, bytes: null };
+  }
+  return { status: response.status, body: null, headers: response.headers, bytes: Buffer.from(await response.arrayBuffer()) };
+};
+
+const inspectPptx = async (bytes) => {
+  const zip = await JSZip.loadAsync(bytes);
+  const names = Object.keys(zip.files);
+  const slides = names.filter((name) => /^ppt\/slides\/slide\d+\.xml$/.test(name)).sort();
+  const notes = names.filter((name) => /^ppt\/notesSlides\/notesSlide\d+\.xml$/.test(name)).sort();
+  const media = names.filter((name) => /^ppt\/media\//.test(name));
+  return {
+    slides,
+    notes,
+    media,
+    slideXml: (await Promise.all(slides.map((name) => zip.file(name).async("string")))).join("\n"),
+    notesXml: (await Promise.all(notes.map((name) => zip.file(name).async("string")))).join("\n"),
+  };
+};
 
 if (phase === "verify") {
-  const { targetId } = kept;
+  const { targetId, presentationId } = kept;
   const p = await payloadOf(targetId);
   check("after restart: payload still READY with all confirmations", p.readiness.isReady && p.readiness.sections.confirmed === 7 && p.readiness.images.confirmed === p.readiness.images.total);
   const r = await call(`/api/targets/${targetId}/context?requireReady=true`);
   check("after restart: requireReady → 200", r.status === 200);
   const img = p.candidate.projects.items[0].images[0];
   check("after restart: project image file served", (await fetch(base + img.url)).status === 200);
+  const savedPresentation = await call(`/api/targets/${targetId}/presentation`);
+  check("after restart: saved presentation and incomplete draft persisted", savedPresentation.status === 200 && savedPresentation.body.id === presentationId && savedPresentation.body.draft.title === "Persisted after source change" && savedPresentation.body.draft.slides[0].heading === "");
   finish();
 } else {
   // ── 1. Create and save a CV ─────────────────────────────────────────────
@@ -89,6 +118,9 @@ if (phase === "verify") {
   check("unconfirmed data is labelled as such", p.candidate.profile.confirmation.isConfirmed === false && p.candidate.projects.items[0].images[0].confirmation.status === "NOT_CONFIRMED");
   r = await call(`/prepare/${target.id}`);
   check("review page lists what needs attention", r.status === 200 && r.body.includes("items need your attention") && r.body.includes("Personal details &amp; summary") && r.body.includes("Budget Buddy monthly spending dashboard"));
+  check("presentation entry is disabled until READY", r.body.includes('aria-disabled="true"') && r.body.includes("Interview presentation"));
+  r = await call(`/prepare/${target.id}/presentation`);
+  check("presentation page renders context loading state", r.status === 200 && r.body.includes("Loading confirmed CV, job and image context"));
   r = await call(`/api/targets/${target.id}/context?requireReady=true`);
   check("requireReady before confirmation → 409 with blocking issues", r.status === 409 && r.body.issues.length === 10 && r.body.issues.every((i) => i.severity === "BLOCKING"));
 
@@ -132,7 +164,7 @@ if (phase === "verify") {
   check("image metadata for multimodal use", p.candidate.projects.items[0].images[0].mimeType === "image/png" && p.candidate.projects.items[0].images[0].width === 640 && p.candidate.projects.items[0].images[0].description.source === "USER_PROVIDED");
   check("every confirmation is basis USER_REVIEW", [p.candidate.profile.confirmation, p.targetJob.confirmation, p.candidate.otherImages[0].confirmation].every((c) => c.basis === "USER_REVIEW" && c.isConfirmed));
   r = await call(`/prepare/${target.id}`);
-  check("review page shows READY", r.body.includes("Ready: everything has been reviewed and confirmed"));
+  check("review page shows READY and presentation link", r.body.includes("Ready: everything has been reviewed and confirmed") && r.body.includes(`/prepare/${target.id}/presentation`));
   r = await call("/prepare");
   const listText = r.body.replace(/<!-- -->/g, ""); // React separates adjacent text nodes with comments
   check("pairing list shows Ready", listText.includes(">Ready<") && listText.includes("Sections 7/7"));
@@ -140,6 +172,103 @@ if (phase === "verify") {
     writeFileSync(process.env.E2E_EXAMPLE_OUT, JSON.stringify(p, null, 2) + "\n");
     console.log(`      (example payload written to ${process.env.E2E_EXAMPLE_OUT})`);
   }
+
+  // ── Presentation persistence (mocked pipeline; no model call) ───────────
+  console.log("── Presentation generation and persistence (mocked provider)");
+  r = await call(`/api/targets/${target.id}/generate-interview`, { method: "POST" });
+  const firstPresentation = r.body;
+  check("successful mocked generation is persisted", r.status === 200 && firstPresentation.presentationId && firstPresentation.revision === 1);
+  r = await call(`/api/targets/${target.id}/generate-interview`, { method: "POST" });
+  const generated = r.body;
+  check("regeneration creates a new independent record", r.status === 200 && generated.presentationId !== firstPresentation.presentationId);
+  const presentationDb = testDb();
+  check("both generated originals remain stored", await presentationDb.interviewPresentationRecord.count({ where: { targetId: target.id } }) === 2);
+  await presentationDb.$disconnect();
+
+  r = await call(`/api/targets/${target.id}/presentation`);
+  const loaded = r.body;
+  check("latest saved presentation reopens without generation", r.status === 200 && loaded.id === generated.presentationId && loaded.original.title === generated.presentation.title && loaded.draft.title === generated.presentation.title && loaded.stale.isStale === false);
+  const originalBeforeSave = JSON.stringify(loaded.original);
+  const sourceBeforeSave = JSON.stringify(loaded.sourceSnapshot);
+  const completeDraft = structuredClone(loaded.draft);
+  completeDraft.title = "Saved edited PPTX draft";
+  completeDraft.slides[0].speakerNotes = "Saved user notes exported to slide one. No model was called.";
+  r = await call(`/api/targets/${target.id}/presentations/${loaded.id}`, json("PATCH", { draft: completeDraft, expectedRevision: loaded.revision }));
+  check("complete edited draft is saved before export", r.status === 200 && r.body.revision === 2 && r.body.draft.title === completeDraft.title);
+
+  const beforeExportDb = testDb();
+  const beforeExportRecord = await beforeExportDb.interviewPresentationRecord.findUniqueOrThrow({ where: { id: loaded.id } });
+  await beforeExportDb.$disconnect();
+  const exported = await downloadPptx(target.id, loaded.id, 2);
+  const packageInfo = exported.bytes ? await inspectPptx(exported.bytes) : null;
+  check("saved draft exports as a real PPTX with safe headers", exported.status === 200 && /^attachment;/.test(exported.headers.get("content-disposition") ?? "") && /-r2\.pptx/.test(exported.headers.get("content-disposition") ?? "") && exported.headers.get("x-presentation-revision") === "2");
+  check("PPTX contains 4 editable slides from draft, not original", packageInfo?.slides.length === 4 && packageInfo.slideXml.includes("Saved edited PPTX draft") && !packageInfo.slideXml.includes("Mocked interview presentation"));
+  check("PPTX embeds project image bytes and preserves speaker notes/provenance", packageInfo?.media.length >= 1 && packageInfo.notes.length === 4 && packageInfo.notesXml.includes("Saved user notes exported to slide one") && packageInfo.notesXml.includes("USER_UPLOADED_UNVERIFIED"));
+  const afterExportDb = testDb();
+  const afterExportRecord = await afterExportDb.interviewPresentationRecord.findUniqueOrThrow({ where: { id: loaded.id } });
+  check("export does not modify draft, original, source snapshot or revision", afterExportRecord.revision === beforeExportRecord.revision && afterExportRecord.draftJson === beforeExportRecord.draftJson && afterExportRecord.originalJson === beforeExportRecord.originalJson && afterExportRecord.sourceSnapshotJson === beforeExportRecord.sourceSnapshotJson);
+
+  const invalidReferenceDraft = structuredClone(completeDraft);
+  invalidReferenceDraft.slides[0].sourceIds = ["missing-source-id"];
+  await afterExportDb.interviewPresentationRecord.update({ where: { id: loaded.id }, data: { draftJson: JSON.stringify(invalidReferenceDraft) } });
+  const invalidReferenceExport = await downloadPptx(target.id, loaded.id, 2);
+  check("invalid saved source references are rejected", invalidReferenceExport.status === 422 && /references|source/i.test(invalidReferenceExport.body.error));
+  await afterExportDb.interviewPresentationRecord.update({ where: { id: loaded.id }, data: { draftJson: JSON.stringify(completeDraft) } });
+
+  const storedDashboardForExport = await afterExportDb.cvImage.findUniqueOrThrow({ where: { id: dashboard.id } });
+  const dashboardPath = path.join(uploadDir, storedDashboardForExport.storedFileName);
+  const originalDashboardBytes = readFileSync(dashboardPath);
+  writeFileSync(dashboardPath, Buffer.from("not the saved image bytes"));
+  const changedBytesExport = await downloadPptx(target.id, loaded.id, 2);
+  check("image SHA-256 mismatch is rejected before PPTX generation", changedBytesExport.status === 422 && /SHA-256/.test(changedBytesExport.body.error));
+  writeFileSync(dashboardPath, originalDashboardBytes);
+  renameSync(dashboardPath, `${dashboardPath}.export-hidden`);
+  const missingReferencedImageExport = await downloadPptx(target.id, loaded.id, 2);
+  check("missing referenced image blocks export", missingReferencedImageExport.status === 409 && /image information needs review|confirmation/i.test(missingReferencedImageExport.body.error));
+  renameSync(`${dashboardPath}.export-hidden`, dashboardPath);
+
+  const fiveSlideDraft = structuredClone(completeDraft);
+  fiveSlideDraft.slides.push({ heading: "Questions and close", bullets: ["Synthetic fifth slide for package verification"], speakerNotes: "Fifth slide notes.", sourceIds: [], imageIds: [] });
+  const fiveSlideRecord = await afterExportDb.interviewPresentationRecord.create({ data: {
+    targetId: target.id,
+    originalJson: JSON.stringify(fiveSlideDraft),
+    draftJson: JSON.stringify(fiveSlideDraft),
+    imageAnalysesJson: JSON.stringify(loaded.imageAnalyses),
+    sourceSnapshotJson: JSON.stringify(loaded.sourceSnapshot),
+    sourceFingerprint: loaded.sourceFingerprint,
+    generatedAt: new Date("2000-01-01T00:00:00.000Z"),
+    createdAt: new Date("2000-01-01T00:00:00.000Z"),
+  } });
+  const fiveSlideExport = await downloadPptx(target.id, fiveSlideRecord.id, 1);
+  const fiveSlidePackage = fiveSlideExport.bytes ? await inspectPptx(fiveSlideExport.bytes) : null;
+  check("5-slide saved draft exports exactly 5 slides", fiveSlideExport.status === 200 && fiveSlidePackage?.slides.length === 5 && fiveSlidePackage.notes.length === 5);
+  await afterExportDb.$disconnect();
+
+  const staleRevisionExport = await downloadPptx(target.id, loaded.id, 1);
+  check("export revision conflict is rejected", staleRevisionExport.status === 409 && /revision changed/.test(staleRevisionExport.body.error));
+  check("presentation cannot be exported through another target", (await downloadPptx("no-such-target", loaded.id, 2)).status === 404);
+
+  const incompleteDraft = structuredClone(loaded.draft);
+  incompleteDraft.title = "Persisted user draft";
+  incompleteDraft.slides[0].heading = "";
+  incompleteDraft.slides[0].speakerNotes = "Saved user notes that were not semantically re-reviewed.";
+  r = await call(`/api/targets/${target.id}/presentations/${loaded.id}`, json("PATCH", { draft: incompleteDraft, expectedRevision: 2 }));
+  check("incomplete wording can be explicitly saved", r.status === 200 && r.body.revision === 3 && r.body.draft.slides[0].heading === "");
+  check("saving draft does not modify original or source snapshot", JSON.stringify(r.body.original) === originalBeforeSave && JSON.stringify(r.body.sourceSnapshot) === sourceBeforeSave);
+  const incompleteExport = await downloadPptx(target.id, loaded.id, 3);
+  check("incomplete saved draft cannot be exported", incompleteExport.status === 422 && /incomplete or invalid/.test(incompleteExport.body.error));
+  const revisionConflict = await call(`/api/targets/${target.id}/presentations/${loaded.id}`, json("PATCH", { draft: { ...incompleteDraft, title: "Conflicting window" }, expectedRevision: 1 }));
+  check("revision conflict does not silently overwrite", revisionConflict.status === 409 && (await call(`/api/targets/${target.id}/presentation`)).body.draft.title === "Persisted user draft");
+  check("presentation cannot be saved through another target", (await call(`/api/targets/no-such-target/presentations/${loaded.id}`, json("PATCH", { draft: incompleteDraft, expectedRevision: 3 }))).status === 404);
+
+  const imageDb = testDb();
+  const storedDashboard = await imageDb.cvImage.findUniqueOrThrow({ where: { id: dashboard.id } });
+  await imageDb.cvImage.update({ where: { id: dashboard.id }, data: { sha256: "0".repeat(64) } });
+  r = await call(`/api/targets/${target.id}/presentation`);
+  check("changed image bytes mark saved source stale and unavailable", r.body.stale.isStale && r.body.stale.unavailableImageIds.includes(dashboard.id));
+  await imageDb.cvImage.update({ where: { id: dashboard.id }, data: { sha256: storedDashboard.sha256 } });
+  await imageDb.$disconnect();
+  check("restoring identical image metadata clears the image stale state", !(await call(`/api/targets/${target.id}/presentation`)).body.stale.isStale);
 
   // ── Edited confirmed data ──────────────────────────────────────────────
   console.log("── Editing confirmed data invalidates only what changed");
@@ -153,6 +282,14 @@ if (phase === "verify") {
   check("message explains what to do", p.readiness.issues.some((i) => i.code === "SECTION_CHANGED_SINCE_CONFIRMATION" && i.message === "Work experience was edited after you confirmed it. Review the current version and confirm it again."));
   r = await call(`/api/targets/${target.id}/context?requireReady=true`);
   check("requireReady now refuses (409)", r.status === 409 && r.body.issues[0].section === "EXPERIENCE");
+  const failedRegeneration = await call(`/api/targets/${target.id}/generate-interview`, { method: "POST" });
+  check("failed regeneration does not delete the latest saved record", failedRegeneration.status === 500 && (await call(`/api/targets/${target.id}/presentation`)).body.id === loaded.id);
+  const staleSourceExport = await downloadPptx(target.id, loaded.id, 3);
+  check("not-READY or stale source state blocks export", staleSourceExport.status === 409 && /review|confirm|Source changed/i.test(staleSourceExport.body.error));
+  const staleDraft = structuredClone(incompleteDraft);
+  staleDraft.title = "Persisted after source change";
+  r = await call(`/api/targets/${target.id}/presentations/${loaded.id}`, json("PATCH", { draft: staleDraft, expectedRevision: 3 }));
+  check("saving wording does not clear source stale state", r.status === 200 && r.body.revision === 4 && r.body.stale.isStale);
   await confirm(target.id, { confirmed: true, sections: ["EXPERIENCE"], expectedFingerprints: { EXPERIENCE: p.fingerprints.EXPERIENCE } });
   await call(`/api/cvs/${cv.id}`, json("PUT", { ...(await call(`/api/cvs/${cv.id}`)).body, skills: [...input.skills].reverse() }));
   p = await payloadOf(target.id);
@@ -244,5 +381,5 @@ if (phase === "verify") {
   await call(`/api/cvs/${other.id}`, { method: "DELETE" });
   check("review page of a deleted pairing shows not-found message", (await call(`/prepare/${sparseTarget.id}`)).body.includes("does not exist"));
 
-  finish({ targetId: target.id, cvId: cv.id, jobId: job.id });
+  finish({ targetId: target.id, cvId: cv.id, jobId: job.id, presentationId: loaded.id });
 }

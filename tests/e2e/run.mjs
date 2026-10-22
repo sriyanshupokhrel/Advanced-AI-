@@ -36,10 +36,14 @@ const uploadDir = path.join(tempDir, "uploads");
 mkdirSync(uploadDir);
 const env = {
   ...process.env,
+  // Work around prisma/prisma#29355 for the isolated SQLite migration only.
+  RUST_LOG: "info",
   DATABASE_URL: `file:${path.join(tempDir, "test.db").replace(/\\/g, "/")}`,
   UPLOAD_DIR: uploadDir,
   E2E_BASE_URL: baseUrl,
   NODE_ENV: "production",
+  // Server-only pipeline replacement: no Gemini request or model cost in E2E.
+  INTERNAL_E2E_MOCK_AI: "1",
   ...(updateExample ? { E2E_EXAMPLE_OUT: path.join(projectDir, "docs", "integration-payload.example.json") } : {}),
 };
 

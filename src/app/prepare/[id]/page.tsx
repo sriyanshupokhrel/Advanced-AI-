@@ -16,7 +16,7 @@ import {
   TargetJobContent,
 } from "@/components/review/SectionContent";
 import { RemoveTargetButton } from "@/components/targets/RemoveTargetButton";
-import { ButtonLink } from "@/components/ui/button";
+import { ButtonLink, buttonClass } from "@/components/ui/button";
 import { getCvById } from "@/lib/db/cv-repository";
 import { getInterviewPreparationPayload } from "@/lib/db/target-repository";
 import { REVIEW_SECTIONS } from "@/lib/validation/job-schema";
@@ -67,6 +67,11 @@ async function ReviewContent({ params }: { params: PageProps<"/prepare/[id]">["p
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
+          {readiness.isReady ? (
+            <ButtonLink href={`/prepare/${id}/presentation`}>Interview presentation</ButtonLink>
+          ) : (
+            <span aria-disabled="true" title="Confirm all blocking items before generating" className={buttonClass("primary", "cursor-not-allowed opacity-60")}>Interview presentation</span>
+          )}
           <ButtonLink href={`/api/targets/${id}/context`} variant="secondary" target="_blank" prefetch={false}>
             View integration payload (JSON)
           </ButtonLink>

@@ -3,15 +3,9 @@ import "server-only";
 
 import { GoogleGenAI } from "@google/genai";
 import type { PayloadImage } from "@/types/integration";
+import type { ImageAnalysisResult } from "@/types/interview-generation";
 
-export interface ImageAnalysisResult {
-  imageId: string;
-  projectName: string;
-  visibleFeatures: string[];
-  relevantSkills: string[];
-  presentationCaption: string;
-  limitations: string[];
-}
+export type { ImageAnalysisResult } from "@/types/interview-generation";
 
 export interface ImageAnalysisInput {
   image: PayloadImage;

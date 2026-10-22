@@ -10,11 +10,12 @@ applying for, and attach images (such as project screenshots) as visual
 evidence. Before anything is used, the user reviews and confirms the
 information.
 
-The planned enhancement turns this confirmed CV, job and image data into an
-interview presentation tailored to the job, using multimodal AI. This
-repository currently contains the **CV Builder foundation and the integration
-interface** that the AI stage will use. See
-[Current Development Status](#8-current-development-status).
+The implemented enhancement turns confirmed CV, job and image data into an
+editable interview presentation tailored to the job. It uses Gemini only after
+the user explicitly starts generation, persists the reviewed draft, and can
+export that saved revision as an editable PowerPoint file. See
+[Current Development Status](#8-current-development-status) for the remaining
+manual acceptance work.
 
 ## 2. Technology Stack
 
@@ -22,6 +23,9 @@ interface** that the AI stage will use. See
 - **Tailwind CSS 4** for styling
 - **Prisma 6** ORM with a local **SQLite** database
 - **Zod** for input validation (shared by the browser and the server)
+- **Google Gemini** for server-side image analysis, presentation generation and
+  claim review
+- **PptxGenJS 4** for editable `.pptx` export
 - Node.js built-in test runner for automated tests
 
 ## 3. Requirements
@@ -37,6 +41,7 @@ interface** that the AI stage will use. See
   | --- | --- | --- |
   | `DATABASE_URL` | Yes | SQLite file location. The default `file:./dev.db` creates `prisma/dev.db` |
   | `UPLOAD_DIR` | No | Folder for uploaded images. Default: `storage/uploads` |
+  | `GEMINI_API_KEY` | For real generation | Server-side Gemini key. Put it in `.env.local`; never commit or expose it to browser code |
 
 ## 4. Installation and Running
 
@@ -86,6 +91,10 @@ After pulling new changes from the group repository, run `npm install` and
   the packages contain operating-system-specific files.
 - **Prisma client:** it is generated automatically by `npm install`. If you
   see a "Prisma Client not generated" error, run `npm run db:generate`.
+- **SQLite migration workaround:** `npm run db:deploy` scopes `RUST_LOG=info`
+  only to the Prisma migration child process. The E2E runner applies the same
+  workaround to its isolated temporary database; neither changes a global
+  environment setting.
 
 ### Other commands
 
@@ -124,6 +133,33 @@ All features below are implemented and covered by automated tests.
     again.
 - **Integration API:** one structured JSON payload containing the CV, job,
   images and confirmation status, for the next development stage.
+- **Interview presentation:**
+  - generate a 4–5 slide presentation from a READY CV–job target through the
+    existing Gemini/image-analysis/claim-review pipeline;
+  - preview and edit the title, headings, bullets and speaker notes while
+    keeping source and image references read-only;
+  - keep the generated original separate from the user draft;
+  - explicitly save with optimistic revision checks, reopen the latest saved
+    draft, and mark it stale when confirmed source content or image bytes change;
+  - export only the current complete saved revision as an editable 16:9 PPTX,
+    including verified embedded images, speaker notes and a separate provenance
+    note section.
+
+### Presentation workflow
+
+1. Create a CV and job, pair them, then open `/prepare/{targetId}`.
+2. Review and confirm all seven data sections and every project image.
+3. Open **Interview presentation** and explicitly click **Generate
+   presentation**. This is the only normal action that starts the AI pipeline.
+4. Edit the draft and click **Save**. Refreshing or reopening now restores that
+   saved revision; unsaved edits are not persisted.
+5. Click **Download PPTX**, review the saved revision shown in the confirmation,
+   then confirm the download. Export never saves or calls Gemini.
+
+The application accepts PNG, JPEG, WebP and GIF uploads. PPTX export currently
+supports PNG, JPEG and GIF. A referenced WebP is rejected with an instruction
+to convert it to PNG or JPEG, upload it and confirm it again. GIF animation is
+not guaranteed across PowerPoint versions.
 
 ## 6. Project Structure
 
@@ -134,6 +170,8 @@ All features below are implemented and covered by automated tests.
 | `src/lib/db/` | All database access through Prisma |
 | `src/lib/validation/` | Validation rules for CVs, jobs, images and confirmations |
 | `src/lib/integration/` | Builds the integration payload and the confirmation rules |
+| `src/lib/ai/` | Gemini pipeline, prompts, image analysis and claim review |
+| `src/lib/presentation/` | Draft/session logic, source snapshots and PPTX generation |
 | `src/lib/storage/` | Image file storage and image content checks |
 | `src/types/` | Shared TypeScript types, including the integration contract |
 | `prisma/` | Database schema (`schema.prisma`) and migrations |
@@ -150,6 +188,10 @@ The next development stage reads one structured payload per CV–job pairing:
 | `GET /api/targets` | List CV–job pairings and their readiness |
 | `GET /api/targets/{id}/context?requireReady=true` | **The integration payload:** CV, job, images and confirmation status |
 | `GET /api/images/{imageId}` | Image file referenced by the payload (`url` field) |
+| `POST /api/targets/{id}/generate-interview` | Run the existing AI pipeline and persist a new original plus initial draft |
+| `GET /api/targets/{id}/presentation` | Reopen the latest saved presentation without calling Gemini |
+| `PATCH /api/targets/{id}/presentations/{presentationId}` | Explicitly save draft text using `expectedRevision` |
+| `POST /api/targets/{id}/presentations/{presentationId}/export` | Export the validated saved revision as PPTX |
 
 **Confirmation requirement:**
 
@@ -173,12 +215,14 @@ Full details (field descriptions, examples, error codes) are in
 | CV Builder, job descriptions, project images | ✅ Completed and tested |
 | User review, confirmation and correction | ✅ Completed and tested |
 | Structured integration API | ✅ Completed and tested |
-| Multimodal AI processing of CV, job and images | ⏳ Not yet implemented (separate integration stage) |
-| Interview presentation generation | ⏳ Not yet implemented (separate integration stage) |
+| Multimodal AI processing of CV, job and images | ✅ Implemented; automated tests use an isolated mock, real Gemini acceptance is pending |
+| Presentation preview, editing, explicit save and reopen | ✅ Implemented and automated-test covered |
+| Editable PPTX export | ✅ Implemented and package/renderer checked; Microsoft PowerPoint acceptance is pending |
 | Evaluation | ⏳ Not yet implemented (separate integration stage) |
 
-The complete group project is **not finished yet**. The stages marked ⏳
-will connect through the integration API described above.
+The Member 3 implementation is ready for team review, but real Gemini and
+Microsoft PowerPoint acceptance remain explicit manual gates. See
+[`docs/MEMBER3_HANDOVER.md`](docs/MEMBER3_HANDOVER.md).
 
 ## 9. Known Limitations
 
@@ -189,9 +233,17 @@ will connect through the integration API described above.
 - **Local image storage** (`storage/uploads/`). Images are not backed up and
   are not suitable for hosted deployment without cloud storage.
 - **Images are checked by their file header,** not fully decoded.
+- **PPTX WebP limitation.** WebP can be uploaded and previewed, but a referenced
+  WebP blocks export until it is converted, uploaded and confirmed again.
 - **Not-found status code.** Opening a deleted CV, job or pairing page shows a
   "not found" message, but returns HTTP status 200. The API returns 404
   correctly.
-- **npm audit** reports high-severity advisories in the Prisma command-line
-  tool and in ESLint's development tooling. Neither runs inside the
-  application, and the available fixes require breaking major upgrades.
+- **Manual acceptance remains:** the real Gemini flow has not been run during
+  automated development, browser automation was unavailable in the final
+  acceptance environment, and the sample PPTX has not yet been opened and
+  edited in Microsoft PowerPoint or LibreOffice.
+- **npm audit:** the current lockfile reports 10 high-severity package findings
+  with dev dependencies and 5 when dev dependencies are omitted. Production
+  findings include the `pptxgenjs → image-size` chain and Prisma's optional CLI
+  chain; see the handover document for advisory IDs, execution-path notes and
+  upgrade constraints. No `npm audit fix` has been applied.

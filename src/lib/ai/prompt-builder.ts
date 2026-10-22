@@ -1,7 +1,7 @@
 
 import type { InterviewPreparationPayload } from "@/types/integration";
+import type { ImageAnalysisResult } from "@/types/interview-generation";
 import type { SelectedEvidence } from "./content-selector";
-import type { ImageAnalysisResult } from "./image-analysis";
 
 export function buildInterviewPrompt(
   payload: InterviewPreparationPayload,

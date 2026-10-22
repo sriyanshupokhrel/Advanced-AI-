@@ -2,30 +2,19 @@ import { reviewPresentationClaims } from "./claim-review";
 import "server-only";
 
 import { GoogleGenAI } from "@google/genai";
-import { z } from "zod";
 
 import type { InterviewPreparationPayload } from "@/types/integration";
+import type { ImageAnalysisResult } from "@/types/interview-generation";
+import {
+  InterviewPresentationSchema,
+  type InterviewPresentation,
+} from "@/types/presentation";
 import {
   selectRelevantEvidence,
 } from "./content-selector";
-import type { ImageAnalysisResult } from "./image-analysis";
 import { buildInterviewPrompt } from "./prompt-builder";
 
-const SlideSchema = z.object({
-  heading: z.string().min(1),
-  bullets: z.array(z.string()).min(1).max(5),
-  speakerNotes: z.string(),
-  sourceIds: z.array(z.string()),
-  imageIds: z.array(z.string()),
-});
-
-const PresentationSchema = z.object({
-  title: z.string().min(1),
-  slides: z.array(SlideSchema).min(4).max(5),
-});
-
-export type InterviewPresentation =
-  z.infer<typeof PresentationSchema>;
+export type { InterviewPresentation } from "@/types/presentation";
 
 export async function generateInterviewPresentation(
   payload: InterviewPreparationPayload,
@@ -67,7 +56,7 @@ export async function generateInterviewPresentation(
     throw new Error("Gemini returned no presentation.");
   }
 
-  const presentation = PresentationSchema.parse(
+  const presentation = InterviewPresentationSchema.parse(
     JSON.parse(response.text)
   );
 

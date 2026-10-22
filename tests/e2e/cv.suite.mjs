@@ -123,6 +123,10 @@ for (const path of ["/", "/cv/new", `/cv/${created.id}`, `/cv/${created.id}/prev
   res = await fetch(`${base}${path}`);
   check(`page ${path} → 200`, res.status === 200);
 }
+res = await fetch(`${base}/dev/presentation`);
+check("development presentation demo is unavailable in production", res.status === 404);
+res = await fetch(`${base}/dev/presentation-flow`);
+check("development generation harness is unavailable in production", res.status === 404);
 res = await fetch(`${base}/`);
 check("home page lists saved CV", (await res.text()).includes("Test Candidate"));
 
