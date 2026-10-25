@@ -180,6 +180,7 @@ model CvJobTarget {
   jobDescription       JobDescription                @relation(fields: [jobDescriptionId], references: [id], onDelete: Cascade)
   sectionConfirmations TargetSectionConfirmation[]
   presentations        InterviewPresentationRecord[]
+  legacyDeck           InterviewDeck?
 
   @@unique([cvProfileId, jobDescriptionId])
   @@index([jobDescriptionId])
@@ -196,6 +197,7 @@ model InterviewPresentationRecord {
   imageAnalysesJson  String
   sourceSnapshotJson String
   sourceFingerprint  String
+  reliabilityJson    String?
   revision           Int      @default(1)
   generatedAt        DateTime
   createdAt          DateTime @default(now())
@@ -225,4 +227,17 @@ model TargetSectionConfirmation {
   target CvJobTarget @relation(fields: [targetId], references: [id], onDelete: Cascade)
 
   @@unique([targetId, section])
+}
+
+// Retained only for migration compatibility with Member 4's earlier handoff.
+// The active editor uses InterviewPresentationRecord; legacy data is never dropped.
+model InterviewDeck {
+  id             String   @id @default(cuid())
+  targetId       String   @unique
+  sourceSnapshot String
+  outputJson     String
+  version        Int      @default(1)
+  edited         Boolean  @default(false)
+  updatedAt      DateTime @updatedAt
+  target CvJobTarget @relation(fields: [targetId], references: [id], onDelete: Cascade)
 }

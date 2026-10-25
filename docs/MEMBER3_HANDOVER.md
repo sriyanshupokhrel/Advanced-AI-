@@ -1,3 +1,10 @@
+# Historical Member 3 handover
+
+This document records the original `4cf4a2d` handover. Its test counts and
+limitations describe that version. For the integrated 25 October snapshot,
+including full image decoding, WebP conversion and review metadata, read
+[`../TEAM_INTEGRATION.md`](../TEAM_INTEGRATION.md).
+
 # Member 3 handover: interview presentation
 
 Date checked: 22 October 2026

@@ -1,0 +1,39 @@
+PASS MOCK missing key has typed 503
+PASS MOCK empty rejected
+PASS MOCK invalid JSON rejected
+PASS MOCK wrong schema rejected
+PASS MOCK blank heading rejected
+PASS MOCK empty notes rejected
+PASS MOCK blank bullet rejected
+PASS MOCK three slides rejected
+PASS MOCK missing finding blocked
+PASS MOCK duplicate finding blocked
+PASS MOCK unknown unit blocked
+PASS MOCK out of range slide blocked
+PASS MOCK incorrect text blocked
+PASS MOCK wrong source ID blocked
+PASS MOCK wrong excerpt blocked
+PASS MOCK candidate uses job source blocked
+PASS MOCK supported model verdict never equals automatic approval
+PASS MOCK unsupported claim with real ID stays NEEDS_CHANGES
+PASS MOCK lying supported verdict with real IDs remains human review
+PASS MOCK single supported finding cannot approve omitted heading and notes
+PASS MOCK title and all fields have stable unique review IDs
+PASS MOCK missing duplicate unknown reference entries rejected
+PASS MOCK profile citation and linked source required
+PASS MOCK known-but-foreign image/project association rejected
+PASS MOCK missing closing role rejected
+PASS MOCK valid five-slide deck accepted
+(node:7) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///workspace/scratch/618a74f23a2f/integration/merged/src/lib/ai/interview-generator.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /workspace/scratch/618a74f23a2f/integration/merged/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS MOCK model extra fields cannot overwrite trusted identities or caption
+PASS MOCK actual decodable image bytes and user description sent
+PASS MOCK related image remains usable with correct project
+PASS MOCK corrupt bytes rejected before provider
+PASS MOCK provider classification RATE_LIMIT
+PASS MOCK provider classification AI_UNAVAILABLE
+PASS MOCK provider classification AI_TIMEOUT
+PASS MOCK SDK status-text rate limit remains distinguishable
+PASS MOCK budget and overall deadline prevent transport

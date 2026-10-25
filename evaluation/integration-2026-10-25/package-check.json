@@ -1,0 +1,15 @@
+{
+  "baseline_commit": "4cf4a2d81f4fe756d193b4150de2116bcdc36e1d",
+  "patch_apply_check": "PASS",
+  "patch_roundtrip_files": 180,
+  "whitespace_check": "PASS",
+  "credential_pattern_scan": "PASS",
+  "excluded": [
+    "node_modules",
+    ".next",
+    ".git",
+    "real environment files",
+    "local databases",
+    "runtime uploads"
+  ]
+}

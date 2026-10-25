@@ -1,0 +1,869 @@
+{
+  "targetId": "cmvkhpgsr000xd960ilnu2sl0",
+  "inputSnapshot": {
+    "contractVersion": "2.0",
+    "targetId": "cmvkhpgsr000xd960ilnu2sl0",
+    "generatedAt": "2026-10-23T04:48:47.715Z",
+    "verificationDisclaimer": "Confirmed information has been reviewed by the user. It has not been independently verified by the application or the university.",
+    "readiness": {
+      "status": "READY",
+      "isReady": true,
+      "readySince": "2026-10-23T04:48:47.704Z",
+      "sections": {
+        "confirmed": 7,
+        "total": 7
+      },
+      "images": {
+        "confirmed": 0,
+        "total": 0
+      },
+      "issues": [
+        {
+          "code": "EMPTY_SECTION",
+          "section": "EXPERIENCE",
+          "itemId": null,
+          "message": "Work experience is empty. If that is intended, you can still confirm it.",
+          "severity": "WARNING"
+        },
+        {
+          "code": "EMPTY_SECTION",
+          "section": "ACHIEVEMENTS",
+          "itemId": null,
+          "message": "Achievements is empty. If that is intended, you can still confirm it.",
+          "severity": "WARNING"
+        },
+        {
+          "code": "PROJECT_HAS_NO_IMAGES",
+          "section": "PROJECTS",
+          "itemId": "cmvkhpgsd000ud960lapso2no",
+          "message": "Project \"Sales Analysis Dashboard\" has no images. Images are optional but give the multimodal presentation visual material.",
+          "severity": "WARNING"
+        },
+        {
+          "code": "COMPANY_NAME_MISSING",
+          "section": "TARGET_JOB",
+          "itemId": null,
+          "message": "The target job has no company name.",
+          "severity": "WARNING"
+        }
+      ]
+    },
+    "candidate": {
+      "cvProfileId": "cmvkhpgsd000od960j8ivwyb6",
+      "createdAt": "2026-10-23T04:48:47.678Z",
+      "lastUpdatedAt": "2026-10-23T04:48:47.678Z",
+      "profile": {
+        "confirmation": {
+          "status": "CONFIRMED",
+          "isConfirmed": true,
+          "confirmedAt": "2026-10-23T04:48:47.702Z",
+          "basis": "USER_REVIEW"
+        },
+        "fullName": "Alex Chan",
+        "headline": "Graduate Data Analyst",
+        "contact": {
+          "email": "alex.chan@example.com",
+          "phone": null,
+          "location": null,
+          "website": null
+        },
+        "professionalSummary": "IT graduate seeking a data analyst role."
+      },
+      "education": {
+        "confirmation": {
+          "status": "CONFIRMED",
+          "isConfirmed": true,
+          "confirmedAt": "2026-10-23T04:48:47.703Z",
+          "basis": "USER_REVIEW"
+        },
+        "items": [
+          {
+            "id": "cmvkhpgsd000pd960331o4nt0",
+            "institution": "University of Technology Sydney",
+            "qualification": "Bachelor of Information Technology",
+            "fieldOfStudy": null,
+            "startDate": "2023-02",
+            "endDate": "2025-11",
+            "grade": null,
+            "description": null
+          }
+        ]
+      },
+      "workExperience": {
+        "confirmation": {
+          "status": "CONFIRMED",
+          "isConfirmed": true,
+          "confirmedAt": "2026-10-23T04:48:47.703Z",
+          "basis": "USER_REVIEW"
+        },
+        "items": []
+      },
+      "skills": {
+        "confirmation": {
+          "status": "CONFIRMED",
+          "isConfirmed": true,
+          "confirmedAt": "2026-10-23T04:48:47.703Z",
+          "basis": "USER_REVIEW"
+        },
+        "items": [
+          {
+            "id": "cmvkhpgsd000qd9606efub8pa",
+            "name": "Python",
+            "category": null
+          },
+          {
+            "id": "cmvkhpgsd000rd9603pp14uc4",
+            "name": "SQL",
+            "category": null
+          },
+          {
+            "id": "cmvkhpgsd000sd960k92y0bk0",
+            "name": "pandas",
+            "category": null
+          },
+          {
+            "id": "cmvkhpgsd000td960cbripyq6",
+            "name": "Streamlit",
+            "category": null
+          }
+        ]
+      },
+      "projects": {
+        "confirmation": {
+          "status": "CONFIRMED",
+          "isConfirmed": true,
+          "confirmedAt": "2026-10-23T04:48:47.704Z",
+          "basis": "USER_REVIEW"
+        },
+        "items": [
+          {
+            "id": "cmvkhpgsd000ud960lapso2no",
+            "name": "Sales Analysis Dashboard",
+            "role": "Student Developer",
+            "url": null,
+            "technologies": "Python, SQL, pandas, Streamlit",
+            "description": "Built an academic sales analysis dashboard using a sample retail dataset.\nUsed SQL to query sales records and pandas to clean and summarise the data.\nCreated a Streamlit dashboard showing monthly sales trends and sales by product category.",
+            "images": []
+          }
+        ]
+      },
+      "achievements": {
+        "confirmation": {
+          "status": "CONFIRMED",
+          "isConfirmed": true,
+          "confirmedAt": "2026-10-23T04:48:47.704Z",
+          "basis": "USER_REVIEW"
+        },
+        "items": []
+      },
+      "otherImages": []
+    },
+    "targetJob": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-23T04:48:47.704Z",
+        "basis": "USER_REVIEW"
+      },
+      "jobDescriptionId": "cmvkhpgsj000vd960x99hxts1",
+      "jobTitle": "Cloud Engineer",
+      "company": {
+        "name": null,
+        "information": null
+      },
+      "jobReference": null,
+      "descriptionText": "Cloud Engineer: requires AWS, cloud deployment and infrastructure management.",
+      "createdAt": "2026-10-23T04:48:47.684Z",
+      "lastUpdatedAt": "2026-10-23T04:48:47.684Z"
+    },
+    "fingerprints": {
+      "PROFILE": "e17f069a542f71e0a774d7e7d9c16703d45c18ab94408ef185845c30961af1c9",
+      "EDUCATION": "abf34d5a05dc7c6150226655744e8cef4cab9f4cfa6ab00cdc0b98807db97843",
+      "EXPERIENCE": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "SKILLS": "c60b2ea416b7e7f3e1c42f24b0fd5b66c082bdee2716bcee98fc53d6510ff86d",
+      "PROJECTS": "1ee0b26f04effad2a056d2141c5d425e684b408d0ce9ae37d89c18d12ab8c321",
+      "ACHIEVEMENTS": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "TARGET_JOB": "64d6b2502ecd86126306e32f9f770d724cd484e173fa139d8d2baadff42a0fba"
+    }
+  },
+  "sourceSnapshot": "4edbed35760e175df96d35d9b52078231286fe4c403130c4216a17097fb76f73",
+  "selection": {
+    "method": "Distinct keyword overlap, not semantic ranking",
+    "selected": [
+      {
+        "sourceId": "cmvkhpgsd000od960j8ivwyb6",
+        "sourceType": "profile",
+        "title": "Alex Chan",
+        "description": "{\"fullName\":\"Alex Chan\",\"headline\":\"Graduate Data Analyst\",\"professionalSummary\":\"IT graduate seeking a data analyst role.\"}",
+        "relevanceScore": 0,
+        "imageIds": []
+      },
+      {
+        "sourceId": "cmvkhpgsd000qd9606efub8pa",
+        "sourceType": "skill",
+        "title": "Python",
+        "description": "{\"id\":\"cmvkhpgsd000qd9606efub8pa\",\"name\":\"Python\",\"category\":null}",
+        "relevanceScore": 0,
+        "imageIds": []
+      },
+      {
+        "sourceId": "cmvkhpgsd000rd9603pp14uc4",
+        "sourceType": "skill",
+        "title": "SQL",
+        "description": "{\"id\":\"cmvkhpgsd000rd9603pp14uc4\",\"name\":\"SQL\",\"category\":null}",
+        "relevanceScore": 0,
+        "imageIds": []
+      },
+      {
+        "sourceId": "cmvkhpgsd000sd960k92y0bk0",
+        "sourceType": "skill",
+        "title": "pandas",
+        "description": "{\"id\":\"cmvkhpgsd000sd960k92y0bk0\",\"name\":\"pandas\",\"category\":null}",
+        "relevanceScore": 0,
+        "imageIds": []
+      },
+      {
+        "sourceId": "cmvkhpgsd000td960cbripyq6",
+        "sourceType": "skill",
+        "title": "Streamlit",
+        "description": "{\"id\":\"cmvkhpgsd000td960cbripyq6\",\"name\":\"Streamlit\",\"category\":null}",
+        "relevanceScore": 0,
+        "imageIds": []
+      },
+      {
+        "sourceId": "cmvkhpgsd000ud960lapso2no",
+        "sourceType": "project",
+        "title": "Sales Analysis Dashboard",
+        "description": "{\"id\":\"cmvkhpgsd000ud960lapso2no\",\"name\":\"Sales Analysis Dashboard\",\"role\":\"Student Developer\",\"url\":null,\"technologies\":\"Python, SQL, pandas, Streamlit\",\"description\":\"Built an academic sales analysis dashboard using a sample retail dataset.\\nUsed SQL to query sales records and pandas to clean and summarise the data.\\nCreated a Streamlit dashboard showing monthly sales trends and sales by product category.\"}",
+        "relevanceScore": 0,
+        "imageIds": []
+      },
+      {
+        "sourceId": "cmvkhpgsd000pd960331o4nt0",
+        "sourceType": "education",
+        "title": "Bachelor of Information Technology",
+        "description": "{\"id\":\"cmvkhpgsd000pd960331o4nt0\",\"institution\":\"University of Technology Sydney\",\"qualification\":\"Bachelor of Information Technology\",\"fieldOfStudy\":null,\"startDate\":\"2023-02\",\"endDate\":\"2025-11\",\"grade\":null,\"description\":null}",
+        "relevanceScore": 0,
+        "imageIds": []
+      }
+    ],
+    "omitted": [],
+    "zeroMatch": true,
+    "jobTermsWithoutLexicalEvidence": [
+      "cloud",
+      "aws",
+      "deployment",
+      "infrastructure",
+      "management"
+    ],
+    "warning": "Zero-score sources are fallback background, not evidence of fit. Missing words are lexical gaps, not a complete assessment of qualifications."
+  },
+  "imageAnalyses": [],
+  "omittedImages": [],
+  "presentation": {
+    "title": "Alex Chan - Interview Presentation",
+    "slides": [
+      {
+        "role": "introduction",
+        "heading": "Introduction: Alex Chan",
+        "bullets": [
+          "IT graduate and Graduate Data Analyst",
+          "Seeking a data analyst role",
+          "Education from University of Technology Sydney"
+        ],
+        "speakerNotes": "Hello, I am Alex Chan, an IT graduate from the University of Technology Sydney. Today I am presenting my background as a Graduate Data Analyst.",
+        "sourceIds": [
+          "cmvkhpgsd000od960j8ivwyb6",
+          "cmvkhpgsd000pd960331o4nt0"
+        ],
+        "imageIds": []
+      },
+      {
+        "role": "evidence",
+        "heading": "Core Technical Skills",
+        "bullets": [
+          "Proficient in Python and SQL",
+          "Experienced with pandas for data cleaning",
+          "Familiar with Streamlit for dashboards"
+        ],
+        "speakerNotes": "My core technical background includes working with Python, SQL, pandas, and Streamlit to process and visualize data.",
+        "sourceIds": [
+          "cmvkhpgsd000qd9606efub8pa",
+          "cmvkhpgsd000rd9603pp14uc4",
+          "cmvkhpgsd000sd960k92y0bk0",
+          "cmvkhpgsd000td960cbripyq6"
+        ],
+        "imageIds": []
+      },
+      {
+        "role": "evidence",
+        "heading": "Project Experience: Sales Analysis Dashboard",
+        "bullets": [
+          "Role: Student Developer",
+          "Used Python, SQL, pandas, Streamlit",
+          "Built an academic sales analysis dashboard using a sample retail dataset"
+        ],
+        "speakerNotes": "In my academic project, the Sales Analysis Dashboard, I served as a Student Developer building analytics tools using sample retail data.",
+        "sourceIds": [
+          "cmvkhpgsd000ud960lapso2no"
+        ],
+        "imageIds": []
+      },
+      {
+        "role": "closing",
+        "heading": "Application for Cloud Engineer",
+        "bullets": [
+          "Target Job: Cloud Engineer",
+          "Missing AWS, cloud deployment, and infrastructure management evidence",
+          "Honest discussion of limited fit and transferable data skills"
+        ],
+        "speakerNotes": "While I am applying for the Cloud Engineer role, my background is focused on data analysis rather than infrastructure management. I have zero AWS or cloud deployment evidence, so there is a limited fit with the specific cloud requirements.",
+        "sourceIds": [
+          "job:cmvkhpgsj000vd960x99hxts1",
+          "cmvkhpgsd000od960j8ivwyb6"
+        ],
+        "imageIds": []
+      }
+    ],
+    "references": [
+      {
+        "unitId": "title",
+        "sourceIds": [
+          "cmvkhpgsd000od960j8ivwyb6"
+        ]
+      },
+      {
+        "unitId": "slide.0.heading",
+        "sourceIds": [
+          "cmvkhpgsd000od960j8ivwyb6"
+        ]
+      },
+      {
+        "unitId": "slide.0.bullet.0",
+        "sourceIds": [
+          "cmvkhpgsd000od960j8ivwyb6"
+        ]
+      },
+      {
+        "unitId": "slide.0.bullet.1",
+        "sourceIds": [
+          "cmvkhpgsd000od960j8ivwyb6"
+        ]
+      },
+      {
+        "unitId": "slide.0.bullet.2",
+        "sourceIds": [
+          "cmvkhpgsd000pd960331o4nt0"
+        ]
+      },
+      {
+        "unitId": "slide.0.notes",
+        "sourceIds": [
+          "cmvkhpgsd000od960j8ivwyb6",
+          "cmvkhpgsd000pd960331o4nt0"
+        ]
+      },
+      {
+        "unitId": "slide.1.heading",
+        "sourceIds": [
+          "cmvkhpgsd000qd9606efub8pa",
+          "cmvkhpgsd000rd9603pp14uc4"
+        ]
+      },
+      {
+        "unitId": "slide.1.bullet.0",
+        "sourceIds": [
+          "cmvkhpgsd000qd9606efub8pa",
+          "cmvkhpgsd000rd9603pp14uc4"
+        ]
+      },
+      {
+        "unitId": "slide.1.bullet.1",
+        "sourceIds": [
+          "cmvkhpgsd000sd960k92y0bk0"
+        ]
+      },
+      {
+        "unitId": "slide.1.bullet.2",
+        "sourceIds": [
+          "cmvkhpgsd000td960cbripyq6"
+        ]
+      },
+      {
+        "unitId": "slide.1.notes",
+        "sourceIds": [
+          "cmvkhpgsd000qd9606efub8pa",
+          "cmvkhpgsd000rd9603pp14uc4",
+          "cmvkhpgsd000sd960k92y0bk0",
+          "cmvkhpgsd000td960cbripyq6"
+        ]
+      },
+      {
+        "unitId": "slide.2.heading",
+        "sourceIds": [
+          "cmvkhpgsd000ud960lapso2no"
+        ]
+      },
+      {
+        "unitId": "slide.2.bullet.0",
+        "sourceIds": [
+          "cmvkhpgsd000ud960lapso2no"
+        ]
+      },
+      {
+        "unitId": "slide.2.bullet.1",
+        "sourceIds": [
+          "cmvkhpgsd000ud960lapso2no"
+        ]
+      },
+      {
+        "unitId": "slide.2.bullet.2",
+        "sourceIds": [
+          "cmvkhpgsd000ud960lapso2no"
+        ]
+      },
+      {
+        "unitId": "slide.2.notes",
+        "sourceIds": [
+          "cmvkhpgsd000ud960lapso2no"
+        ]
+      },
+      {
+        "unitId": "slide.3.heading",
+        "sourceIds": [
+          "job:cmvkhpgsj000vd960x99hxts1"
+        ]
+      },
+      {
+        "unitId": "slide.3.bullet.0",
+        "sourceIds": [
+          "job:cmvkhpgsj000vd960x99hxts1"
+        ]
+      },
+      {
+        "unitId": "slide.3.bullet.1",
+        "sourceIds": [
+          "job:cmvkhpgsj000vd960x99hxts1"
+        ]
+      },
+      {
+        "unitId": "slide.3.bullet.2",
+        "sourceIds": [
+          "cmvkhpgsd000od960j8ivwyb6",
+          "job:cmvkhpgsj000vd960x99hxts1"
+        ]
+      },
+      {
+        "unitId": "slide.3.notes",
+        "sourceIds": [
+          "job:cmvkhpgsj000vd960x99hxts1",
+          "cmvkhpgsd000od960j8ivwyb6"
+        ]
+      }
+    ]
+  },
+  "review": {
+    "approved": false,
+    "coverageComplete": true,
+    "status": "HUMAN_REVIEW_REQUIRED",
+    "findings": [
+      {
+        "unitId": "title",
+        "slideIndex": -1,
+        "claim": "Alex Chan - Interview Presentation",
+        "kind": "label",
+        "sourceIds": [
+          "cmvkhpgsd000od960j8ivwyb6"
+        ],
+        "evidence": [],
+        "supported": true,
+        "reason": "Plain section label requiring no evidence."
+      },
+      {
+        "unitId": "slide.0.heading",
+        "slideIndex": 0,
+        "claim": "Introduction: Alex Chan",
+        "kind": "label",
+        "sourceIds": [
+          "cmvkhpgsd000od960j8ivwyb6"
+        ],
+        "evidence": [],
+        "supported": true,
+        "reason": "Plain section label requiring no evidence."
+      },
+      {
+        "unitId": "slide.0.bullet.0",
+        "slideIndex": 0,
+        "claim": "IT graduate and Graduate Data Analyst",
+        "kind": "candidate",
+        "sourceIds": [
+          "cmvkhpgsd000od960j8ivwyb6"
+        ],
+        "evidence": [
+          {
+            "sourceId": "cmvkhpgsd000od960j8ivwyb6",
+            "quote": "Alex Chan {\"fullName\":\"Alex Chan\",\"headline\":\"Graduate Data Analyst\",\"professionalSummary\":\"IT graduate seeking a data analyst role.\"}"
+          }
+        ],
+        "supported": true,
+        "reason": "Accurately supported by the candidate profile summary and headline."
+      },
+      {
+        "unitId": "slide.0.bullet.1",
+        "slideIndex": 0,
+        "claim": "Seeking a data analyst role",
+        "kind": "candidate",
+        "sourceIds": [
+          "cmvkhpgsd000od960j8ivwyb6"
+        ],
+        "evidence": [
+          {
+            "sourceId": "cmvkhpgsd000od960j8ivwyb6",
+            "quote": "seeking a data analyst role"
+          }
+        ],
+        "supported": true,
+        "reason": "Supported by the professionalSummary text in the candidate source."
+      },
+      {
+        "unitId": "slide.0.bullet.2",
+        "slideIndex": 0,
+        "claim": "Education from University of Technology Sydney",
+        "kind": "candidate",
+        "sourceIds": [
+          "cmvkhpgsd000pd960331o4nt0"
+        ],
+        "evidence": [
+          {
+            "sourceId": "cmvkhpgsd000pd960331o4nt0",
+            "quote": "University of Technology Sydney"
+          }
+        ],
+        "supported": true,
+        "reason": "Supported by the education institution in the candidate source."
+      },
+      {
+        "unitId": "slide.0.notes",
+        "slideIndex": 0,
+        "claim": "Hello, I am Alex Chan, an IT graduate from the University of Technology Sydney. Today I am presenting my background as a Graduate Data Analyst.",
+        "kind": "candidate",
+        "sourceIds": [
+          "cmvkhpgsd000od960j8ivwyb6",
+          "cmvkhpgsd000pd960331o4nt0"
+        ],
+        "evidence": [
+          {
+            "sourceId": "cmvkhpgsd000od960j8ivwyb6",
+            "quote": "Alex Chan"
+          },
+          {
+            "sourceId": "cmvkhpgsd000od960j8ivwyb6",
+            "quote": "Graduate Data Analyst"
+          },
+          {
+            "sourceId": "cmvkhpgsd000pd960331o4nt0",
+            "quote": "University of Technology Sydney"
+          }
+        ],
+        "supported": true,
+        "reason": "All factual claims are supported by the respective candidate sources."
+      },
+      {
+        "unitId": "slide.1.heading",
+        "slideIndex": 1,
+        "claim": "Core Technical Skills",
+        "kind": "label",
+        "sourceIds": [
+          "cmvkhpgsd000qd9606efub8pa",
+          "cmvkhpgsd000rd9603pp14uc4"
+        ],
+        "evidence": [],
+        "supported": true,
+        "reason": "Plain section label requiring no evidence."
+      },
+      {
+        "unitId": "slide.1.bullet.0",
+        "slideIndex": 1,
+        "claim": "Proficient in Python and SQL",
+        "kind": "candidate",
+        "sourceIds": [
+          "cmvkhpgsd000qd9606efub8pa",
+          "cmvkhpgsd000rd9603pp14uc4"
+        ],
+        "evidence": [
+          {
+            "sourceId": "cmvkhpgsd000qd9606efub8pa",
+            "quote": "Python"
+          },
+          {
+            "sourceId": "cmvkhpgsd000rd9603pp14uc4",
+            "quote": "SQL"
+          }
+        ],
+        "supported": true,
+        "reason": "Supported by the candidate skills list."
+      },
+      {
+        "unitId": "slide.1.bullet.1",
+        "slideIndex": 1,
+        "claim": "Experienced with pandas for data cleaning",
+        "kind": "candidate",
+        "sourceIds": [
+          "cmvkhpgsd000sd960k92y0bk0"
+        ],
+        "evidence": [
+          {
+            "sourceId": "cmvkhpgsd000sd960k92y0bk0",
+            "quote": "pandas"
+          }
+        ],
+        "supported": true,
+        "reason": "Supported by the candidate skills/project data."
+      },
+      {
+        "unitId": "slide.1.bullet.2",
+        "slideIndex": 1,
+        "claim": "Familiar with Streamlit for dashboards",
+        "kind": "candidate",
+        "sourceIds": [
+          "cmvkhpgsd000td960cbripyq6"
+        ],
+        "evidence": [
+          {
+            "sourceId": "cmvkhpgsd000td960cbripyq6",
+            "quote": "Streamlit"
+          }
+        ],
+        "supported": true,
+        "reason": "Supported by the candidate Streamlit source."
+      },
+      {
+        "unitId": "slide.1.notes",
+        "slideIndex": 1,
+        "claim": "My core technical background includes working with Python, SQL, pandas, and Streamlit to process and visualize data.",
+        "kind": "candidate",
+        "sourceIds": [
+          "cmvkhpgsd000qd9606efub8pa",
+          "cmvkhpgsd000rd9603pp14uc4",
+          "cmvkhpgsd000sd960k92y0bk0",
+          "cmvkhpgsd000td960cbripyq6"
+        ],
+        "evidence": [
+          {
+            "sourceId": "cmvkhpgsd000qd9606efub8pa",
+            "quote": "Python"
+          },
+          {
+            "sourceId": "cmvkhpgsd000rd9603pp14uc4",
+            "quote": "SQL"
+          },
+          {
+            "sourceId": "cmvkhpgsd000sd960k92y0bk0",
+            "quote": "pandas"
+          },
+          {
+            "sourceId": "cmvkhpgsd000td960cbripyq6",
+            "quote": "Streamlit"
+          }
+        ],
+        "supported": true,
+        "reason": "Supported by the listed candidate technical skills."
+      },
+      {
+        "unitId": "slide.2.heading",
+        "slideIndex": 2,
+        "claim": "Project Experience: Sales Analysis Dashboard",
+        "kind": "label",
+        "sourceIds": [
+          "cmvkhpgsd000ud960lapso2no"
+        ],
+        "evidence": [],
+        "supported": true,
+        "reason": "Plain section label requiring no evidence."
+      },
+      {
+        "unitId": "slide.2.bullet.0",
+        "slideIndex": 2,
+        "claim": "Role: Student Developer",
+        "kind": "candidate",
+        "sourceIds": [
+          "cmvkhpgsd000ud960lapso2no"
+        ],
+        "evidence": [
+          {
+            "sourceId": "cmvkhpgsd000ud960lapso2no",
+            "quote": "\"role\":\"Student Developer\""
+          }
+        ],
+        "supported": true,
+        "reason": "Directly supported by the candidate project source."
+      },
+      {
+        "unitId": "slide.2.bullet.1",
+        "slideIndex": 2,
+        "claim": "Used Python, SQL, pandas, Streamlit",
+        "kind": "candidate",
+        "sourceIds": [
+          "cmvkhpgsd000ud960lapso2no"
+        ],
+        "evidence": [
+          {
+            "sourceId": "cmvkhpgsd000ud960lapso2no",
+            "quote": "\"technologies\":\"Python, SQL, pandas, Streamlit\""
+          }
+        ],
+        "supported": true,
+        "reason": "Directly supported by the candidate project technologies source."
+      },
+      {
+        "unitId": "slide.2.bullet.2",
+        "slideIndex": 2,
+        "claim": "Built an academic sales analysis dashboard using a sample retail dataset",
+        "kind": "candidate",
+        "sourceIds": [
+          "cmvkhpgsd000ud960lapso2no"
+        ],
+        "evidence": [
+          {
+            "sourceId": "cmvkhpgsd000ud960lapso2no",
+            "quote": "Built an academic sales analysis dashboard using a sample retail dataset."
+          }
+        ],
+        "supported": true,
+        "reason": "Directly supported by the candidate project description."
+      },
+      {
+        "unitId": "slide.2.notes",
+        "slideIndex": 2,
+        "claim": "In my academic project, the Sales Analysis Dashboard, I served as a Student Developer building analytics tools using sample retail data.",
+        "kind": "candidate",
+        "sourceIds": [
+          "cmvkhpgsd000ud960lapso2no"
+        ],
+        "evidence": [
+          {
+            "sourceId": "cmvkhpgsd000ud960lapso2no",
+            "quote": "Sales Analysis Dashboard"
+          },
+          {
+            "sourceId": "cmvkhpgsd000ud960lapso2no",
+            "quote": "\"role\":\"Student Developer\""
+          },
+          {
+            "sourceId": "cmvkhpgsd000ud960lapso2no",
+            "quote": "Built an academic sales analysis dashboard using a sample retail dataset."
+          }
+        ],
+        "supported": true,
+        "reason": "All claims are supported by the candidate project description and attributes."
+      },
+      {
+        "unitId": "slide.3.heading",
+        "slideIndex": 3,
+        "claim": "Application for Cloud Engineer",
+        "kind": "job",
+        "sourceIds": [
+          "job:cmvkhpgsj000vd960x99hxts1"
+        ],
+        "evidence": [
+          {
+            "sourceId": "job:cmvkhpgsj000vd960x99hxts1",
+            "quote": "Cloud Engineer"
+          }
+        ],
+        "supported": true,
+        "reason": "Supported by the job title in the job description."
+      },
+      {
+        "unitId": "slide.3.bullet.0",
+        "slideIndex": 3,
+        "claim": "Target Job: Cloud Engineer",
+        "kind": "job",
+        "sourceIds": [
+          "job:cmvkhpgsj000vd960x99hxts1"
+        ],
+        "evidence": [
+          {
+            "sourceId": "job:cmvkhpgsj000vd960x99hxts1",
+            "quote": "Cloud Engineer"
+          }
+        ],
+        "supported": true,
+        "reason": "Supported by the job description."
+      },
+      {
+        "unitId": "slide.3.bullet.1",
+        "slideIndex": 3,
+        "claim": "Missing AWS, cloud deployment, and infrastructure management evidence",
+        "kind": "job",
+        "sourceIds": [
+          "job:cmvkhpgsj000vd960x99hxts1"
+        ],
+        "evidence": [
+          {
+            "sourceId": "job:cmvkhpgsj000vd960x99hxts1",
+            "quote": "requires AWS, cloud deployment and infrastructure management"
+          }
+        ],
+        "supported": true,
+        "reason": "Supported by the job description outlining the required competencies which are missing in candidate profile."
+      },
+      {
+        "unitId": "slide.3.bullet.2",
+        "slideIndex": 3,
+        "claim": "Honest discussion of limited fit and transferable data skills",
+        "kind": "mixed",
+        "sourceIds": [
+          "cmvkhpgsd000od960j8ivwyb6",
+          "job:cmvkhpgsj000vd960x99hxts1"
+        ],
+        "evidence": [
+          {
+            "sourceId": "cmvkhpgsd000od960j8ivwyb6",
+            "quote": "Alex Chan"
+          },
+          {
+            "sourceId": "job:cmvkhpgsj000vd960x99hxts1",
+            "quote": "Cloud Engineer"
+          }
+        ],
+        "supported": true,
+        "reason": "Mixed claim comparing candidate background with job requirements, supported by sources."
+      },
+      {
+        "unitId": "slide.3.notes",
+        "slideIndex": 3,
+        "claim": "While I am applying for the Cloud Engineer role, my background is focused on data analysis rather than infrastructure management. I have zero AWS or cloud deployment evidence, so there is a limited fit with the specific cloud requirements.",
+        "kind": "mixed",
+        "sourceIds": [
+          "job:cmvkhpgsj000vd960x99hxts1",
+          "cmvkhpgsd000od960j8ivwyb6"
+        ],
+        "evidence": [
+          {
+            "sourceId": "job:cmvkhpgsj000vd960x99hxts1",
+            "quote": "Cloud Engineer"
+          },
+          {
+            "sourceId": "job:cmvkhpgsj000vd960x99hxts1",
+            "quote": "AWS"
+          },
+          {
+            "sourceId": "cmvkhpgsd000od960j8ivwyb6",
+            "quote": "Data Analyst"
+          }
+        ],
+        "supported": true,
+        "reason": "Supported by both candidate and job sources regarding role mismatch and requirements."
+      }
+    ],
+    "limitations": "Exact coverage, source membership and quoted-excerpt checks passed. These are traceability checks, not semantic proof. A person must compare every field with the displayed source, including labels/intent and all clauses in notes. Model self-review cannot approve facts."
+  },
+  "generatedAt": "2026-10-23T04:48:59.298Z",
+  "metadata": {
+    "model": "gemini-3.5-flash-lite",
+    "promptVersion": "reliability-v2-2026-10-23",
+    "calls": 2,
+    "elapsedMs": 11583
+  }
+}

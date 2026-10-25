@@ -1,0 +1,2 @@
+CREATE TABLE "InterviewDeck" ("id" TEXT NOT NULL PRIMARY KEY, "targetId" TEXT NOT NULL, "sourceSnapshot" TEXT NOT NULL, "outputJson" TEXT NOT NULL, "version" INTEGER NOT NULL DEFAULT 1, "edited" BOOLEAN NOT NULL DEFAULT false, "updatedAt" DATETIME NOT NULL, CONSTRAINT "InterviewDeck_targetId_fkey" FOREIGN KEY ("targetId") REFERENCES "CvJobTarget" ("id") ON DELETE CASCADE ON UPDATE CASCADE);
+CREATE UNIQUE INDEX "InterviewDeck_targetId_key" ON "InterviewDeck"("targetId");

@@ -3,6 +3,19 @@
 UTS 43007 Advanced Artificial Intelligence, Assignment 3
 Multimodal Enhancement of the CV Builder System, **Option B: Job-Tailored Interview Presentation**
 
+## Integration snapshot: 25 October 2026
+
+This package preserves Member 3's `member-3-presentation` implementation at
+`4cf4a2d81f4fe756d193b4150de2116bcdc36e1d` and adapts Member 4's reliability
+repairs to that editor, persistence model and PPTX layout. Start with
+[TEAM_INTEGRATION.md](TEAM_INTEGRATION.md) for changes, setup, branch/patch
+instructions, test evidence and remaining acceptance work. The original
+Member 3 handover is retained as historical documentation.
+
+On this snapshot, generated originals carry per-field references and explicit
+unapproved review status. Edited drafts never inherit factual approval.
+WebP sources are verified and converted to PNG in memory for PPTX export.
+
 ## 1. Project Overview
 
 The CV Builder lets a user create and manage CV profiles, add the job they are
@@ -156,8 +169,9 @@ All features below are implemented and covered by automated tests.
 5. Click **Download PPTX**, review the saved revision shown in the confirmation,
    then confirm the download. Export never saves or calls Gemini.
 
-The application accepts PNG, JPEG, WebP and GIF uploads. PPTX export currently
-supports PNG, JPEG and GIF. A referenced WebP is rejected with an instruction
+The application accepts PNG, JPEG, WebP and GIF uploads. PPTX export
+supports PNG, JPEG and GIF directly and converts verified WebP to PNG in memory.
+A referenced image that cannot be fully decoded is rejected with an instruction
 to convert it to PNG or JPEG, upload it and confirm it again. GIF animation is
 not guaranteed across PowerPoint versions.
 
@@ -217,12 +231,12 @@ Full details (field descriptions, examples, error codes) are in
 | Structured integration API | ✅ Completed and tested |
 | Multimodal AI processing of CV, job and images | ✅ Implemented; automated tests use an isolated mock, real Gemini acceptance is pending |
 | Presentation preview, editing, explicit save and reopen | ✅ Implemented and automated-test covered |
-| Editable PPTX export | ✅ Implemented and package/renderer checked; Microsoft PowerPoint acceptance is pending |
-| Evaluation | ⏳ Not yet implemented (separate integration stage) |
+| Editable PPTX export | ✅ Implemented and package checked; visual and Microsoft PowerPoint acceptance is pending for this integrated snapshot |
+| Evaluation | ✅ Offline reliability, integration and API tests; see `TEAM_INTEGRATION.md` for current evidence and limits |
 
-The Member 3 implementation is ready for team review, but real Gemini and
-Microsoft PowerPoint acceptance remain explicit manual gates. See
-[`docs/MEMBER3_HANDOVER.md`](docs/MEMBER3_HANDOVER.md).
+The integrated snapshot is ready for team review. Final-version live Gemini,
+browser interaction and Microsoft PowerPoint acceptance remain pending. See
+[`TEAM_INTEGRATION.md`](TEAM_INTEGRATION.md).
 
 ## 9. Known Limitations
 
@@ -232,9 +246,10 @@ Microsoft PowerPoint acceptance remain explicit manual gates. See
   and is not shared between group members.
 - **Local image storage** (`storage/uploads/`). Images are not backed up and
   are not suitable for hosted deployment without cloud storage.
-- **Images are checked by their file header,** not fully decoded.
-- **PPTX WebP limitation.** WebP can be uploaded and previewed, but a referenced
-  WebP blocks export until it is converted, uploaded and confirmed again.
+- **Image validation:** file-header limits plus full pixel decoding; accepted
+  images still do not prove authorship, personal skills or achievements.
+- **PPTX WebP conversion:** verified WebP is converted to a PNG for the export;
+  animation is not preserved by this conversion.
 - **Not-found status code.** Opening a deleted CV, job or pairing page shows a
   "not found" message, but returns HTTP status 200. The API returns 404
   correctly.
@@ -242,7 +257,7 @@ Microsoft PowerPoint acceptance remain explicit manual gates. See
   automated development, browser automation was unavailable in the final
   acceptance environment, and the sample PPTX has not yet been opened and
   edited in Microsoft PowerPoint or LibreOffice.
-- **npm audit:** the current lockfile reports 10 high-severity package findings
+- **Historical dependency audit:** the Member 3 handover recorded 10 high-severity package findings
   with dev dependencies and 5 when dev dependencies are omitted. Production
   findings include the `pptxgenjs → image-size` chain and Prisma's optional CLI
   chain; see the handover document for advisory IDs, execution-path notes and

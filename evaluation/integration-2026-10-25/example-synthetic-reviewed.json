@@ -1,0 +1,467 @@
+{
+  "label": "Synthetic offline integration fixture; no live model called",
+  "original": {
+    "title": "Fictional Integration Candidate",
+    "slides": [
+      {
+        "heading": "Introduction",
+        "bullets": [
+          "Fictional Integration Candidate"
+        ],
+        "speakerNotes": "Graduate with an academic data project.",
+        "sourceIds": [
+          "cmvnk0w310000qj0i6cmw5r69"
+        ],
+        "imageIds": []
+      },
+      {
+        "heading": "Skills",
+        "bullets": [
+          "SQL"
+        ],
+        "speakerNotes": "SQL",
+        "sourceIds": [
+          "cmvnk0w320001qj0i6pla62pm"
+        ],
+        "imageIds": []
+      },
+      {
+        "heading": "Project evidence",
+        "bullets": [
+          "Prepared a chart using sample data."
+        ],
+        "speakerNotes": "Prepared a chart using sample data.",
+        "sourceIds": [
+          "cmvnk0w320002qj0ie2jatd0h"
+        ],
+        "imageIds": []
+      },
+      {
+        "heading": "Target role",
+        "bullets": [
+          "I would like to discuss the Data Analyst role."
+        ],
+        "speakerNotes": "I would like to discuss transferable skills and the evidence gaps for this role.",
+        "sourceIds": [],
+        "imageIds": []
+      }
+    ]
+  },
+  "draft": {
+    "title": "Fictional Integration Candidate",
+    "slides": [
+      {
+        "heading": "Introduction",
+        "bullets": [
+          "Fictional Integration Candidate"
+        ],
+        "speakerNotes": "Graduate with an academic data project. User wording added after generation.",
+        "sourceIds": [
+          "cmvnk0w310000qj0i6cmw5r69"
+        ],
+        "imageIds": []
+      },
+      {
+        "heading": "Skills",
+        "bullets": [
+          "SQL"
+        ],
+        "speakerNotes": "SQL",
+        "sourceIds": [
+          "cmvnk0w320001qj0i6pla62pm"
+        ],
+        "imageIds": []
+      },
+      {
+        "heading": "Project evidence",
+        "bullets": [
+          "Prepared a chart using sample data."
+        ],
+        "speakerNotes": "Prepared a chart using sample data.",
+        "sourceIds": [
+          "cmvnk0w320002qj0ie2jatd0h"
+        ],
+        "imageIds": []
+      },
+      {
+        "heading": "Target role",
+        "bullets": [
+          "I would like to discuss the Data Analyst role."
+        ],
+        "speakerNotes": "I would like to discuss transferable skills and the evidence gaps for this role.",
+        "sourceIds": [],
+        "imageIds": []
+      }
+    ]
+  },
+  "reliability": {
+    "original": {
+      "title": "Fictional Integration Candidate",
+      "slides": [
+        {
+          "role": "introduction",
+          "heading": "Introduction",
+          "bullets": [
+            "Fictional Integration Candidate"
+          ],
+          "speakerNotes": "Graduate with an academic data project.",
+          "sourceIds": [
+            "cmvnk0w310000qj0i6cmw5r69"
+          ],
+          "imageIds": []
+        },
+        {
+          "role": "evidence",
+          "heading": "Skills",
+          "bullets": [
+            "SQL"
+          ],
+          "speakerNotes": "SQL",
+          "sourceIds": [
+            "cmvnk0w320001qj0i6pla62pm"
+          ],
+          "imageIds": []
+        },
+        {
+          "role": "evidence",
+          "heading": "Project evidence",
+          "bullets": [
+            "Prepared a chart using sample data."
+          ],
+          "speakerNotes": "Prepared a chart using sample data.",
+          "sourceIds": [
+            "cmvnk0w320002qj0ie2jatd0h"
+          ],
+          "imageIds": []
+        },
+        {
+          "role": "closing",
+          "heading": "Target role",
+          "bullets": [
+            "I would like to discuss the Data Analyst role."
+          ],
+          "speakerNotes": "I would like to discuss transferable skills and the evidence gaps for this role.",
+          "sourceIds": [],
+          "imageIds": []
+        }
+      ],
+      "references": [
+        {
+          "unitId": "title",
+          "sourceIds": [
+            "cmvnk0w310000qj0i6cmw5r69"
+          ]
+        },
+        {
+          "unitId": "slide.0.heading",
+          "sourceIds": []
+        },
+        {
+          "unitId": "slide.0.bullet.0",
+          "sourceIds": [
+            "cmvnk0w310000qj0i6cmw5r69"
+          ]
+        },
+        {
+          "unitId": "slide.0.notes",
+          "sourceIds": [
+            "cmvnk0w310000qj0i6cmw5r69"
+          ]
+        },
+        {
+          "unitId": "slide.1.heading",
+          "sourceIds": []
+        },
+        {
+          "unitId": "slide.1.bullet.0",
+          "sourceIds": [
+            "cmvnk0w320001qj0i6pla62pm"
+          ]
+        },
+        {
+          "unitId": "slide.1.notes",
+          "sourceIds": [
+            "cmvnk0w320001qj0i6pla62pm"
+          ]
+        },
+        {
+          "unitId": "slide.2.heading",
+          "sourceIds": []
+        },
+        {
+          "unitId": "slide.2.bullet.0",
+          "sourceIds": [
+            "cmvnk0w320002qj0ie2jatd0h"
+          ]
+        },
+        {
+          "unitId": "slide.2.notes",
+          "sourceIds": [
+            "cmvnk0w320002qj0ie2jatd0h"
+          ]
+        },
+        {
+          "unitId": "slide.3.heading",
+          "sourceIds": []
+        },
+        {
+          "unitId": "slide.3.bullet.0",
+          "sourceIds": []
+        },
+        {
+          "unitId": "slide.3.notes",
+          "sourceIds": []
+        }
+      ]
+    },
+    "review": {
+      "approved": false,
+      "coverageComplete": true,
+      "status": "HUMAN_REVIEW_REQUIRED",
+      "findings": [
+        {
+          "unitId": "title",
+          "slideIndex": -1,
+          "claim": "Fictional Integration Candidate",
+          "kind": "candidate",
+          "sourceIds": [
+            "cmvnk0w310000qj0i6cmw5r69"
+          ],
+          "evidence": [
+            {
+              "sourceId": "cmvnk0w310000qj0i6cmw5r69",
+              "quote": "Fictional Integration Candidate {\"fullName\":\"Fictional Integration Candidate\",\"headline\":\"Graduate analyst\",\"professionalSummary\":\"Graduate with an academic data project.\"}"
+            }
+          ],
+          "supported": true,
+          "reason": "Test-only review; does not establish factuality."
+        },
+        {
+          "unitId": "slide.0.heading",
+          "slideIndex": 0,
+          "claim": "Introduction",
+          "kind": "label",
+          "sourceIds": [],
+          "evidence": [],
+          "supported": true,
+          "reason": "Test-only review; does not establish factuality."
+        },
+        {
+          "unitId": "slide.0.bullet.0",
+          "slideIndex": 0,
+          "claim": "Fictional Integration Candidate",
+          "kind": "candidate",
+          "sourceIds": [
+            "cmvnk0w310000qj0i6cmw5r69"
+          ],
+          "evidence": [
+            {
+              "sourceId": "cmvnk0w310000qj0i6cmw5r69",
+              "quote": "Fictional Integration Candidate {\"fullName\":\"Fictional Integration Candidate\",\"headline\":\"Graduate analyst\",\"professionalSummary\":\"Graduate with an academic data project.\"}"
+            }
+          ],
+          "supported": true,
+          "reason": "Test-only review; does not establish factuality."
+        },
+        {
+          "unitId": "slide.0.notes",
+          "slideIndex": 0,
+          "claim": "Graduate with an academic data project.",
+          "kind": "candidate",
+          "sourceIds": [
+            "cmvnk0w310000qj0i6cmw5r69"
+          ],
+          "evidence": [
+            {
+              "sourceId": "cmvnk0w310000qj0i6cmw5r69",
+              "quote": "Fictional Integration Candidate {\"fullName\":\"Fictional Integration Candidate\",\"headline\":\"Graduate analyst\",\"professionalSummary\":\"Graduate with an academic data project.\"}"
+            }
+          ],
+          "supported": true,
+          "reason": "Test-only review; does not establish factuality."
+        },
+        {
+          "unitId": "slide.1.heading",
+          "slideIndex": 1,
+          "claim": "Skills",
+          "kind": "label",
+          "sourceIds": [],
+          "evidence": [],
+          "supported": true,
+          "reason": "Test-only review; does not establish factuality."
+        },
+        {
+          "unitId": "slide.1.bullet.0",
+          "slideIndex": 1,
+          "claim": "SQL",
+          "kind": "candidate",
+          "sourceIds": [
+            "cmvnk0w320001qj0i6pla62pm"
+          ],
+          "evidence": [
+            {
+              "sourceId": "cmvnk0w320001qj0i6pla62pm",
+              "quote": "SQL {\"id\":\"cmvnk0w320001qj0i6pla62pm\",\"name\":\"SQL\",\"category\":null}"
+            }
+          ],
+          "supported": true,
+          "reason": "Test-only review; does not establish factuality."
+        },
+        {
+          "unitId": "slide.1.notes",
+          "slideIndex": 1,
+          "claim": "SQL",
+          "kind": "candidate",
+          "sourceIds": [
+            "cmvnk0w320001qj0i6pla62pm"
+          ],
+          "evidence": [
+            {
+              "sourceId": "cmvnk0w320001qj0i6pla62pm",
+              "quote": "SQL {\"id\":\"cmvnk0w320001qj0i6pla62pm\",\"name\":\"SQL\",\"category\":null}"
+            }
+          ],
+          "supported": true,
+          "reason": "Test-only review; does not establish factuality."
+        },
+        {
+          "unitId": "slide.2.heading",
+          "slideIndex": 2,
+          "claim": "Project evidence",
+          "kind": "label",
+          "sourceIds": [],
+          "evidence": [],
+          "supported": true,
+          "reason": "Test-only review; does not establish factuality."
+        },
+        {
+          "unitId": "slide.2.bullet.0",
+          "slideIndex": 2,
+          "claim": "Prepared a chart using sample data.",
+          "kind": "candidate",
+          "sourceIds": [
+            "cmvnk0w320002qj0ie2jatd0h"
+          ],
+          "evidence": [
+            {
+              "sourceId": "cmvnk0w320002qj0ie2jatd0h",
+              "quote": "Academic chart {\"id\":\"cmvnk0w320002qj0ie2jatd0h\",\"name\":\"Academic chart\",\"role\":\"Student\",\"url\":null,\"technologies\":\"SQL\",\"description\":\"Prepared a chart using sample data.\"}"
+            }
+          ],
+          "supported": true,
+          "reason": "Test-only review; does not establish factuality."
+        },
+        {
+          "unitId": "slide.2.notes",
+          "slideIndex": 2,
+          "claim": "Prepared a chart using sample data.",
+          "kind": "candidate",
+          "sourceIds": [
+            "cmvnk0w320002qj0ie2jatd0h"
+          ],
+          "evidence": [
+            {
+              "sourceId": "cmvnk0w320002qj0ie2jatd0h",
+              "quote": "Academic chart {\"id\":\"cmvnk0w320002qj0ie2jatd0h\",\"name\":\"Academic chart\",\"role\":\"Student\",\"url\":null,\"technologies\":\"SQL\",\"description\":\"Prepared a chart using sample data.\"}"
+            }
+          ],
+          "supported": true,
+          "reason": "Test-only review; does not establish factuality."
+        },
+        {
+          "unitId": "slide.3.heading",
+          "slideIndex": 3,
+          "claim": "Target role",
+          "kind": "label",
+          "sourceIds": [],
+          "evidence": [],
+          "supported": true,
+          "reason": "Test-only review; does not establish factuality."
+        },
+        {
+          "unitId": "slide.3.bullet.0",
+          "slideIndex": 3,
+          "claim": "I would like to discuss the Data Analyst role.",
+          "kind": "intent",
+          "sourceIds": [],
+          "evidence": [],
+          "supported": true,
+          "reason": "Test-only review; does not establish factuality."
+        },
+        {
+          "unitId": "slide.3.notes",
+          "slideIndex": 3,
+          "claim": "I would like to discuss transferable skills and the evidence gaps for this role.",
+          "kind": "intent",
+          "sourceIds": [],
+          "evidence": [],
+          "supported": true,
+          "reason": "Test-only review; does not establish factuality."
+        }
+      ],
+      "limitations": "Exact coverage, source membership and quoted-excerpt checks passed. These are traceability checks, not semantic proof. A person must compare every field with the displayed source, including labels/intent and all clauses in notes. Model self-review cannot approve facts."
+    },
+    "sources": [
+      {
+        "sourceId": "cmvnk0w310000qj0i6cmw5r69",
+        "kind": "candidate",
+        "text": "Fictional Integration Candidate {\"fullName\":\"Fictional Integration Candidate\",\"headline\":\"Graduate analyst\",\"professionalSummary\":\"Graduate with an academic data project.\"}"
+      },
+      {
+        "sourceId": "cmvnk0w320001qj0i6pla62pm",
+        "kind": "candidate",
+        "text": "SQL {\"id\":\"cmvnk0w320001qj0i6pla62pm\",\"name\":\"SQL\",\"category\":null}"
+      },
+      {
+        "sourceId": "cmvnk0w320002qj0ie2jatd0h",
+        "kind": "candidate",
+        "text": "Academic chart {\"id\":\"cmvnk0w320002qj0ie2jatd0h\",\"name\":\"Academic chart\",\"role\":\"Student\",\"url\":null,\"technologies\":\"SQL\",\"description\":\"Prepared a chart using sample data.\"}"
+      },
+      {
+        "sourceId": "job:cmvnk0w370003qj0iaiqgzap0",
+        "kind": "job",
+        "text": "{\"confirmation\":{\"status\":\"CONFIRMED\",\"isConfirmed\":true,\"confirmedAt\":\"2026-10-25T08:16:59.400Z\",\"basis\":\"USER_REVIEW\"},\"jobDescriptionId\":\"cmvnk0w370003qj0iaiqgzap0\",\"jobTitle\":\"Data Analyst\",\"company\":{\"name\":null,\"information\":null},\"jobReference\":null,\"descriptionText\":\"Analyse sales data and prepare clear charts using SQL and communicate findings to stakeholders.\",\"createdAt\":\"2026-10-25T08:16:58.484Z\",\"lastUpdatedAt\":\"2026-10-25T08:16:58.484Z\"}"
+      }
+    ],
+    "selection": {
+      "method": "Distinct keyword overlap, not semantic ranking",
+      "warning": "Zero-score sources are fallback background, not evidence of fit. Missing words are lexical gaps, not a complete assessment of qualifications.",
+      "zeroMatch": false,
+      "selected": [
+        {
+          "sourceId": "cmvnk0w310000qj0i6cmw5r69",
+          "title": "Fictional Integration Candidate",
+          "relevanceScore": 20
+        },
+        {
+          "sourceId": "cmvnk0w320002qj0ie2jatd0h",
+          "title": "Academic chart",
+          "relevanceScore": 25
+        },
+        {
+          "sourceId": "cmvnk0w320001qj0i6pla62pm",
+          "title": "SQL",
+          "relevanceScore": 10
+        }
+      ],
+      "omitted": [],
+      "jobTermsWithoutLexicalEvidence": [
+        "analyse",
+        "sales",
+        "prepare",
+        "clear",
+        "charts",
+        "communicate",
+        "findings",
+        "stakeholders"
+      ]
+    },
+    "omittedImages": [],
+    "metadata": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "reliability-v5-2026-10-23",
+      "calls": 2,
+      "elapsedMs": 16
+    }
+  }
+}

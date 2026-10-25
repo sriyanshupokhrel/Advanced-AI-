@@ -1,0 +1,262 @@
+{
+  "payload": {
+    "contractVersion": "2.0",
+    "targetId": "cmvkhpgsr000xd960ilnu2sl0",
+    "generatedAt": "2026-10-23T04:48:47.712Z",
+    "verificationDisclaimer": "Confirmed information has been reviewed by the user. It has not been independently verified by the application or the university.",
+    "readiness": {
+      "status": "READY",
+      "isReady": true,
+      "readySince": "2026-10-23T04:48:47.704Z",
+      "sections": {
+        "confirmed": 7,
+        "total": 7
+      },
+      "images": {
+        "confirmed": 0,
+        "total": 0
+      },
+      "issues": [
+        {
+          "code": "EMPTY_SECTION",
+          "section": "EXPERIENCE",
+          "itemId": null,
+          "message": "Work experience is empty. If that is intended, you can still confirm it.",
+          "severity": "WARNING"
+        },
+        {
+          "code": "EMPTY_SECTION",
+          "section": "ACHIEVEMENTS",
+          "itemId": null,
+          "message": "Achievements is empty. If that is intended, you can still confirm it.",
+          "severity": "WARNING"
+        },
+        {
+          "code": "PROJECT_HAS_NO_IMAGES",
+          "section": "PROJECTS",
+          "itemId": "cmvkhpgsd000ud960lapso2no",
+          "message": "Project \"Sales Analysis Dashboard\" has no images. Images are optional but give the multimodal presentation visual material.",
+          "severity": "WARNING"
+        },
+        {
+          "code": "COMPANY_NAME_MISSING",
+          "section": "TARGET_JOB",
+          "itemId": null,
+          "message": "The target job has no company name.",
+          "severity": "WARNING"
+        }
+      ]
+    },
+    "candidate": {
+      "cvProfileId": "cmvkhpgsd000od960j8ivwyb6",
+      "createdAt": "2026-10-23T04:48:47.678Z",
+      "lastUpdatedAt": "2026-10-23T04:48:47.678Z",
+      "profile": {
+        "confirmation": {
+          "status": "CONFIRMED",
+          "isConfirmed": true,
+          "confirmedAt": "2026-10-23T04:48:47.702Z",
+          "basis": "USER_REVIEW"
+        },
+        "fullName": "Alex Chan",
+        "headline": "Graduate Data Analyst",
+        "contact": {
+          "email": "alex.chan@example.com",
+          "phone": null,
+          "location": null,
+          "website": null
+        },
+        "professionalSummary": "IT graduate seeking a data analyst role."
+      },
+      "education": {
+        "confirmation": {
+          "status": "CONFIRMED",
+          "isConfirmed": true,
+          "confirmedAt": "2026-10-23T04:48:47.703Z",
+          "basis": "USER_REVIEW"
+        },
+        "items": [
+          {
+            "id": "cmvkhpgsd000pd960331o4nt0",
+            "institution": "University of Technology Sydney",
+            "qualification": "Bachelor of Information Technology",
+            "fieldOfStudy": null,
+            "startDate": "2023-02",
+            "endDate": "2025-11",
+            "grade": null,
+            "description": null
+          }
+        ]
+      },
+      "workExperience": {
+        "confirmation": {
+          "status": "CONFIRMED",
+          "isConfirmed": true,
+          "confirmedAt": "2026-10-23T04:48:47.703Z",
+          "basis": "USER_REVIEW"
+        },
+        "items": []
+      },
+      "skills": {
+        "confirmation": {
+          "status": "CONFIRMED",
+          "isConfirmed": true,
+          "confirmedAt": "2026-10-23T04:48:47.703Z",
+          "basis": "USER_REVIEW"
+        },
+        "items": [
+          {
+            "id": "cmvkhpgsd000qd9606efub8pa",
+            "name": "Python",
+            "category": null
+          },
+          {
+            "id": "cmvkhpgsd000rd9603pp14uc4",
+            "name": "SQL",
+            "category": null
+          },
+          {
+            "id": "cmvkhpgsd000sd960k92y0bk0",
+            "name": "pandas",
+            "category": null
+          },
+          {
+            "id": "cmvkhpgsd000td960cbripyq6",
+            "name": "Streamlit",
+            "category": null
+          }
+        ]
+      },
+      "projects": {
+        "confirmation": {
+          "status": "CONFIRMED",
+          "isConfirmed": true,
+          "confirmedAt": "2026-10-23T04:48:47.704Z",
+          "basis": "USER_REVIEW"
+        },
+        "items": [
+          {
+            "id": "cmvkhpgsd000ud960lapso2no",
+            "name": "Sales Analysis Dashboard",
+            "role": "Student Developer",
+            "url": null,
+            "technologies": "Python, SQL, pandas, Streamlit",
+            "description": "Built an academic sales analysis dashboard using a sample retail dataset.\nUsed SQL to query sales records and pandas to clean and summarise the data.\nCreated a Streamlit dashboard showing monthly sales trends and sales by product category.",
+            "images": []
+          }
+        ]
+      },
+      "achievements": {
+        "confirmation": {
+          "status": "CONFIRMED",
+          "isConfirmed": true,
+          "confirmedAt": "2026-10-23T04:48:47.704Z",
+          "basis": "USER_REVIEW"
+        },
+        "items": []
+      },
+      "otherImages": []
+    },
+    "targetJob": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-23T04:48:47.704Z",
+        "basis": "USER_REVIEW"
+      },
+      "jobDescriptionId": "cmvkhpgsj000vd960x99hxts1",
+      "jobTitle": "Cloud Engineer",
+      "company": {
+        "name": null,
+        "information": null
+      },
+      "jobReference": null,
+      "descriptionText": "Cloud Engineer: requires AWS, cloud deployment and infrastructure management.",
+      "createdAt": "2026-10-23T04:48:47.684Z",
+      "lastUpdatedAt": "2026-10-23T04:48:47.684Z"
+    },
+    "fingerprints": {
+      "PROFILE": "e17f069a542f71e0a774d7e7d9c16703d45c18ab94408ef185845c30961af1c9",
+      "EDUCATION": "abf34d5a05dc7c6150226655744e8cef4cab9f4cfa6ab00cdc0b98807db97843",
+      "EXPERIENCE": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "SKILLS": "c60b2ea416b7e7f3e1c42f24b0fd5b66c082bdee2716bcee98fc53d6510ff86d",
+      "PROJECTS": "1ee0b26f04effad2a056d2141c5d425e684b408d0ce9ae37d89c18d12ab8c321",
+      "ACHIEVEMENTS": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "TARGET_JOB": "64d6b2502ecd86126306e32f9f770d724cd484e173fa139d8d2baadff42a0fba"
+    }
+  },
+  "selection": {
+    "method": "Distinct keyword overlap, not semantic ranking",
+    "selected": [
+      {
+        "sourceId": "cmvkhpgsd000od960j8ivwyb6",
+        "sourceType": "profile",
+        "title": "Alex Chan",
+        "description": "{\"fullName\":\"Alex Chan\",\"headline\":\"Graduate Data Analyst\",\"professionalSummary\":\"IT graduate seeking a data analyst role.\"}",
+        "relevanceScore": 0,
+        "imageIds": []
+      },
+      {
+        "sourceId": "cmvkhpgsd000qd9606efub8pa",
+        "sourceType": "skill",
+        "title": "Python",
+        "description": "{\"id\":\"cmvkhpgsd000qd9606efub8pa\",\"name\":\"Python\",\"category\":null}",
+        "relevanceScore": 0,
+        "imageIds": []
+      },
+      {
+        "sourceId": "cmvkhpgsd000rd9603pp14uc4",
+        "sourceType": "skill",
+        "title": "SQL",
+        "description": "{\"id\":\"cmvkhpgsd000rd9603pp14uc4\",\"name\":\"SQL\",\"category\":null}",
+        "relevanceScore": 0,
+        "imageIds": []
+      },
+      {
+        "sourceId": "cmvkhpgsd000sd960k92y0bk0",
+        "sourceType": "skill",
+        "title": "pandas",
+        "description": "{\"id\":\"cmvkhpgsd000sd960k92y0bk0\",\"name\":\"pandas\",\"category\":null}",
+        "relevanceScore": 0,
+        "imageIds": []
+      },
+      {
+        "sourceId": "cmvkhpgsd000td960cbripyq6",
+        "sourceType": "skill",
+        "title": "Streamlit",
+        "description": "{\"id\":\"cmvkhpgsd000td960cbripyq6\",\"name\":\"Streamlit\",\"category\":null}",
+        "relevanceScore": 0,
+        "imageIds": []
+      },
+      {
+        "sourceId": "cmvkhpgsd000ud960lapso2no",
+        "sourceType": "project",
+        "title": "Sales Analysis Dashboard",
+        "description": "{\"id\":\"cmvkhpgsd000ud960lapso2no\",\"name\":\"Sales Analysis Dashboard\",\"role\":\"Student Developer\",\"url\":null,\"technologies\":\"Python, SQL, pandas, Streamlit\",\"description\":\"Built an academic sales analysis dashboard using a sample retail dataset.\\nUsed SQL to query sales records and pandas to clean and summarise the data.\\nCreated a Streamlit dashboard showing monthly sales trends and sales by product category.\"}",
+        "relevanceScore": 0,
+        "imageIds": []
+      },
+      {
+        "sourceId": "cmvkhpgsd000pd960331o4nt0",
+        "sourceType": "education",
+        "title": "Bachelor of Information Technology",
+        "description": "{\"id\":\"cmvkhpgsd000pd960331o4nt0\",\"institution\":\"University of Technology Sydney\",\"qualification\":\"Bachelor of Information Technology\",\"fieldOfStudy\":null,\"startDate\":\"2023-02\",\"endDate\":\"2025-11\",\"grade\":null,\"description\":null}",
+        "relevanceScore": 0,
+        "imageIds": []
+      }
+    ],
+    "omitted": [],
+    "zeroMatch": true,
+    "jobTermsWithoutLexicalEvidence": [
+      "cloud",
+      "aws",
+      "deployment",
+      "infrastructure",
+      "management"
+    ],
+    "warning": "Zero-score sources are fallback background, not evidence of fit. Missing words are lexical gaps, not a complete assessment of qualifications."
+  },
+  "sourceSnapshot": "4edbed35760e175df96d35d9b52078231286fe4c403130c4216a17097fb76f73",
+  "fictionalCandidate": true,
+  "attack": false
+}

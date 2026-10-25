@@ -1,0 +1,11 @@
+{
+  "scenario": "B-cloud-no-image",
+  "status": "RETURNED_REQUIRES_HUMAN_REVIEW",
+  "errorCode": null,
+  "targetId": "cmvkhpgsr000xd960ilnu2sl0",
+  "startedAt": "2026-10-23T04:48:47.713Z",
+  "endedAt": "2026-10-23T04:48:59.320Z",
+  "elapsedMs": 11607.002800000002,
+  "modelCalls": 2,
+  "quality": "Pending Codex source comparison and independent human review"
+}

@@ -1,0 +1,396 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> cv-builder@0.1.0 test:e2e
+> node tests/e2e/run.mjs --keep
+
+Test data folder: /tmp/cv-builder-e2e-KimTOd
+Fresh test database created and migrated.
+Server ready at http://localhost:4002
+
+▶ cv suite
+(node:617) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///workspace/scratch/618a74f23a2f/integration/merged/src/lib/presentation/source-snapshot.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /workspace/scratch/618a74f23a2f/integration/merged/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+    PASS  invalid CV rejected with 400  — {"fullName":"Full name is required.","email":"Enter a valid email address, e.g. name@example.com.","website":"Website must be a full web address starting with http:// or https://.","experience.0.endDate":"End date cannot be before the start date."}
+    PASS  fullName error
+    PASS  email error
+    PASS  javascript: URL rejected
+    PASS  end-before-start error
+    PASS  malformed JSON rejected with 400
+    PASS  create returns 201  — cmvnjy23w0000qjg8u8vterwe
+    PASS  text is trimmed
+    PASS  all sections saved
+    PASS  get by id
+    PASS  list includes CV
+    PASS  unknown id → 404
+    PASS  image upload 201  — {"id":"cmvnjy25z0008qjg8lruz6f42","reviewFingerprint":"d137ccbacfb47ed8a81952896a997ff38bc7e1e760f2e89804c840bc0a9d60c6"
+    PASS  non-image disguised as PNG rejected  — {"altText":"Describe the image in a few words (a description is required).","file":"This file is not a supported image. Upload a PNG, JPEG, WebP or GIF file."}
+    PASS  missing alt text rejected
+    PASS  image served with correct type
+    PASS  update 200
+    PASS  scalar field updated
+    PASS  removed items deleted
+    PASS  existing project kept its id
+    PASS  new project created
+    PASS  image still linked to project
+    PASS  foreign item id → 409, transaction rolled back
+    PASS  data unchanged after rejected update
+    PASS  delete 204
+    PASS  deleted CV → 404
+    PASS  page / → 200
+    PASS  page /cv/new → 200
+    PASS  page /cv/cmvnjy23w0000qjg8u8vterwe → 200
+    PASS  page /cv/cmvnjy23w0000qjg8u8vterwe/preview → 200
+    PASS  development presentation demo is unavailable in production
+    PASS  development generation harness is unavailable in production
+    PASS  home page lists saved CV
+    PASS  JSON body over 1 MB → 413 (refused before parsing)
+    PASS  empty body → 400
+    PASS  legacy unscoped DELETE /api/images/{id} removed → 405
+
+▶ jobs suite
+(node:630) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///workspace/scratch/618a74f23a2f/integration/merged/src/lib/presentation/source-snapshot.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /workspace/scratch/618a74f23a2f/integration/merged/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+    ── Job description validation
+    PASS  empty description → 400
+    PASS  whitespace-only description → 400
+    PASS  too-short description → 400  — The job description looks too short. Paste the full advert (at least 50 characters).
+    PASS  over-long description → 400
+    PASS  over-long title → 400
+    PASS  missing description field → 400
+    PASS  malformed JSON → 400
+    ── Job description create / read / update
+    PASS  create → 201  — cmvnjy2in000iqjg83s6r9kwu
+    PASS  description stored byte-for-byte (spaces, tabs, CRLF, emoji, <, quotes)
+    PASS  short fields trimmed, blanks are ""
+    PASS  GET returns identical text
+    PASS  only description required (optional fields blank) → 201
+    PASS  list includes jobs with excerpt
+    PASS  PUT updates job
+    PASS  PUT with invalid data → 400
+    PASS  PUT unknown job → 404
+    PASS  GET unknown job → 404
+    ── Pairing a CV with a job
+    PASS  test CV created
+    PASS  pair CV + job → 201, NOT_CONFIRMED
+    PASS  pairing again is idempotent → 200, same id
+    PASS  unknown CV → 404 with field error
+    PASS  unknown job → 404 with field error
+    PASS  nothing selected → 400 with both field errors
+    PASS  job reports targetCount 1
+    ── Integration payload (v2.0)
+    PASS  payload → 200, version 2.0
+    PASS  candidate identity + details
+    PASS  missing optional values are null
+    PASS  all sections present
+    PASS  target job fields
+    PASS  complete job text verbatim in payload
+    PASS  nothing confirmed yet, not ready
+    PASS  warnings for missing information  — EMPTY_SECTION
+    PASS  payload for unknown pairing → 404
+    ── Confirmation and data consistency
+    PASS  invalid confirmation body → 400
+    PASS  confirm all sections → CONFIRMED (no images yet)
+    PASS  payload READY
+    PASS  re-saving CV with no changes keeps CONFIRMED
+    PASS  editing CV summary → PROFILE CHANGED_SINCE_CONFIRMATION, not ready
+    PASS  other sections stay CONFIRMED
+    PASS  payload shows the latest CV data
+    PASS  editing job → CHANGED_SINCE_CONFIRMATION
+    PASS  adding an unconfirmed image → not ready, image in payload
+    PASS  withdraw → NOT_CONFIRMED
+    PASS  re-confirm (sections + image confirmed) → CONFIRMED
+    ── Listing, filtering, deletion cascades
+    PASS  filter by cvId
+    PASS  filter by jobId
+    PASS  delete job → 204
+    PASS  its pairing is removed (cascade)
+    PASS  the CV is kept
+    PASS  delete CV → its pairing is removed (cascade)
+    PASS  the job is kept, targetCount back to 1
+    PASS  delete pairing → 204
+    PASS  …then 404, CV and job kept
+    ── Pages
+    PASS  page /jobs  — expects "Graduate Data Analyst"
+    PASS  page /jobs/new  — expects "Add a job description"
+    PASS  page /jobs/cmvnjy2in000iqjg83s6r9kwu  — expects "Edit job description"
+    PASS  page /prepare  — expects "Test Candidate"
+    PASS  page /prepare?cvId=cmvnjy2js000kqjg87ekwreo3&jobId=deleted-job  — expects "no longer exists"
+    PASS  page /prepare/cmvnjy2k3000oqjg89ewfcq5u  — expects "Job description (as pasted)"
+    PASS  page /  — expects "Pair with a job"
+
+▶ images suite
+(node:642) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///workspace/scratch/618a74f23a2f/integration/merged/src/lib/presentation/source-snapshot.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /workspace/scratch/618a74f23a2f/integration/merged/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+    ── Setup
+    PASS  CV with two projects created
+    ── Valid uploads (format detected from content)
+    PASS  JPEG → 201, image/jpeg, 280×175 (matches Windows decoder)  — {"id":"cmvnjy2z5002sqjg885it6ztm","reviewFingerprint":"b95e9d50f3024147e76806938d5c7be28b4d38f863384f58aa990aa836eaadb7","cvProfileId":"cmvnjy2yc002lqjg8235yjke
+    PASS  SHA-256 recorded correctly
+    PASS  linked to the right project and CV
+    PASS  new image starts NOT_CONFIRMED
+    PASS  URL is versioned  — /api/images/cmvnjy2z5002sqjg885it6ztm?v=594f2e5812a8
+    PASS  PNG → 201, 640×480
+    PASS  large JPEG → 1920×1200 (matches Windows decoder)
+    PASS  WebP lossy → 201, image/webp, 1×1  — ""
+    PASS  WebP lossless → 201, image/webp, 1×1  — ""
+    PASS  WebP extended → 201, image/webp, 1×1  — ""
+    PASS  GIF (not linked to a project) → 201
+    PASS  JPEG named .png is stored as image/jpeg (content wins over name)
+    PASS  path in original filename is stripped  — evil.jpg
+    PASS  stored file names are server-generated UUIDs
+    ── Invalid files
+    PASS  text file named .png → 400 not supported  — This file is not a supported image. Upload a PNG, JPEG, WebP or GIF file.
+    PASS  SVG with script → 400
+    PASS  PNG signature but no header → 400 damaged
+    PASS  truncated JPEG → 400 damaged
+    PASS  20000 px wide → 400 dimension limit  — Image is 20000×100 pixels; the maximum is 10,000 pixels per side.
+    PASS  81-megapixel 'decompression bomb' → 400
+    PASS  5 MB + 1 byte → 400 size limit
+    PASS  7 MB → 413 refused before reading
+    PASS  no file → 400
+    PASS  blank description → 400
+    PASS  unknown kind → 400
+    PASS  non-multipart body → 400
+    PASS  upload to unknown CV → 404
+    ── Cross-CV protection
+    PASS  linking to another CV's project → 400
+    PASS  moving an image to another CV's project → 400
+    PASS  PATCH via the wrong CV → 404
+    PASS  DELETE via the wrong CV → 404 (image kept)
+    PASS  replace via the wrong CV → 404
+    ── Unsafe file access
+    PASS  GET /api/images/..%2F..%2F.env → 404
+    PASS  GET /api/images/..%2F..%2Fprisma%2Fdev.db → 404
+    PASS  GET /api/images/%2E%2E%2Fpackage.json → 404
+    PASS  scoped image route with traversal id → 404
+    ── Serving and previews
+    PASS  served bytes identical to upload
+    PASS  validated content type + nosniff + CSP sandbox
+    PASS  ETag revalidation → 304
+    PASS  misnamed JPEG served as image/jpeg
+    PASS  editor page shows project galleries and image previews
+    PASS  CV preview page includes project image
+    ── Multiple images per project + limits
+    PASS  6 images on one project accepted
+    PASS  7th image on the project → 400 limit
+    PASS  moving an image into a full project → 400
+    ── Descriptions, confirmation and replacement
+    PASS  empty PATCH → 400
+    PASS  edit description + caption
+    PASS  confirm → CONFIRMED
+    PASS  editing caption → CHANGED_SINCE_CONFIRMATION
+    PASS  edit + confirm in one request is refused without changing the saved text
+    PASS  save edits, then confirm the reviewed version → CONFIRMED
+    PASS  re-saving the CV unchanged keeps the image CONFIRMED
+    PASS  rewriting the linked project → image CHANGED_SINCE_CONFIRMATION
+    PASS  replace file → 200, same id, description and project kept
+    PASS  replacement metadata updated (PNG 300×200, new hash)
+    PASS  replacing → CHANGED_SINCE_CONFIRMATION
+    PASS  URL version changed (no stale cache)
+    PASS  old file deleted, exactly one new file written
+    PASS  new bytes are served
+    PASS  replacing with an invalid file → 400, original kept
+    PASS  withdraw → NOT_CONFIRMED
+    ── Image evidence contract
+    PASS  contract → 200, one entry per image
+    PASS  identifiers
+    PASS  resource: url, validated type, original name, size, dims, hash, available
+    PASS  user description marked USER_PROVIDED
+    PASS  provenance: USER_UPLOADED_UNVERIFIED
+    PASS  confirmation status included
+    PASS  related project information included
+    PASS  ?confirmedOnly=true returns only confirmed images
+    PASS  ?projectId= filter
+    PASS  unknown CV → 404
+    ── CV–job contract integration
+    PASS  payload v2.0 nests images in their project with metadata + confirmation
+    PASS  every image appears exactly once
+    PASS  IMAGE_NOT_CONFIRMED issue for unconfirmed images
+    PASS  confirming an image leaves all sections CONFIRMED
+    PASS  changing an image description → pair CHANGED_SINCE_CONFIRMATION
+    ── Missing files handled gracefully
+    PASS  missing file → 404 JSON, not a crash
+    PASS  contract reports available: false
+    PASS  payload: fileAvailable false + blocking IMAGE_FILE_MISSING issue
+    PASS  editor page still renders
+    PASS  replacing a missing file restores it
+    ── Unlinking, project deletion, image deletion
+    PASS  link an unlinked image to a project
+    PASS  projectId "" unlinks
+    PASS  deleting a project keeps its images, unlinked
+    PASS  delete image → 204, file removed from disk
+    PASS  deleting again → 404
+    PASS  deleted image no longer served
+    ── Deleting a CV removes all its image files
+    PASS  2 files removed with the CV
+
+▶ workflow suite
+(node:664) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///workspace/scratch/618a74f23a2f/integration/merged/src/lib/presentation/source-snapshot.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /workspace/scratch/618a74f23a2f/integration/merged/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+    ── 1. Create CV → save
+    PASS  CV created with all sections
+    ── 2. Add target job
+    PASS  job saved
+    ── 3. Upload project images
+    PASS  3 images uploaded and linked
+    ── 4. Review information
+    PASS  CV paired with job
+    PASS  payload v2.0, ACTION_REQUIRED, 0/7 sections, 0/3 images
+    PASS  7 SECTION_NOT_CONFIRMED + 3 IMAGE_NOT_CONFIRMED blocking issues
+    PASS  issues have understandable messages
+    PASS  disclaimer states confirmation ≠ verification
+    PASS  project images nested under the right project
+    PASS  unconfirmed data is labelled as such
+    PASS  review page lists what needs attention
+    PASS  presentation entry is disabled until READY
+    PASS  presentation page renders context loading state
+    PASS  requireReady before confirmation → 409 with blocking issues
+    ── API validation and errors
+    PASS  unknown section → 400
+    PASS  empty sections list → 400
+    PASS  malformed fingerprint → 400
+    PASS  malformed JSON → 400
+    PASS  unknown pairing → 404 (PATCH)
+    PASS  unknown pairing → 404 (payload)
+    PASS  stale fingerprint → 409, nothing confirmed
+    ── 5. Confirm information
+    PASS  confirm two sections with matching fingerprints
+    PASS  confirm remaining sections → 7/7, still not ready (images)
+    PASS  only image issues remain
+    ── 6. Retrieve structured integration payload
+    PASS  requireReady → 200, READY
+    PASS  no blocking issues; only non-blocking notes
+    PASS  stable ids match the stored records
+    PASS  timestamps present
+    PASS  job text verbatim
+    PASS  current job: isCurrent true, endDate null
+    PASS  image metadata for multimodal use
+    PASS  every confirmation is basis USER_REVIEW
+    PASS  review page shows READY and presentation link
+    PASS  pairing list shows Ready
+    ── Presentation generation and persistence (mocked provider)
+    PASS  generation without reviewed snapshot → 409
+    PASS  generation with stale reviewed snapshot → 409
+    PASS  successful mocked generation is persisted
+    PASS  regeneration creates a new independent record
+    PASS  both generated originals remain stored
+    PASS  latest saved presentation reopens without generation
+    PASS  complete edited draft is saved before export
+    PASS  export without human-review acknowledgement → 400
+    PASS  export with false human-review acknowledgement → 400
+    PASS  saved draft exports as a real PPTX with safe headers
+    PASS  PPTX contains 4 editable slides from draft, not original
+    PASS  PPTX embeds project image bytes and preserves speaker notes/provenance
+    PASS  export does not modify draft, original, source snapshot or revision
+    PASS  invalid saved source references are rejected
+    PASS  image SHA-256 mismatch is rejected before PPTX generation
+    PASS  missing referenced image blocks export
+    PASS  5-slide saved draft exports exactly 5 slides
+    PASS  export revision conflict is rejected
+    PASS  presentation cannot be exported through another target
+    PASS  incomplete wording can be explicitly saved
+    PASS  saving draft does not modify original or source snapshot
+    PASS  incomplete saved draft cannot be exported
+    PASS  revision conflict does not silently overwrite
+    PASS  presentation cannot be saved through another target
+    PASS  changed image bytes mark saved source stale and unavailable
+    PASS  restoring identical image metadata clears the image stale state
+    ── Editing confirmed data invalidates only what changed
+    PASS  re-saving unchanged CV keeps READY
+    PASS  edit experience → only EXPERIENCE changed
+    PASS  message explains what to do
+    PASS  requireReady now refuses (409)
+    PASS  failed regeneration does not delete the latest saved record
+    PASS  not-READY or stale source state blocks export
+    PASS  saving wording does not clear source stale state
+    PASS  reordering skills counts as a change
+    PASS  edit job text → TARGET_JOB changed
+    PASS  edit image caption → that image changed, sections unaffected
+    PASS  back to READY after re-confirming
+    ── Invalid associations
+    PASS  linking an image to another CV's project → 400, nothing changed
+    PASS  confirming an image through another CV → 404
+    PASS  pairing with a missing job → 404 + field error
+    PASS  deleting a project: its image moves to otherImages and needs re-confirmation
+    PASS  re-confirmed → READY
+    ── Missing images
+    PASS  missing file → IMAGE_FILE_MISSING blocks readiness
+    PASS  requireReady → 409
+    PASS  review page still renders
+    PASS  file restored → READY again
+    ── Invalid stored data is never passed on as valid
+    PASS  data edited outside the app → PROFILE changed + INVALID_DATA blocking
+    PASS  confirming does not hide invalid data (still blocked)
+    PASS  fixed + re-confirmed → READY
+    ── Missing fields / empty sections
+    PASS  warnings: empty sections, no contact, no job title/company
+    PASS  empty sections can be confirmed; warnings never block
+    ── Correction flow
+    PASS  editor opened from review shows 'Back to review'
+    PASS  external returnTo is ignored (no banner, no link)
+    PASS  job editor opened from review shows 'Back to review'
+    ── Data consistency on deletion
+    PASS  deleting the job removes the pairing and its confirmations
+    PASS  review page of a deleted pairing shows not-found message
+
+
+↻ Restarting the server to check persistence…
+▶ cv suite (after restart)
+(node:714) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///workspace/scratch/618a74f23a2f/integration/merged/src/lib/presentation/source-snapshot.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /workspace/scratch/618a74f23a2f/integration/merged/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+    PASS  CV persisted after restart  — status 200
+    PASS  children persisted after restart
+    PASS  image file persisted after restart
+    PASS  preview page renders saved CV
+
+▶ jobs suite (after restart)
+(node:726) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///workspace/scratch/618a74f23a2f/integration/merged/src/lib/presentation/source-snapshot.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /workspace/scratch/618a74f23a2f/integration/merged/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+    PASS  job persisted after restart, text byte-identical
+    PASS  pairing + confirmation persisted after restart
+    PASS  review page renders after restart
+
+▶ images suite (after restart)
+(node:738) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///workspace/scratch/618a74f23a2f/integration/merged/src/lib/presentation/source-snapshot.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /workspace/scratch/618a74f23a2f/integration/merged/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+    PASS  image record + confirmation persisted after restart
+    PASS  image file served after restart, bytes intact
+    PASS  editor page renders with project images after restart
+
+▶ workflow suite (after restart)
+(node:750) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///workspace/scratch/618a74f23a2f/integration/merged/src/lib/presentation/source-snapshot.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /workspace/scratch/618a74f23a2f/integration/merged/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+    PASS  after restart: payload still READY with all confirmations
+    PASS  after restart: requireReady → 200
+    PASS  after restart: project image file served
+    PASS  after restart: saved presentation and incomplete draft persisted
+
+
+Summary
+  suite      phase     passed  failed
+  cv         full          36       0
+  jobs       full          60       0
+  images     full          89       0
+  workflow   full          90       0
+  cv         verify         4       0
+  jobs       verify         3       0
+  images     verify         3       0
+  workflow   verify         4       0
+  total: 289 passed, 0 failed
+Test data kept in /tmp/cv-builder-e2e-KimTOd

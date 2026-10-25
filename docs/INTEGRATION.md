@@ -1,3 +1,14 @@
+# Integration update — 25 October 2026
+
+The original interface guide below is retained for context. Current generation
+requests must include `expectedSourceFingerprint: contextSnapshotKey(payload)`.
+Image confirmation requires `expectedFingerprint` and must be separate from
+metadata edits. Section confirmation requires all selected `expectedFingerprints`.
+PPTX requests require `expectedRevision` and `humanReviewed: true`.
+Generated and saved presentation responses now include optional `reliability`
+metadata for the generated original; absent metadata never implies approval.
+See [`../TEAM_INTEGRATION.md`](../TEAM_INTEGRATION.md) for the complete handover.
+
 # Integration handover: CV + job + images → multimodal AI
 
 **From:** the CV Builder (foundation and integration layer)

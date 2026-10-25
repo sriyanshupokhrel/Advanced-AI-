@@ -1,0 +1,168 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> cv-builder@0.1.0 check
+> npm run typecheck && npm run lint && npm run test:unit
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> cv-builder@0.1.0 typecheck
+> next typegen && tsc --noEmit
+
+Generating route types...
+✓ Types generated successfully
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> cv-builder@0.1.0 lint
+> eslint
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> cv-builder@0.1.0 test:unit
+> node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test --import ./tests/support/register.mjs "tests/unit/*.test.ts"
+
+✔ AI selection rejects unconfirmed input (22.921822ms)
+✔ Alex A/B: keyword scores change; zero-score cloud evidence is explicit fallback with profile (2.269708ms)
+✔ profile-only and large evidence collections respect selection limit (6.155046ms)
+✔ existing excerpt does not establish semantic support (known limitation) (6.379728ms)
+✔ unknown source and mismatched excerpt require review (0.720786ms)
+✔ header inspection is deliberately only preflight; full decode rejects missing pixels (14.267188ms)
+✔ a mock flag alone cannot enable AI replacement in dev or production (1.087058ms)
+✔ the mock is limited to the isolated E2E database and upload directory (0.440612ms)
+▶ safeReturnTo (prevents open redirects)
+  ✔ accepts review-page paths only (1.124984ms)
+  ✔ rejects everything else (0.193346ms)
+✔ safeReturnTo (prevents open redirects) (3.39995ms)
+▶ formatting
+  ✔ months and ranges (0.437116ms)
+  ✔ file sizes (0.160307ms)
+  ✔ job titles tolerate missing fields (0.151394ms)
+✔ formatting (1.023975ms)
+▶ accepted formats (dimensions read from the file header)
+  ✔ PNG 640×480 (1.418268ms)
+  ✔ JPEG 280×175 (0.320824ms)
+  ✔ JPEG 1920×1200 (0.208599ms)
+  ✔ WebP lossy (0.306233ms)
+  ✔ WebP lossless (0.159706ms)
+  ✔ WebP extended (0.161309ms)
+  ✔ GIF (0.161518ms)
+✔ accepted formats (dimensions read from the file header) (4.308404ms)
+▶ rejected files
+  ✔ plain text (0.421313ms)
+  ✔ SVG (scriptable, not allowed) (0.167548ms)
+  ✔ empty file (0.297821ms)
+  ✔ PNG signature without a header (0.141219ms)
+  ✔ truncated JPEG (0.18902ms)
+  ✔ side longer than 10,000 px (13.57233ms)
+  ✔ decompression bomb (81 MP) (0.244552ms)
+  ✔ zero-sized image (0.140118ms)
+✔ rejected files (17.423066ms)
+▶ resolveConfirmationStatus
+  ✔ no stored hash → NOT_CONFIRMED (0.629751ms)
+  ✔ matching hash → CONFIRMED (0.16197ms)
+  ✔ different hash → CHANGED_SINCE_CONFIRMATION (0.087649ms)
+✔ resolveConfirmationStatus (1.773634ms)
+▶ section fingerprints
+  ✔ are 64-char SHA-256 hex for all seven sections (2.450666ms)
+  ✔ ignore timestamps (re-saving unchanged data keeps confirmation) (0.369747ms)
+  ✔ change only for the edited section (0.273595ms)
+  ✔ reordering a list counts as a change (0.210551ms)
+  ✔ project images are not part of the PROJECTS fingerprint (images are confirmed separately) (0.307215ms)
+  ✔ whitespace in the job description is significant (verbatim text) (0.254837ms)
+✔ section fingerprints (4.236168ms)
+▶ readiness
+  ✔ nothing confirmed → ACTION_REQUIRED with 7 section issues (10.96356ms)
+  ✔ everything confirmed, no images → READY with readySince (6.295444ms)
+  ✔ editing a confirmed section → that section CHANGED, payload not ready (1.000801ms)
+  ✔ unconfirmed, changed and missing images block readiness (1.79122ms)
+  ✔ invalid stored data is BLOCKING even when confirmed (1.410977ms)
+  ✔ invalid stored job is BLOCKING under TARGET_JOB (0.471598ms)
+  ✔ missing optional information produces WARNINGs that never block (0.396046ms)
+  ✔ project without images gets a PROJECT_HAS_NO_IMAGES warning naming the project (2.828294ms)
+✔ readiness (25.684389ms)
+▶ payload shape
+  ✔ images are nested in their project; unlinked ones go to otherImages (0.746704ms)
+  ✔ an image linked to a project that no longer exists is treated as unlinked (0.464297ms)
+  ✔ blank optional values are null, ids and verbatim text preserved (0.542503ms)
+  ✔ current role has endDate null (0.477777ms)
+  ✔ images carry provenance, user-provided description and confirmation basis (2.929835ms)
+  ✔ contract metadata (1.339262ms)
+✔ payload shape (6.805768ms)
+▶ presentation draft isolation
+  ✔ original and draft have no shared editable arrays (0.856867ms)
+  ✔ editing title, bullet and speaker notes does not mutate original (1.098064ms)
+  ✔ editing a selected slide does not leak into another slide (0.191644ms)
+  ✔ restore creates a clean independent draft (0.186526ms)
+✔ presentation draft isolation (4.228305ms)
+▶ presentation structures and validation
+  ✔ synthetic fixtures use the real 4 and 5 slide schema (4.397596ms)
+  ✔ temporarily empty title, heading and bullet report errors without restoring values (0.362877ms)
+  ✔ unfinished wording is saveable as a draft but not valid generated output (8.805257ms)
+  ✔ a save response does not mark edits typed during the request as saved (0.201769ms)
+✔ presentation structures and validation (14.1809ms)
+▶ presentation evidence resolution
+  ✔ source and image IDs resolve from the synthetic payload (1.083624ms)
+  ✔ unknown source and image IDs remain explicit missing references (0.641799ms)
+✔ presentation evidence resolution (2.610231ms)
+▶ presentation context state
+  ✔ recognises a READY context only for the requested target (0.911118ms)
+  ✔ classifies not-found, not-ready and ordinary failures (0.279774ms)
+  ✔ changes its snapshot when confirmed input metadata changes (9.19261ms)
+  ✔ ignores request-time and ordinary update timestamps in the stable snapshot (0.470486ms)
+✔ presentation context state (12.130887ms)
+▶ saved presentation validation
+  ✔ restores a persisted draft separately from its immutable original (8.599944ms)
+✔ saved presentation validation (8.782674ms)
+▶ generation response validation
+  ✔ accepts the real response shape and creates an independent draft (0.876476ms)
+  ✔ rejects malformed data and a mismatched targetId (2.653786ms)
+  ✔ rejects image IDs that do not match both context and this analysis run (0.804881ms)
+  ✔ keeps unknown source IDs visible as warnings instead of substituting evidence (1.803528ms)
+✔ generation response validation (6.964594ms)
+▶ generation request concurrency
+  ✔ ignores duplicate starts and late responses (0.851379ms)
+  ✔ keeps an existing successful result when a later generation fails (0.749378ms)
+✔ generation request concurrency (1.781315ms)
+▶ PPTX export layout and package
+  ✔ rejects content that would require truncation or unreadably small text (1.022853ms)
+  ✔ builds 4 editable slides with notes and embedded images (76.32469ms)
+  ✔ builds 5 editable slides with notes and embedded images (46.408119ms)
+  ✔ creates an ASCII-safe revisioned filename (0.523815ms)
+✔ PPTX export layout and package (125.528925ms)
+✔ full decode accepts PNG/JPEG and genuine GIF/WebP, ignores filename (29.626122ms)
+✔ decode rejects oversized bytes, corrupt pixel body and SVG (1.604053ms)
+✔ selection retains profile achievements and detailed project role and technologies (8.301311ms)
+✔ zero lexical match is explicitly reported as fallback and gaps (1.2978ms)
+✔ snapshot ignores payload generation timestamp and changes with source or readiness (0.678684ms)
+✔ provider grammar keeps slide bounds while local schema retains all limits (56.025407ms)
+▶ CV validation
+  ✔ a valid CV passes and text is trimmed (8.539224ms)
+  ✔ required fields have clear messages (0.943346ms)
+  ✔ invalid email, phone and unsafe link (0.756008ms)
+  ✔ errors are keyed by item path (0.62153ms)
+  ✔ current role must not have an end date; past roles must (0.415846ms)
+  ✔ month fields must be YYYY-MM (0.47298ms)
+  ✔ list sizes are capped (0.592066ms)
+  ✔ unknown keys (e.g. clientKey) are stripped (0.456335ms)
+✔ CV validation (14.372454ms)
+▶ job description validation
+  ✔ description is stored verbatim (not trimmed); short fields are trimmed (0.707617ms)
+  ✔ empty, whitespace-only and too-short descriptions are rejected (0.390738ms)
+  ✔ over 30,000 characters is rejected (0.208228ms)
+  ✔ pairing requires both ids (1.225283ms)
+✔ job description validation (2.956855ms)
+▶ confirmation request validation
+  ✔ accepts all / some sections with fingerprints (1.410978ms)
+  ✔ rejects bad input (0.371259ms)
+✔ confirmation request validation (1.896746ms)
+▶ image metadata validation
+  ✔ description (alt text) is required; kind must be known (0.847594ms)
+  ✔ an empty PATCH is rejected (0.639786ms)
+✔ image metadata validation (1.584715ms)
+ℹ tests 98
+ℹ suites 20
+ℹ pass 98
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 942.261904

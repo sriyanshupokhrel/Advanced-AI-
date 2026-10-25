@@ -1,0 +1,29 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> cv-builder@0.1.0 test:integration
+> node --experimental-transform-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON tests/integration/merged-workflow.mjs
+
+(node:18) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:18) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS MERGED additive upgrade preserves CV, Member 3 original/draft/revision and legacy Member 4 data
+PASS MERGED missing/unconfirmed targets return typed errors before transport
+PASS MERGED missing and partial confirmation tokens are refused
+PASS MERGED missing/stale generation snapshots are refused before transport
+PASS MERGED missing key returns 503 without a provider request
+PASS MERGED real pipeline adapter preserves all original text and per-field review in existing editor contract
+PASS MERGED generated and reopened reviewed records pass Member 3 response validation
+PASS MERGED editing/saving/reopening preserves immutable original, review metadata and source snapshot
+PASS MERGED outdated save cannot overwrite a newer draft
+PASS MERGED source/image references remain immutable during a wording save
+PASS MERGED export acknowledgement must be explicitly true
+PASS MERGED integrated PPTX uses saved draft, full notes, original review status and field references
+PASS MERGED revision and source changes block export
+PASS MERGED source change during a model call discards the result
+PASS MERGED incomplete reviewer is preserved as explicitly unapproved human-review draft
+PASS MERGED image confirmation rejects omitted/stale tokens and combined edits
+PASS MERGED image model fields cannot replace trusted IDs/caption or invent skills in editor response
+PASS MERGED WebP source is hash-verified, converted to PNG, embedded without changing original bytes
+PASS MERGED reopen after disconnect keeps original, draft and review metadata
+Merged integration: 19 passed, 0 failed. Provider network requests: 0 (transport replaced in this process only).
