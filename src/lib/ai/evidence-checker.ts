@@ -20,7 +20,7 @@ export interface EvidenceClaim {
 
 export interface EvidenceCheckResult {
   claim: string;
-  status: "SUPPORTED_SOURCE" | "NEEDS_REVIEW";
+  status: "EXCERPT_FOUND_REVIEW_REQUIRED" | "NEEDS_REVIEW";
   sourceId: string;
   explanation: string;
 }
@@ -130,7 +130,7 @@ export function checkEvidence(
 
     return {
       claim: claim.text,
-      status: "SUPPORTED_SOURCE" as const,
+      status: "EXCERPT_FOUND_REVIEW_REQUIRED" as const,
       sourceId: claim.sourceId,
       explanation:
         "The cited excerpt exists in the user-confirmed CV. " +

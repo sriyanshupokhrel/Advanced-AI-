@@ -1,3 +1,4 @@
+import { PipelineError } from "@/lib/ai/errors";
 import { connection } from "next/server";
 import {
   ImageRuleError,
@@ -31,8 +32,8 @@ export async function GET(_request: Request, ctx: Context) {
 
 /**
  * PATCH /api/cvs/{id}/images/{imageId} — JSON body with any of
- * { kind, altText, caption, projectId, confirmed }. `projectId: ""` unlinks
- * the image; `confirmed: true` confirms the image as it is after this update.
+ * { kind, altText, caption, projectId, confirmed, expectedFingerprint }.
+ * Save edits first; confirm the saved version in a separate request with its fingerprint.
  */
 export async function PATCH(request: Request, ctx: Context) {
   const { id, imageId } = await ctx.params;
@@ -46,6 +47,7 @@ export async function PATCH(request: Request, ctx: Context) {
     const image = await updateImage(id, imageId, parsed.data);
     return image ? Response.json(image) : notFound("Image");
   } catch (error) {
+    if (error instanceof PipelineError) return jsonError(error.status,error.message);
     if (error instanceof ImageRuleError) return validationError({ [error.field]: error.message });
     return internalError(error);
   }

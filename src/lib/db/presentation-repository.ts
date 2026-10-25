@@ -1,4 +1,5 @@
 import { Prisma } from "@prisma/client";
+import { ReliabilityMetadataSchema, type ReliabilityMetadata } from "@/types/reliability";
 import { prisma } from "@/lib/db/prisma";
 import { getInterviewPreparationPayload } from "@/lib/db/target-repository";
 import { compareSourceSnapshot, contextSnapshotKey } from "@/lib/presentation/source-snapshot";
@@ -54,6 +55,7 @@ function decodeRecord(
     updatedAt: record.updatedAt.toISOString(),
     revision: record.revision,
     stale: compareSourceSnapshot(sourceSnapshot, current),
+    reliability: record.reliabilityJson ? ReliabilityMetadataSchema.parse(parseJson(record.reliabilityJson)) : null,
   };
 }
 
@@ -63,6 +65,7 @@ export async function createPresentationRecord(input: {
   imageAnalyses: ImageAnalysisResult[];
   sourceSnapshot: InterviewPreparationPayload;
   generatedAt: string;
+  reliability?: ReliabilityMetadata | null;
 }) {
   const original = InterviewPresentationSchema.parse(input.original);
   const analyses = ImageAnalysisResultSchema.array().parse(input.imageAnalyses);
@@ -84,6 +87,7 @@ export async function createPresentationRecord(input: {
         sourceSnapshotJson: JSON.stringify(input.sourceSnapshot),
         sourceFingerprint: expectedFingerprint,
         generatedAt: new Date(input.generatedAt),
+        reliabilityJson: input.reliability ? JSON.stringify(ReliabilityMetadataSchema.parse(input.reliability)) : null,
       },
     });
     return decodeRecord(record, current);

@@ -2,13 +2,14 @@
 import { NextResponse } from "next/server";
 import { runInterviewAIPipeline } from "@/lib/ai/ai-pipeline";
 import { createPresentationRecord, PresentationSourceChangedError } from "@/lib/db/presentation-repository";
+import { safePipelineError } from "@/lib/ai/errors";
 
 interface RouteContext {
   params: Promise<{ id: string }>;
 }
 
 export async function POST(
-  _request: Request,
+  request: Request,
   context: RouteContext
 ) {
   try {
@@ -21,13 +22,26 @@ export async function POST(
       );
     }
 
-    const { generation, sourceSnapshot } = await runInterviewAIPipeline(id);
+    let expectedSourceFingerprint: string | undefined;
+    if (request.headers.get("content-type")?.includes("application/json")) {
+      let body: unknown;
+      try { body = await request.json(); } catch {
+        return NextResponse.json({ error: "Invalid JSON request." }, { status: 400 });
+      }
+      if (!body || typeof body !== "object" || !("expectedSourceFingerprint" in body) ||
+          typeof body.expectedSourceFingerprint !== "string" || body.expectedSourceFingerprint.length > 50_000) {
+        return NextResponse.json({ error: "A valid expectedSourceFingerprint is required." }, { status: 400 });
+      }
+      expectedSourceFingerprint = body.expectedSourceFingerprint;
+    }
+    const { generation, sourceSnapshot } = await runInterviewAIPipeline(id, expectedSourceFingerprint);
     const saved = await createPresentationRecord({
       targetId: id,
       original: generation.presentation,
       imageAnalyses: generation.imageAnalyses,
       sourceSnapshot,
       generatedAt: generation.generatedAt,
+      reliability: "reliability" in generation ? generation.reliability : null,
     });
 
     return NextResponse.json({
@@ -43,11 +57,7 @@ export async function POST(
         { status: 409 },
       );
     }
-    console.error("Interview generation failed:", error);
-
-    return NextResponse.json(
-      { error: "Unable to generate interview presentation." },
-      { status: 500 }
-    );
+    const safe = safePipelineError(error);
+    return NextResponse.json({ error: safe.message, code: safe.code }, { status: safe.status });
   }
 }

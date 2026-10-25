@@ -13,13 +13,13 @@ export function SourcePanel({ references, disclaimer, imageAnalyses = [], unavai
       <summary className={`${presentationTheme.focus} flex cursor-pointer list-none items-center gap-3 rounded-2xl px-5 py-4 [&::-webkit-details-marker]:hidden`}>
         <ChevronIcon className="h-4 w-4 text-(--pe-muted) transition-transform group-open:rotate-90" />
         <span className="text-sm font-semibold">Sources used on this slide</span>
-        <span className={`text-xs ${presentationTheme.muted}`}>{plural(references.sources.length, "CV source")} · {plural(references.images.length, "image")}</span>
+        <span className={`text-xs ${presentationTheme.muted}`}>{plural(references.sources.length, "source")} · {plural(references.images.length, "image")}</span>
         {missingCount > 0 && <span className="ml-auto inline-flex items-center gap-1 text-xs font-semibold text-(--pe-error)"><AlertIcon className="h-3.5 w-3.5" />{missingCount} unknown</span>}
       </summary>
       <div className="px-5 pb-5">
         <div className="grid gap-6 lg:grid-cols-2">
           <div>
-            <h3 className={presentationTheme.eyebrow}>CV evidence</h3>
+            <h3 className={presentationTheme.eyebrow}>Source context</h3>
             <ul className="mt-3 space-y-2">
               {references.sources.length === 0 && <li className={`text-sm ${presentationTheme.muted}`}>No CV source IDs.</li>}
               {references.sources.map((source) => source.status === "FOUND" ? (

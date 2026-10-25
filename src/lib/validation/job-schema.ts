@@ -72,7 +72,7 @@ const SHA256_HEX = /^[0-9a-f]{64}$/;
  *
  * - `confirmed`: true to confirm, false to withdraw confirmation.
  * - `sections`: which sections to change; omitted means all seven.
- * - `expectedFingerprints`: optional, per section, the fingerprint the user
+ * - `expectedFingerprints`: required when confirming each selected section; the fingerprint the user
  *   was shown. If the stored data has changed since (e.g. edited in another
  *   tab), the request is refused with 409 instead of confirming content the
  *   user never saw.

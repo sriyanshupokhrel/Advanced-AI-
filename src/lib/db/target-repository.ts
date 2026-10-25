@@ -178,33 +178,25 @@ export async function createTarget(cvProfileId: string, jobDescriptionId: string
  * Returns null when the pairing does not exist.
  */
 export async function setSectionConfirmations(id: string, input: TargetConfirmationInput) {
-  const target = await findTarget(id);
-  if (!target) return null;
-
-  const sections = input.sections ? [...new Set(input.sections)] : [...REVIEW_SECTIONS];
-  const { fingerprints } = await toPayload(target, false);
-
-  if (input.confirmed && input.expectedFingerprints) {
-    const stale = sections.filter((s) => {
-      const expected = input.expectedFingerprints?.[s];
-      return expected !== undefined && expected !== fingerprints[s];
-    });
-    if (stale.length > 0) throw new StaleReviewError(stale);
-  }
-
-  await prisma.$transaction(
-    sections.map((section) =>
-      input.confirmed
-        ? prisma.targetSectionConfirmation.upsert({
-            where: { targetId_section: { targetId: id, section } },
-            create: { targetId: id, section, confirmedHash: fingerprints[section] },
-            update: { confirmedHash: fingerprints[section], confirmedAt: new Date() },
-          })
-        : prisma.targetSectionConfirmation.deleteMany({ where: { targetId: id, section } }),
-    ),
-  );
-  // Touch the pairing so lists sort by most recent review activity.
-  await prisma.cvJobTarget.update({ where: { id }, data: { updatedAt: new Date() } });
+  await prisma.$transaction(async tx => {
+    const target = await findTarget(id, tx);
+    if (!target) return;
+    const sections = input.sections ? [...new Set(input.sections)] : [...REVIEW_SECTIONS];
+    const { fingerprints } = await toPayload(target, false);
+    if (input.confirmed) {
+      const stale = sections.filter(s => !input.expectedFingerprints?.[s] || input.expectedFingerprints[s] !== fingerprints[s]);
+      if (stale.length) throw new StaleReviewError(stale);
+    }
+    for (const section of sections) {
+      if (input.confirmed) await tx.targetSectionConfirmation.upsert({
+        where: { targetId_section: { targetId: id, section } },
+        create: { targetId: id, section, confirmedHash: fingerprints[section] },
+        update: { confirmedHash: fingerprints[section], confirmedAt: new Date() },
+      });
+      else await tx.targetSectionConfirmation.deleteMany({ where: { targetId: id, section } });
+    }
+    await tx.cvJobTarget.update({ where: { id }, data: { updatedAt: new Date() } });
+  }, { timeout: 10000 });
   return getTarget(id);
 }
 

@@ -1,5 +1,6 @@
 import type { InterviewPreparationPayload, PayloadImage } from "@/types/integration";
 import type { InterviewPresentation, PresentationSlide } from "@/types/presentation";
+import { allEvidence } from "@/lib/ai/content-selector";
 
 export interface DraftValidationIssue {
   path: string;
@@ -9,7 +10,7 @@ export interface DraftValidationIssue {
 
 export interface ResolvedEvidenceSource {
   id: string;
-  type: "skill" | "experience" | "project" | "education";
+  type: "profile" | "skill" | "experience" | "project" | "education" | "achievement" | "job" | "visual";
   title: string;
   description: string;
 }
@@ -133,6 +134,12 @@ export function getSlideFitWarnings(slide: PresentationSlide): string[] {
 
 export function buildEvidenceMap(payload: InterviewPreparationPayload): Map<string, ResolvedEvidenceSource> {
   const sources: ResolvedEvidenceSource[] = [
+    ...allEvidence(payload).map(item => ({ id: item.sourceId, type: item.sourceType, title: item.title, description: item.description })),
+    { id: "job:" + payload.targetJob.jobDescriptionId, type: "job", title: payload.targetJob.jobTitle ?? "Target job", description: JSON.stringify(payload.targetJob) },
+    ...payload.candidate.projects.items.flatMap(project => project.images.map(image => ({
+      id: "image:" + image.imageId, type: "visual" as const, title: "User-supplied image: " + project.name,
+      description: "USER_UPLOADED_UNVERIFIED. User description: " + JSON.stringify(image.description) + ". Pixel observations are shown in the original field review; an image does not prove authorship.",
+    }))),
     ...payload.candidate.skills.items.map((item) => ({
       id: item.id,
       type: "skill" as const,
@@ -158,7 +165,8 @@ export function buildEvidenceMap(payload: InterviewPreparationPayload): Map<stri
       description: `${item.institution}${item.fieldOfStudy ? ` · ${item.fieldOfStudy}` : ""}`,
     })),
   ];
-  return new Map(sources.map((source) => [source.id, source]));
+  // The full registry above takes precedence over the legacy display summaries.
+  return new Map(sources.toReversed().map((source) => [source.id, source]));
 }
 
 export function buildImageMap(payload: InterviewPreparationPayload): Map<string, ResolvedImageSource> {

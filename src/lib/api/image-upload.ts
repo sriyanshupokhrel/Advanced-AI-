@@ -1,4 +1,5 @@
-import { inspectImage, type InspectedImage } from "@/lib/storage/image-inspection";
+import { type InspectedImage } from "@/lib/storage/image-inspection";
+import { decodeImage } from "@/lib/storage/image-decode";
 import { MAX_IMAGE_BYTES } from "@/lib/validation/image-schema";
 
 // Allowance for multipart boundaries and the small text fields.
@@ -26,7 +27,7 @@ export async function parseUploadedImage(
   if (file.size > MAX_IMAGE_BYTES) return { ok: false, error: FILE_TOO_LARGE };
 
   const bytes = new Uint8Array(await file.arrayBuffer());
-  const result = inspectImage(bytes);
+  const result = await decodeImage(bytes);
   if (!result.ok) return { ok: false, error: result.error };
 
   // Keep only the base name; it is display metadata and never used as a path.

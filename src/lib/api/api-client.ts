@@ -114,8 +114,8 @@ export const targetApi = {
     request<unknown>(`/api/targets/${encodeURIComponent(id)}/context?requireReady=true`, { method: "GET" }),
   getSavedPresentation: (id: string) =>
     request<unknown>(`/api/targets/${encodeURIComponent(id)}/presentation`, { method: "GET" }),
-  generateInterview: (id: string) =>
-    request<unknown>(`/api/targets/${encodeURIComponent(id)}/generate-interview`, { method: "POST" }),
+  generateInterview: (id: string, expectedSourceFingerprint?: string) =>
+    request<unknown>(`/api/targets/${encodeURIComponent(id)}/generate-interview`, jsonInit("POST", { expectedSourceFingerprint })),
   savePresentationDraft: (targetId: string, presentationId: string, draft: InterviewPresentation, expectedRevision: number) =>
     request<unknown>(
       `/api/targets/${encodeURIComponent(targetId)}/presentations/${encodeURIComponent(presentationId)}`,
@@ -124,7 +124,7 @@ export const targetApi = {
   exportPresentationPptx: (targetId: string, presentationId: string, expectedRevision: number) =>
     download(
       `/api/targets/${encodeURIComponent(targetId)}/presentations/${encodeURIComponent(presentationId)}/export`,
-      jsonInit("POST", { expectedRevision }),
+      jsonInit("POST", { expectedRevision, humanReviewed: true }),
     ),
   remove: (id: string) => request<void>(`/api/targets/${encodeURIComponent(id)}`, { method: "DELETE" }),
 };

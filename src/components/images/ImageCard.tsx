@@ -72,7 +72,7 @@ export function ImageCard({ cvId, image, projects, onSaved, onDeleted }: ImageCa
   async function setConfirmed(confirmed: boolean) {
     setBusy("confirming");
     setError(null);
-    const result = await imageApi.update(cvId, image.id, { confirmed });
+    const result = await imageApi.update(cvId, image.id, { confirmed, expectedFingerprint: image.reviewFingerprint });
     setBusy(null);
     if (!result.ok) return setError(result.error.error);
     onSaved(result.data);

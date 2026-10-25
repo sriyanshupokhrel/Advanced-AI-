@@ -22,7 +22,7 @@ import { editorCssVars, presentationTheme as t } from "./presentation-theme";
 export interface PresentationFlowApi {
   getContext(targetId: string): Promise<ApiResult<unknown>>;
   getSaved(targetId: string): Promise<ApiResult<unknown>>;
-  generate(targetId: string): Promise<ApiResult<unknown>>;
+  generate(targetId: string, expectedSourceFingerprint?: string): Promise<ApiResult<unknown>>;
   save(targetId: string, presentationId: string, draft: InterviewPresentation, expectedRevision: number): Promise<ApiResult<unknown>>;
   exportPptx(targetId: string, presentationId: string, expectedRevision: number): Promise<DownloadResult>;
 }
@@ -30,7 +30,7 @@ export interface PresentationFlowApi {
 const defaultApi: PresentationFlowApi = {
   getContext: (targetId) => targetApi.getInterviewContext(targetId),
   getSaved: (targetId) => targetApi.getSavedPresentation(targetId),
-  generate: (targetId) => targetApi.generateInterview(targetId),
+  generate: (targetId, fingerprint) => targetApi.generateInterview(targetId, fingerprint),
   save: (targetId, presentationId, draft, expectedRevision) =>
     targetApi.savePresentationDraft(targetId, presentationId, draft, expectedRevision),
   exportPptx: (targetId, presentationId, expectedRevision) =>
@@ -152,7 +152,7 @@ export function PresentationFlow({ targetId, api = defaultApi }: { targetId: str
 
     let generated: ApiResult<unknown>;
     try {
-      generated = await api.generate(targetId);
+      generated = await api.generate(targetId, startingSnapshot);
     } catch {
       generated = { ok: false, status: 0, error: { error: "Could not reach the generation service. No automatic retry was attempted." } };
     }
@@ -243,6 +243,7 @@ export function PresentationFlow({ targetId, api = defaultApi }: { targetId: str
           stale={accepted.stale}
           generating={generation.phase === "GENERATING"}
           referenceWarnings={accepted.referenceWarnings}
+          reliability={accepted.response.reliability}
           onSave={saveDraft}
           onExport={exportPptx}
           onRegenerate={() => void startGeneration()}

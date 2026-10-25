@@ -167,6 +167,7 @@ export function validateSavedPresentationRecord(
     presentation: original.data,
     generatedAt: record.generatedAt,
     updatedAt: record.updatedAt,
+    reliability: record.reliability,
   });
   if (!response.success) return { ok: false, error: "The saved presentation response was invalid." };
   const checked = validateGenerationResponse(response.data, targetId, source);

@@ -5,6 +5,7 @@ import {
   PresentationReferenceError,
   PresentationRevisionConflictError,
   PresentationSourceChangedError,
+  getPresentationExportRecord,
 } from "@/lib/db/presentation-repository";
 import {
   buildPresentationPptx,
@@ -23,7 +24,7 @@ export async function POST(request: Request, ctx: Context) {
   if (!body.ok) return body.response;
 
   const parsed = ExportPresentationRequestSchema.safeParse(body.value);
-  if (!parsed.success) return jsonError(400, "A valid expectedRevision is required for export.");
+  if (!parsed.success) return jsonError(400, "A valid expectedRevision and humanReviewed: true are required for export. Check the complete saved draft against its sources first.");
 
   try {
     const snapshot = await preparePresentationExport({
@@ -34,6 +35,9 @@ export async function POST(request: Request, ctx: Context) {
     if (!snapshot) return notFound("Presentation");
 
     const bytes = await buildPresentationPptx(snapshot);
+    // Do not deliver a file if the revision or source changed while bytes were built.
+    const stillCurrent = await getPresentationExportRecord({ targetId: id, presentationId, expectedRevision: parsed.data.expectedRevision });
+    if (!stillCurrent) return notFound("Presentation");
     const fileName = presentationDownloadFileName(snapshot);
     return new Response(new Uint8Array(bytes), {
       headers: {

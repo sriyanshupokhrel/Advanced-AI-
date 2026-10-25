@@ -1,3 +1,4 @@
+import { PipelineError } from "@/lib/ai/errors";
 import type { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/db/prisma";
 import {
@@ -46,6 +47,7 @@ export function toImageDto(image: ImageWithProject): CvImageDto {
   const confirmation = imageConfirmation(image);
   return {
     id: image.id,
+    reviewFingerprint: computeImageFingerprint(image),
     cvProfileId: image.cvProfileId,
     projectId: image.projectId,
     kind: image.kind as ImageKind,
@@ -198,37 +200,25 @@ export async function updateImage(
   imageId: string,
   input: ImageUpdateInput,
 ): Promise<CvImageDto | null> {
-  const existing = await findForCv(cvProfileId, imageId);
-  if (!existing) return null;
-
-  const newProjectId = input.projectId === undefined ? undefined : input.projectId || null;
-  if (newProjectId && newProjectId !== existing.projectId) {
-    await assertProjectBelongsToCv(cvProfileId, newProjectId);
-    await assertProjectHasRoom(newProjectId, imageId);
-  }
-
-  let image = await prisma.cvImage.update({
-    where: { id: imageId },
-    data: {
-      kind: input.kind,
-      altText: input.altText,
-      caption: input.caption === undefined ? undefined : input.caption || null,
-      projectId: newProjectId,
-    },
-    include: imageInclude,
-  });
-
-  if (input.confirmed !== undefined) {
-    // Fingerprint the image exactly as it is now, after the changes above.
-    image = await prisma.cvImage.update({
-      where: { id: imageId },
-      data: input.confirmed
-        ? { confirmedAt: new Date(), confirmedHash: computeImageFingerprint(image) }
-        : { confirmedAt: null, confirmedHash: null },
-      include: imageInclude,
-    });
-  }
-  return toImageDto(image);
+  return prisma.$transaction(async tx=>{
+    const existing=await tx.cvImage.findFirst({where:{id:imageId,cvProfileId},include:imageInclude});
+    if(!existing)return null;
+    const hasEdits=["kind","altText","caption","projectId"].some(key=>input[key as keyof ImageUpdateInput]!==undefined);
+    if(input.confirmed && (hasEdits || !input.expectedFingerprint || input.expectedFingerprint!==computeImageFingerprint(existing)))
+      throw new PipelineError(409,"STALE_IMAGE_REVIEW","Reload and review the current image before confirming. Save edits separately, then confirm the saved version.");
+    const newProjectId=input.projectId===undefined?undefined:input.projectId||null;
+    if(newProjectId && newProjectId!==existing.projectId){
+      const project=await tx.project.findFirst({where:{id:newProjectId,cvProfileId}});
+      if(!project)throw new ImageRuleError("projectId","The selected project does not belong to this CV.");
+      const count=await tx.cvImage.count({where:{projectId:newProjectId,id:{not:imageId}}});
+      if(count>=MAX_IMAGES_PER_PROJECT)throw new ImageRuleError("projectId","A project can have at most 6 images. Remove one before adding another.");
+    }
+    const image=await tx.cvImage.update({where:{id:imageId},data:{
+      kind:input.kind,altText:input.altText,caption:input.caption===undefined?undefined:input.caption||null,projectId:newProjectId,
+      ...(input.confirmed===undefined?{}:input.confirmed?{confirmedAt:new Date(),confirmedHash:computeImageFingerprint(existing)}:{confirmedAt:null,confirmedHash:null}),
+    },include:imageInclude});
+    return toImageDto(image);
+  },{timeout:10000});
 }
 
 /**

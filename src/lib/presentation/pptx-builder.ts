@@ -3,6 +3,7 @@ import JSZip from "jszip";
 import { slideCanvasTokens } from "@/components/presentation/presentation-theme";
 import type { InterviewPreparationPayload } from "@/types/integration";
 import type { InterviewPresentation } from "@/types/presentation";
+import type { ReliabilityMetadata } from "@/types/reliability";
 
 export interface VerifiedExportImage {
   imageId: string;
@@ -21,6 +22,7 @@ export interface PresentationExportSnapshot {
   draft: InterviewPresentation;
   sourceSnapshot: InterviewPreparationPayload;
   images: Map<string, VerifiedExportImage>;
+  reliability?: ReliabilityMetadata | null;
 }
 
 export interface PptxFitIssue { slideNumber: number; message: string }
@@ -56,11 +58,13 @@ function provenanceNotes(snapshot: PresentationExportSnapshot, slideIndex: numbe
   const slide = snapshot.draft.slides[slideIndex];
   return `${slide.speakerNotes}\n\n--- Sources and provenance (not part of the spoken script) ---\n` + [
     `Saved presentation revision: ${snapshot.revision}`,
-    `CV source IDs: ${slide.sourceIds.length ? slide.sourceIds.join(", ") : "None"}`,
+    `Source IDs (candidate, job or visual): ${slide.sourceIds.length ? slide.sourceIds.join(", ") : "None"}`,
+    `Generated original review: ${snapshot.reliability?.review.status ?? "NOT_AVAILABLE"}; current saved wording requires human review.`,
     `Image IDs: ${slide.imageIds.length ? slide.imageIds.join(", ") : "None"}`,
     "Image provenance: USER_UPLOADED_UNVERIFIED.",
     "User confirmation means reviewed by the user, not independently verified.",
     "User-edited wording has not been semantically re-reviewed.",
+    ...[...(snapshot.reliability?.original.references ?? [])].filter(reference => reference.unitId.startsWith(`slide.${slideIndex}.`)).map(reference => `Original field ${reference.unitId}: ${reference.sourceIds.join(", ") || "No cited source"}.`),
   ].join("\n");
 }
 

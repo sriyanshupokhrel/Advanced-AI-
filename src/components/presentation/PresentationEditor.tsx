@@ -22,6 +22,8 @@ import { AlertIcon, CheckIcon, InfoIcon, PencilIcon, WarningIcon } from "./Prese
 import { editorCssVars, presentationTheme as t } from "./presentation-theme";
 import { SlidePreview } from "./SlidePreview";
 import { SourcePanel } from "./SourcePanel";
+import { ReliabilityPanel } from "./ReliabilityPanel";
+import type { ReliabilityMetadata } from "@/types/reliability";
 
 type PresentationEditorProps =
   | {
@@ -41,6 +43,7 @@ type PresentationEditorProps =
       stale: PresentationStaleStatus;
       generating: boolean;
       referenceWarnings?: string[];
+      reliability?: ReliabilityMetadata | null;
       onSave: (draft: InterviewPresentation, expectedRevision: number) => Promise<
         | { ok: true; revision: number; updatedAt: string; stale: PresentationStaleStatus }
         | { ok: false; status: number; message: string }
@@ -98,15 +101,11 @@ export function PresentationEditor(props: PresentationEditorProps) {
     const resolved = resolveSlideReferences(slide, context);
     const missingSources = resolved.sources.filter((item) => item.status === "MISSING").map((item) => item.id);
     const missingImages = resolved.images.filter((item) => item.status === "MISSING").map((item) => item.id);
-    const webpImages = resolved.images
-      .filter((item) => item.status === "FOUND" && item.value.image.mimeType === "image/webp")
-      .map((item) => item.id);
     const failedImages = slide.imageIds.filter((id) => failedImageIds.has(id));
     return [
       missingSources.length ? `Slide ${index + 1} has unknown source IDs: ${missingSources.join(", ")}.` : "",
       missingImages.length ? `Slide ${index + 1} has unknown image IDs: ${missingImages.join(", ")}.` : "",
       failedImages.length ? `Slide ${index + 1} has unavailable images: ${failedImages.join(", ")}.` : "",
-      webpImages.length ? `Slide ${index + 1} uses WebP images ${webpImages.join(", ")}. Convert them to PNG or JPEG, upload and confirm them again before export.` : "",
     ].filter(Boolean);
   }), [context, draft.slides, failedImageIds]);
 
@@ -325,6 +324,7 @@ export function PresentationEditor(props: PresentationEditorProps) {
           </div>
         </section>
 
+        {props.variant === "live" && <ReliabilityPanel reliability={props.reliability} draft={draft} slideIndex={activeSlide} />}
         {props.variant === "demo" && scenario && <div className="mb-6 flex flex-wrap items-end gap-x-6 gap-y-2">
           <label className={`${t.label} w-full sm:w-72`}>Demo sample<select value={scenarioId} onChange={(event) => selectScenario(event.target.value)} className={`${t.input} ${t.focus} mt-1.5`}>{props.scenarios.map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}</select></label>
           <p className={`pb-2 text-xs leading-relaxed ${t.muted}`}>{scenario.description}</p>

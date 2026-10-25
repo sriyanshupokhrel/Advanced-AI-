@@ -66,8 +66,8 @@ export type ImageMetadataInput = z.output<typeof imageMetadataSchema>;
 
 /**
  * PATCH body for an existing image. Every field is optional; `projectId: ""`
- * unlinks the image from its project. `confirmed` applies to the image as it
- * will be after the other changes in the same request.
+ * unlinks the image from its project. Save edits separately, then confirm the
+ * saved metadata with the displayed expectedFingerprint. A stale review is refused.
  */
 export const imageUpdateSchema = z
   .object({
@@ -75,6 +75,7 @@ export const imageUpdateSchema = z
     altText: altText.optional(),
     caption: caption.optional(),
     projectId: projectId.optional(),
+    expectedFingerprint: z.string().regex(/^[0-9a-f]{64}$/).optional(),
     confirmed: z.boolean("`confirmed` must be true or false.").optional(),
   })
   .refine((body) => Object.values(body).some((value) => value !== undefined), {
