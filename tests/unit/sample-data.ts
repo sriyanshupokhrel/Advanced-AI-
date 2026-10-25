@@ -35,6 +35,7 @@ export function sampleCv(overrides: Partial<CvProfileDto> = {}): CvProfileDto {
 
 export function sampleImage(overrides: Partial<CvImageDto> = {}): CvImageDto {
   return {
+    reviewFingerprint: "b".repeat(64),
     id: "img1",
     cvProfileId: "cv1",
     projectId: "pr1",

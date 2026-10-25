@@ -64,7 +64,7 @@ const serverLog = path.join(tempDir, "server.log");
 
 async function startServer() {
   const log = openSync(serverLog, "a");
-  server = spawn(process.execPath, [path.join(projectDir, "node_modules/next/dist/bin/next"), "start", "-p", String(port)], {
+  server = spawn(process.execPath, [path.join(projectDir, "node_modules/next/dist/bin/next"), "start", "-H", "localhost", "-p", String(port)], {
     cwd: projectDir,
     env,
     stdio: ["ignore", log, log],

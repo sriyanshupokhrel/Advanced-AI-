@@ -3,7 +3,7 @@
 // "full" leaves one confirmed image behind; "verify" checks it after a restart.
 import { renameSync, unlinkSync } from "node:fs";
 import path from "node:path";
-import { base, call, check, filesOnDisk, finish, fixture, json, kept, phase, sha, testDb, uploadDir } from "./lib.mjs";
+import { confirmReviewedImage, confirmReviewedSections, base, call, check, filesOnDisk, finish, fixture, json, kept, phase, sha, testDb, uploadDir } from "./lib.mjs";
 
 const b64 = (s) => Buffer.from(s, "base64");
 
@@ -170,12 +170,15 @@ if (phase === "verify") {
   check("empty PATCH → 400", r.status === 400);
   r = await call(`/api/cvs/${cv.id}/images/${jpgImage.id}`, json("PATCH", { altText: "Budget dashboard, monthly view", caption: "Built with React" }));
   check("edit description + caption", r.status === 200 && r.body.altText === "Budget dashboard, monthly view" && r.body.caption === "Built with React");
-  r = await call(`/api/cvs/${cv.id}/images/${jpgImage.id}`, json("PATCH", { confirmed: true }));
+  r = await confirmReviewedImage(cv.id, jpgImage.id);
   check("confirm → CONFIRMED", r.body.confirmationStatus === "CONFIRMED" && Boolean(r.body.confirmedAt));
   r = await call(`/api/cvs/${cv.id}/images/${jpgImage.id}`, json("PATCH", { caption: "Built with React and Chart.js" }));
   check("editing caption → CHANGED_SINCE_CONFIRMATION", r.body.confirmationStatus === "CHANGED_SINCE_CONFIRMATION");
   r = await call(`/api/cvs/${cv.id}/images/${jpgImage.id}`, json("PATCH", { caption: "Built with React", confirmed: true }));
-  check("edit + confirm in one request → CONFIRMED for the new text", r.body.confirmationStatus === "CONFIRMED" && r.body.caption === "Built with React");
+  check("edit + confirm in one request is refused without changing the saved text", r.status === 409 && (await call(`/api/cvs/${cv.id}/images/${jpgImage.id}`)).body.caption === "Built with React and Chart.js");
+  r = await call(`/api/cvs/${cv.id}/images/${jpgImage.id}`, json("PATCH", { caption: "Built with React" }));
+  r = await confirmReviewedImage(cv.id, jpgImage.id);
+  check("save edits, then confirm the reviewed version → CONFIRMED", r.status === 200 && r.body.confirmationStatus === "CONFIRMED");
 
   // Project text is part of what was confirmed.
   const saved = (await call(`/api/cvs/${cv.id}`)).body;
@@ -186,7 +189,7 @@ if (phase === "verify") {
   await call(`/api/cvs/${cv.id}`, json("PUT", { ...cvInput, projects: cvInput.projects.map((p) => (p.id === budget.id ? { ...p, description: "A budgeting app (rewritten)." } : p)) }));
   r = await call(`/api/cvs/${cv.id}/images/${jpgImage.id}`);
   check("rewriting the linked project → image CHANGED_SINCE_CONFIRMATION", r.body.confirmationStatus === "CHANGED_SINCE_CONFIRMATION");
-  r = await call(`/api/cvs/${cv.id}/images/${jpgImage.id}`, json("PATCH", { confirmed: true }));
+  r = await confirmReviewedImage(cv.id, jpgImage.id);
   const beforeReplace = r.body;
 
   const oldFiles = new Set(filesOnDisk());
@@ -207,8 +210,8 @@ if (phase === "verify") {
   badForm.append("file", new Blob([Buffer.from("not an image")], { type: "image/png" }), "bad.png");
   r = await call(`/api/cvs/${cv.id}/images/${jpgImage.id}`, { method: "PUT", body: badForm });
   check("replacing with an invalid file → 400, original kept", r.status === 400 && (await call(`/api/cvs/${cv.id}/images/${jpgImage.id}`)).body.sha256 === sha(newBytes));
-  r = await call(`/api/cvs/${cv.id}/images/${jpgImage.id}`, json("PATCH", { confirmed: true }));
-  r = await call(`/api/cvs/${cv.id}/images/${pngImage.id}`, json("PATCH", { confirmed: true }));
+  r = await confirmReviewedImage(cv.id, jpgImage.id);
+  r = await confirmReviewedImage(cv.id, pngImage.id);
   r = await call(`/api/cvs/${cv.id}/images/${pngImage.id}`, json("PATCH", { confirmed: false }));
   check("withdraw → NOT_CONFIRMED", r.body.confirmationStatus === "NOT_CONFIRMED" && r.body.confirmedAt === null);
 
@@ -233,7 +236,7 @@ if (phase === "verify") {
   console.log("── CV–job contract integration");
   const job = (await call("/api/jobs", json("POST", { title: "Dev", companyName: "Co", companyInfo: "", jobReference: "", description: "A job description that is comfortably longer than fifty characters." }))).body;
   const target = (await call("/api/targets", json("POST", { cvProfileId: cv.id, jobDescriptionId: job.id }))).body;
-  await call(`/api/targets/${target.id}`, json("PATCH", { confirmed: true }));
+  await confirmReviewedSections(target.id);
   r = await call(`/api/targets/${target.id}/context`);
   let ctx = r.body;
   const allImages = (c) => [...c.candidate.projects.items.flatMap((p) => p.images), ...c.candidate.otherImages];
@@ -241,7 +244,7 @@ if (phase === "verify") {
   check("payload v2.0 nests images in their project with metadata + confirmation", ctx.contractVersion === "2.0" && ctxImg.width === 300 && ctxImg.provenance === "USER_UPLOADED_UNVERIFIED" && ctxImg.confirmation.isConfirmed === true && ctxImg.fileAvailable === true);
   check("every image appears exactly once", allImages(ctx).length === (await call(`/api/cvs/${cv.id}/images`)).body.length);
   check("IMAGE_NOT_CONFIRMED issue for unconfirmed images", ctx.readiness.issues.some((n) => n.code === "IMAGE_NOT_CONFIRMED" && n.severity === "BLOCKING"));
-  await call(`/api/cvs/${cv.id}/images/${pngImage.id}`, json("PATCH", { confirmed: true }));
+  await confirmReviewedImage(cv.id, pngImage.id);
   r = await call(`/api/targets/${target.id}`);
   check("confirming an image leaves all sections CONFIRMED", Object.values(r.body.sections).every((s) => s.status === "CONFIRMED"));
   await call(`/api/cvs/${cv.id}/images/${pngImage.id}`, json("PATCH", { altText: "Architecture diagram" }));

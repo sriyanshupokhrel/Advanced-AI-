@@ -8,6 +8,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 const SRC = fileURLToPath(new URL("../../src/", import.meta.url));
 
 export async function resolve(specifier, context, nextResolve) {
+  if (specifier === "server-only") return {url:"data:text/javascript,export {}",shortCircuit:true};
   let candidate = null;
   if (specifier.startsWith("@/")) {
     candidate = path.join(SRC, specifier.slice(2));

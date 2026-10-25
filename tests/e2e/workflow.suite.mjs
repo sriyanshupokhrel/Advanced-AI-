@@ -7,13 +7,13 @@
 import { readFileSync, renameSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import JSZip from "jszip";
-import { base, call, check, finish, fixture, json, kept, phase, testDb, uploadDir } from "./lib.mjs";
+import { confirmReviewedImage, confirmReviewedSections, generateFromReviewedContext, base, call, check, finish, fixture, json, kept, phase, testDb, uploadDir } from "./lib.mjs";
 
 const codes = (payload, severity) => payload.readiness.issues.filter((i) => !severity || i.severity === severity).map((i) => i.code);
-const confirm = (targetId, body) => call(`/api/targets/${targetId}`, json("PATCH", body));
+const confirm = (targetId, body) => confirmReviewedSections(targetId, body);
 const payloadOf = async (targetId) => (await call(`/api/targets/${targetId}/context`)).body;
 const downloadPptx = async (targetId, presentationId, expectedRevision) => {
-  const response = await fetch(`${base}/api/targets/${targetId}/presentations/${presentationId}/export`, json("POST", { expectedRevision }));
+  const response = await fetch(`${base}/api/targets/${targetId}/presentations/${presentationId}/export`, json("POST", { expectedRevision, humanReviewed: true }));
   const contentType = response.headers.get("content-type") ?? "";
   if (!response.ok || !contentType.includes("presentationml.presentation")) {
     const text = await response.text();
@@ -149,7 +149,7 @@ if (phase === "verify") {
   check("confirm remaining sections → 7/7, still not ready (images)", r.body.readiness.sections.confirmed === 7 && r.body.readiness.isReady === false);
   p = await payloadOf(target.id);
   check("only image issues remain", codes(p, "BLOCKING").every((c) => c === "IMAGE_NOT_CONFIRMED"));
-  for (const img of [dashboard, mobile, photo]) await call(`/api/cvs/${cv.id}/images/${img.id}`, json("PATCH", { confirmed: true }));
+  for (const img of [dashboard, mobile, photo]) await confirmReviewedImage(cv.id, img.id);
 
   // ── 6. Retrieve the payload ────────────────────────────────────────────
   console.log("── 6. Retrieve structured integration payload");
@@ -176,9 +176,13 @@ if (phase === "verify") {
   // ── Presentation persistence (mocked pipeline; no model call) ───────────
   console.log("── Presentation generation and persistence (mocked provider)");
   r = await call(`/api/targets/${target.id}/generate-interview`, { method: "POST" });
+  check("generation without reviewed snapshot → 409", r.status === 409 && r.body.code === "STALE_SELECTION");
+  r = await call(`/api/targets/${target.id}/generate-interview`, json("POST", { expectedSourceFingerprint: "stale" }));
+  check("generation with stale reviewed snapshot → 409", r.status === 409 && r.body.code === "STALE_SELECTION");
+  r = await generateFromReviewedContext(target.id);
   const firstPresentation = r.body;
   check("successful mocked generation is persisted", r.status === 200 && firstPresentation.presentationId && firstPresentation.revision === 1);
-  r = await call(`/api/targets/${target.id}/generate-interview`, { method: "POST" });
+  r = await generateFromReviewedContext(target.id);
   const generated = r.body;
   check("regeneration creates a new independent record", r.status === 200 && generated.presentationId !== firstPresentation.presentationId);
   const presentationDb = testDb();
@@ -199,6 +203,10 @@ if (phase === "verify") {
   const beforeExportDb = testDb();
   const beforeExportRecord = await beforeExportDb.interviewPresentationRecord.findUniqueOrThrow({ where: { id: loaded.id } });
   await beforeExportDb.$disconnect();
+  r = await call(`/api/targets/${target.id}/presentations/${loaded.id}/export`, json("POST", { expectedRevision: 2 }));
+  check("export without human-review acknowledgement → 400", r.status === 400 && /humanReviewed/.test(r.body.error));
+  r = await call(`/api/targets/${target.id}/presentations/${loaded.id}/export`, json("POST", { expectedRevision: 2, humanReviewed: false }));
+  check("export with false human-review acknowledgement → 400", r.status === 400);
   const exported = await downloadPptx(target.id, loaded.id, 2);
   const packageInfo = exported.bytes ? await inspectPptx(exported.bytes) : null;
   check("saved draft exports as a real PPTX with safe headers", exported.status === 200 && /^attachment;/.test(exported.headers.get("content-disposition") ?? "") && /-r2\.pptx/.test(exported.headers.get("content-disposition") ?? "") && exported.headers.get("x-presentation-revision") === "2");
@@ -282,8 +290,8 @@ if (phase === "verify") {
   check("message explains what to do", p.readiness.issues.some((i) => i.code === "SECTION_CHANGED_SINCE_CONFIRMATION" && i.message === "Work experience was edited after you confirmed it. Review the current version and confirm it again."));
   r = await call(`/api/targets/${target.id}/context?requireReady=true`);
   check("requireReady now refuses (409)", r.status === 409 && r.body.issues[0].section === "EXPERIENCE");
-  const failedRegeneration = await call(`/api/targets/${target.id}/generate-interview`, { method: "POST" });
-  check("failed regeneration does not delete the latest saved record", failedRegeneration.status === 500 && (await call(`/api/targets/${target.id}/presentation`)).body.id === loaded.id);
+  const failedRegeneration = await generateFromReviewedContext(target.id);
+  check("failed regeneration does not delete the latest saved record", failedRegeneration.status === 409 && (await call(`/api/targets/${target.id}/presentation`)).body.id === loaded.id);
   const staleSourceExport = await downloadPptx(target.id, loaded.id, 3);
   check("not-READY or stale source state blocks export", staleSourceExport.status === 409 && /review|confirm|Source changed/i.test(staleSourceExport.body.error));
   const staleDraft = structuredClone(incompleteDraft);
@@ -302,7 +310,7 @@ if (phase === "verify") {
   await call(`/api/cvs/${cv.id}/images/${dashboard.id}`, json("PATCH", { caption: "Monthly view" }));
   p = await payloadOf(target.id);
   check("edit image caption → that image changed, sections unaffected", codes(p, "BLOCKING").join() === "IMAGE_CHANGED_SINCE_CONFIRMATION" && p.readiness.sections.confirmed === 7);
-  await call(`/api/cvs/${cv.id}/images/${dashboard.id}`, json("PATCH", { confirmed: true }));
+  await confirmReviewedImage(cv.id, dashboard.id);
   check("back to READY after re-confirming", (await payloadOf(target.id)).readiness.isReady);
 
   // ── Invalid associations ───────────────────────────────────────────────
@@ -310,7 +318,7 @@ if (phase === "verify") {
   const other = (await call("/api/cvs", json("POST", { ...cvInput, fullName: "Someone Else" }))).body;
   r = await call(`/api/cvs/${cv.id}/images/${mobile.id}`, json("PATCH", { projectId: other.projects[0].id }));
   check("linking an image to another CV's project → 400, nothing changed", r.status === 400 && (await payloadOf(target.id)).readiness.isReady);
-  r = await call(`/api/cvs/${other.id}/images/${mobile.id}`, json("PATCH", { confirmed: true }));
+  r = await confirmReviewedImage(other.id, mobile.id);
   check("confirming an image through another CV → 404", r.status === 404);
   r = await call("/api/targets", json("POST", { cvProfileId: cv.id, jobDescriptionId: "missing-job" }));
   check("pairing with a missing job → 404 + field error", r.status === 404 && Boolean(r.body.fieldErrors.jobDescriptionId));
@@ -320,7 +328,7 @@ if (phase === "verify") {
   p = await payloadOf(target.id);
   check("deleting a project: its image moves to otherImages and needs re-confirmation", p.candidate.otherImages.some((i) => i.imageId === mobile.id && i.confirmation.status === "CHANGED_SINCE_CONFIRMATION") && p.candidate.projects.confirmation.status === "CHANGED_SINCE_CONFIRMATION");
   await confirm(target.id, { confirmed: true, sections: ["PROJECTS"] });
-  await call(`/api/cvs/${cv.id}/images/${mobile.id}`, json("PATCH", { confirmed: true }));
+  await confirmReviewedImage(cv.id, mobile.id);
   check("re-confirmed → READY", (await payloadOf(target.id)).readiness.isReady);
 
   // ── Missing images ─────────────────────────────────────────────────────

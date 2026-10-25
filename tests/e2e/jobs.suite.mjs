@@ -1,6 +1,6 @@
 // Job descriptions, CV–job pairings, the integration payload and confirmation.
 // "full" leaves one confirmed pairing behind; "verify" checks it after a restart.
-import { base, call, check, finish, json, kept, phase } from "./lib.mjs";
+import { confirmReviewedImage, confirmReviewedSections, base, call, check, finish, json, kept, phase } from "./lib.mjs";
 
 // Pasted text with features that must survive untouched.
 const VERBATIM = "  \n\tGraduate Data Analyst – Café Analytics 😀\r\n\nResponsibilities:\n  • Build dashboards in SQL & Python\n  • Present <insights> to \"stakeholders\"\n\nRequirements:\n- 0–2 years' experience\n   \n";
@@ -98,7 +98,7 @@ check("payload for unknown pairing → 404", r.status === 404);
 console.log("── Confirmation and data consistency");
 r = await call(`/api/targets/${target.id}`, json("PATCH", { confirmed: "yes" }));
 check("invalid confirmation body → 400", r.status === 400);
-r = await call(`/api/targets/${target.id}`, json("PATCH", { confirmed: true }));
+r = await confirmReviewedSections(target.id);
 check("confirm all sections → CONFIRMED (no images yet)", r.status === 200 && r.body.confirmationStatus === "CONFIRMED" && r.body.readiness.isReady);
 r = await call(`/api/targets/${target.id}/context`);
 check("payload READY", r.body.readiness.status === "READY" && r.body.readiness.isReady === true);
@@ -115,12 +115,12 @@ check("editing CV summary → PROFILE CHANGED_SINCE_CONFIRMATION, not ready", r.
 check("other sections stay CONFIRMED", r.body.candidate.education.confirmation.status === "CONFIRMED" && r.body.targetJob.confirmation.status === "CONFIRMED");
 check("payload shows the latest CV data", r.body.candidate.profile.professionalSummary === "Changed summary.");
 
-await call(`/api/targets/${target.id}`, json("PATCH", { confirmed: true }));
+await confirmReviewedSections(target.id);
 await call(`/api/jobs/${job.id}`, json("PUT", { ...validJob, companyInfo: "Mid-size consultancy." }));
 r = await call(`/api/targets/${target.id}`);
 check("editing job → CHANGED_SINCE_CONFIRMATION", r.body.confirmationStatus === "CHANGED_SINCE_CONFIRMATION" && r.body.sections.TARGET_JOB.status === "CHANGED_SINCE_CONFIRMATION");
 
-await call(`/api/targets/${target.id}`, json("PATCH", { confirmed: true }));
+await confirmReviewedSections(target.id);
 const png = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==", "base64");
 const form = new FormData();
 form.append("file", new Blob([png], { type: "image/png" }), "photo.png");
@@ -128,11 +128,11 @@ for (const [k, v] of Object.entries({ kind: "PROFILE_PHOTO", altText: "Headshot"
 await fetch(`${base}/api/cvs/${cv.id}/images`, { method: "POST", body: form });
 r = await call(`/api/targets/${target.id}/context`);
 check("adding an unconfirmed image → not ready, image in payload", r.body.readiness.isReady === false && r.body.candidate.otherImages.length === 1 && r.body.candidate.otherImages[0].description.altText === "Headshot" && r.body.readiness.issues.some((i) => i.code === "IMAGE_NOT_CONFIRMED"));
-await call(`/api/cvs/${cv.id}/images/${r.body.candidate.otherImages[0].imageId}`, json("PATCH", { confirmed: true }));
+await confirmReviewedImage(cv.id, r.body.candidate.otherImages[0].imageId);
 
 r = await call(`/api/targets/${target.id}`, json("PATCH", { confirmed: false }));
 check("withdraw → NOT_CONFIRMED", r.body.confirmationStatus === "NOT_CONFIRMED" && r.body.sections.PROFILE.confirmedAt === null);
-r = await call(`/api/targets/${target.id}`, json("PATCH", { confirmed: true }));
+r = await confirmReviewedSections(target.id);
 check("re-confirm (sections + image confirmed) → CONFIRMED", r.body.confirmationStatus === "CONFIRMED");
 
 console.log("── Listing, filtering, deletion cascades");

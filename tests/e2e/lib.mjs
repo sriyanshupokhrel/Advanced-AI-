@@ -6,6 +6,7 @@ import { readFileSync, readdirSync } from "node:fs";
 import { createRequire } from "node:module";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { contextSnapshotKey } from "../../src/lib/presentation/source-snapshot.ts";
 
 export const base = process.env.E2E_BASE_URL;
 export const uploadDir = process.env.UPLOAD_DIR;
@@ -48,6 +49,28 @@ export async function call(p, init) {
     body = text;
   }
   return { status: res.status, body, headers: res.headers };
+}
+
+/** Explicitly load the version under test before confirming it (no model calls). */
+export async function confirmReviewedImage(cvId, imageId) {
+  const current = await call(`/api/cvs/${cvId}/images/${imageId}`);
+  return call(`/api/cvs/${cvId}/images/${imageId}`, json("PATCH", {
+    confirmed: true, expectedFingerprint: current.body?.reviewFingerprint,
+  }));
+}
+export async function confirmReviewedSections(targetId, input = { confirmed: true }) {
+  const current = await call(`/api/targets/${targetId}/context`);
+  return call(`/api/targets/${targetId}`, json("PATCH", {
+    ...input,
+    ...(input.confirmed === true && input.expectedFingerprints === undefined
+      ? { expectedFingerprints: current.body?.fingerprints } : {}),
+  }));
+}
+export async function generateFromReviewedContext(targetId) {
+  const current = await call(`/api/targets/${targetId}/context`);
+  return call(`/api/targets/${targetId}/generate-interview`, json("POST", {
+    expectedSourceFingerprint: current.status === 200 ? contextSnapshotKey(current.body) : "unavailable",
+  }));
 }
 
 export const sha = (buf) => createHash("sha256").update(buf).digest("hex");
