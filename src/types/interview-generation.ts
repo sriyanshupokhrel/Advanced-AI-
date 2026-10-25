@@ -2,6 +2,7 @@ import { z } from "zod";
 import type { InterviewPreparationPayload } from "@/types/integration";
 import { InterviewPresentationSchema, PresentationDraftSchema } from "@/types/presentation";
 import type { PresentationStaleStatus } from "@/lib/presentation/source-snapshot";
+import { ReliabilityMetadataSchema, type ReliabilityMetadata } from "@/types/reliability";
 
 export const ImageAnalysisResultSchema = z.object({
   imageId: z.string().min(1),
@@ -10,6 +11,9 @@ export const ImageAnalysisResultSchema = z.object({
   relevantSkills: z.array(z.string()),
   presentationCaption: z.string(),
   limitations: z.array(z.string()),
+  projectId: z.string().optional(),
+  relevance: z.enum(["relevant", "irrelevant", "insufficient"]).optional(),
+  relevanceReason: z.string().optional(),
 });
 
 export const InterviewGenerationResponseSchema = z.object({
@@ -20,6 +24,7 @@ export const InterviewGenerationResponseSchema = z.object({
   presentation: InterviewPresentationSchema,
   generatedAt: z.string().min(1),
   updatedAt: z.string().min(1),
+  reliability: ReliabilityMetadataSchema.nullish(),
 });
 
 export const SavePresentationDraftRequestSchema = z.object({
@@ -29,6 +34,7 @@ export const SavePresentationDraftRequestSchema = z.object({
 
 export const ExportPresentationRequestSchema = z.object({
   expectedRevision: z.number().int().min(1),
+  humanReviewed: z.literal(true),
 }).strict();
 
 export type ImageAnalysisResult = z.infer<typeof ImageAnalysisResultSchema>;
@@ -48,4 +54,5 @@ export interface SavedPresentationRecord {
   updatedAt: string;
   revision: number;
   stale: PresentationStaleStatus;
+  reliability?: ReliabilityMetadata | null;
 }

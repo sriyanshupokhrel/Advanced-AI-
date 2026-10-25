@@ -31,6 +31,7 @@ export type {
 type WithId<T> = Omit<T, "id"> & { id: string };
 
 export interface CvImageDto {
+  reviewFingerprint: string;
   id: string;
   cvProfileId: string;
   projectId: string | null;
