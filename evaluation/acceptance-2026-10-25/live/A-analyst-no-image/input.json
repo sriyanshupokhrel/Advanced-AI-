@@ -1,0 +1,165 @@
+{
+  "contractVersion": "2.0",
+  "targetId": "cmvnmr83h0006d9qsol3k5alc",
+  "generatedAt": "2026-10-25T09:33:26.361Z",
+  "verificationDisclaimer": "Confirmed information has been reviewed by the user. It has not been independently verified by the application or the university.",
+  "readiness": {
+    "status": "READY",
+    "isReady": true,
+    "readySince": "2026-10-25T09:33:26.355Z",
+    "sections": {
+      "confirmed": 7,
+      "total": 7
+    },
+    "images": {
+      "confirmed": 0,
+      "total": 0
+    },
+    "issues": [
+      {
+        "code": "EMPTY_SECTION",
+        "section": "EDUCATION",
+        "itemId": null,
+        "message": "Education is empty. If that is intended, you can still confirm it.",
+        "severity": "WARNING"
+      },
+      {
+        "code": "EMPTY_SECTION",
+        "section": "EXPERIENCE",
+        "itemId": null,
+        "message": "Work experience is empty. If that is intended, you can still confirm it.",
+        "severity": "WARNING"
+      },
+      {
+        "code": "EMPTY_SECTION",
+        "section": "ACHIEVEMENTS",
+        "itemId": null,
+        "message": "Achievements is empty. If that is intended, you can still confirm it.",
+        "severity": "WARNING"
+      },
+      {
+        "code": "PROJECT_HAS_NO_IMAGES",
+        "section": "PROJECTS",
+        "itemId": "cmvnmr82w0003d9qsf6o66xt9",
+        "message": "Project \"Academic Sales Dashboard\" has no images. Images are optional but give the multimodal presentation visual material.",
+        "severity": "WARNING"
+      }
+    ]
+  },
+  "candidate": {
+    "cvProfileId": "cmvnmr82v0000d9qse8m7dnwr",
+    "createdAt": "2026-10-25T09:33:26.312Z",
+    "lastUpdatedAt": "2026-10-25T09:33:26.312Z",
+    "profile": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-25T09:33:26.352Z",
+        "basis": "USER_REVIEW"
+      },
+      "fullName": "Fictional Acceptance Candidate",
+      "headline": "Graduate Data Analyst",
+      "contact": {
+        "email": "fixture@example.com",
+        "phone": null,
+        "location": "Sydney",
+        "website": null
+      },
+      "professionalSummary": "IT graduate with an academic sales dashboard project. Seeking a first graduate role."
+    },
+    "education": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-25T09:33:26.354Z",
+        "basis": "USER_REVIEW"
+      },
+      "items": []
+    },
+    "workExperience": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-25T09:33:26.354Z",
+        "basis": "USER_REVIEW"
+      },
+      "items": []
+    },
+    "skills": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-25T09:33:26.354Z",
+        "basis": "USER_REVIEW"
+      },
+      "items": [
+        {
+          "id": "cmvnmr82v0001d9qse4bstmdt",
+          "name": "SQL",
+          "category": null
+        },
+        {
+          "id": "cmvnmr82w0002d9qs2vtkvug3",
+          "name": "Python",
+          "category": null
+        }
+      ]
+    },
+    "projects": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-25T09:33:26.354Z",
+        "basis": "USER_REVIEW"
+      },
+      "items": [
+        {
+          "id": "cmvnmr82w0003d9qsf6o66xt9",
+          "name": "Academic Sales Dashboard",
+          "role": "Student Developer",
+          "url": null,
+          "technologies": "SQL Python",
+          "description": "Queried sample sales data with SQL and used Python to prepare a chart for an academic dashboard. This was a student project using synthetic data. No commercial outcomes or cloud deployment.",
+          "images": []
+        }
+      ]
+    },
+    "achievements": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-25T09:33:26.355Z",
+        "basis": "USER_REVIEW"
+      },
+      "items": []
+    },
+    "otherImages": []
+  },
+  "targetJob": {
+    "confirmation": {
+      "status": "CONFIRMED",
+      "isConfirmed": true,
+      "confirmedAt": "2026-10-25T09:33:26.355Z",
+      "basis": "USER_REVIEW"
+    },
+    "jobDescriptionId": "cmvnmr8360004d9qsd7bsocqv",
+    "jobTitle": "Graduate Data Analyst",
+    "company": {
+      "name": "Fictional Employer",
+      "information": null
+    },
+    "jobReference": null,
+    "descriptionText": "Graduate Data Analyst role using SQL and Python to query sales data, prepare charts and explain data quality limitations to stakeholders.",
+    "createdAt": "2026-10-25T09:33:26.322Z",
+    "lastUpdatedAt": "2026-10-25T09:33:26.322Z"
+  },
+  "fingerprints": {
+    "PROFILE": "c8f923f1f0cffd2b3a0e888b9bdc0fa48a1f79a3095a843febdeae240453e944",
+    "EDUCATION": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "EXPERIENCE": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "SKILLS": "1296a98ad4416ed2dd135269a253c808acd3741387fff05ca19b05c2b2c4b935",
+    "PROJECTS": "55ed30e531860f60d43486c322566dda31e4bc81ca4f7abb083d0b7be16b71a0",
+    "ACHIEVEMENTS": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "TARGET_JOB": "3b5078a0c75ee5b300b19539e78db447ca12cb6dd8c2764c3ef72a2b5e0c4f58"
+  }
+}

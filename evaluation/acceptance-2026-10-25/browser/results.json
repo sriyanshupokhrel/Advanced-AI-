@@ -1,0 +1,30 @@
+{
+  "mode": "offline browser acceptance",
+  "passed": [
+    "browser confirmation makes the actual payload ready",
+    "generation loading prevents duplicate clicks",
+    "UI uses actual generation and review API with bounded offline transport",
+    "original review status is visible",
+    "unsaved draft blocks export with an explicit message",
+    "saved wording survives reload",
+    "generated original remains independent from draft",
+    "edited fields cannot inherit the original review",
+    "typing during save preserves newer local input",
+    "only the submitted save snapshot reached the database",
+    "restore affects local draft only until Save",
+    "revision conflict keeps the second window local edits",
+    "375px layout has no document horizontal overflow",
+    "export requires an explicit confirmation step",
+    "browser downloads a real four-slide PPTX",
+    "full saved notes survive the browser download",
+    "changed source is visible after reopening",
+    "stale source blocks browser export",
+    "no client runtime errors"
+  ],
+  "failures": [],
+  "pageErrors": [],
+  "providerFixtureCalls": 2,
+  "paidProviderRequests": 0,
+  "humanVisualAcceptance": "PENDING",
+  "powerPointOpenEdit": "PENDING"
+}

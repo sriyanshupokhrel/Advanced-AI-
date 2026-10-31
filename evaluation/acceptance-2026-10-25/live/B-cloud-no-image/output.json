@@ -1,0 +1,317 @@
+{
+  "targetId": "cmvnmri5p000td9qskh826xzu",
+  "imageAnalyses": [],
+  "presentation": {
+    "title": "Interview Presentation for Graduate Cloud Engineer",
+    "slides": [
+      {
+        "heading": "Candidate Introduction",
+        "bullets": [
+          "IT graduate seeking a first graduate role with background as a Graduate Data Analyst."
+        ],
+        "speakerNotes": "Hello, my name is Fictional Acceptance Candidate. I am an IT graduate seeking my first graduate role.",
+        "sourceIds": [
+          "cmvnmri58000nd9qsc9nywf49"
+        ],
+        "imageIds": []
+      },
+      {
+        "heading": "Technical Project Experience",
+        "bullets": [
+          "Developed an Academic Sales Dashboard as a Student Developer using SQL and Python.",
+          "Queried sample sales data with SQL and prepared charts for an academic project."
+        ],
+        "speakerNotes": "In my academic sales dashboard project, I worked with SQL and Python to query sample sales data and prepare a chart.",
+        "sourceIds": [
+          "cmvnmri58000qd9qsgg3au8pj"
+        ],
+        "imageIds": []
+      },
+      {
+        "heading": "Core Skills and Context",
+        "bullets": [
+          "Applied skills in SQL and Python during academic coursework.",
+          "Academic project used synthetic data with no commercial outcomes or cloud deployment."
+        ],
+        "speakerNotes": "My foundational skills include SQL and Python. My project focused on academic synthetic data without commercial outcomes or cloud deployment.",
+        "sourceIds": [
+          "cmvnmri58000od9qso0mnr38o",
+          "cmvnmri58000pd9qs2fbwpt8j",
+          "cmvnmri58000qd9qsgg3au8pj"
+        ],
+        "imageIds": []
+      },
+      {
+        "heading": "Role Alignment and Honestly Calibrated Gaps",
+        "bullets": [
+          "Applying for the Graduate Cloud Engineer position to transition my programming and data skills.",
+          "Acknowledging that my current experience lacks AWS deployment, Terraform, and Kubernetes operations."
+        ],
+        "speakerNotes": "For the Graduate Cloud Engineer role, I want to be transparent about my background. While I bring Python and SQL experience from my academic dashboard project, I honestly acknowledge that I do not yet have hands-on experience with AWS deployment, Terraform infrastructure, or Kubernetes operations.",
+        "sourceIds": [
+          "job:cmvnmri5h000rd9qsb7p3usb7",
+          "cmvnmri58000nd9qsc9nywf49",
+          "cmvnmri58000qd9qsgg3au8pj"
+        ],
+        "imageIds": []
+      }
+    ]
+  },
+  "generatedAt": "2026-10-25T09:33:50.952Z",
+  "reliability": {
+    "original": {
+      "title": "Interview Presentation for Graduate Cloud Engineer",
+      "slides": [
+        {
+          "role": "introduction",
+          "heading": "Candidate Introduction",
+          "bullets": [
+            "IT graduate seeking a first graduate role with background as a Graduate Data Analyst."
+          ],
+          "speakerNotes": "Hello, my name is Fictional Acceptance Candidate. I am an IT graduate seeking my first graduate role.",
+          "sourceIds": [
+            "cmvnmri58000nd9qsc9nywf49"
+          ],
+          "imageIds": []
+        },
+        {
+          "role": "evidence",
+          "heading": "Technical Project Experience",
+          "bullets": [
+            "Developed an Academic Sales Dashboard as a Student Developer using SQL and Python.",
+            "Queried sample sales data with SQL and prepared charts for an academic project."
+          ],
+          "speakerNotes": "In my academic sales dashboard project, I worked with SQL and Python to query sample sales data and prepare a chart.",
+          "sourceIds": [
+            "cmvnmri58000qd9qsgg3au8pj"
+          ],
+          "imageIds": []
+        },
+        {
+          "role": "evidence",
+          "heading": "Core Skills and Context",
+          "bullets": [
+            "Applied skills in SQL and Python during academic coursework.",
+            "Academic project used synthetic data with no commercial outcomes or cloud deployment."
+          ],
+          "speakerNotes": "My foundational skills include SQL and Python. My project focused on academic synthetic data without commercial outcomes or cloud deployment.",
+          "sourceIds": [
+            "cmvnmri58000od9qso0mnr38o",
+            "cmvnmri58000pd9qs2fbwpt8j",
+            "cmvnmri58000qd9qsgg3au8pj"
+          ],
+          "imageIds": []
+        },
+        {
+          "role": "closing",
+          "heading": "Role Alignment and Honestly Calibrated Gaps",
+          "bullets": [
+            "Applying for the Graduate Cloud Engineer position to transition my programming and data skills.",
+            "Acknowledging that my current experience lacks AWS deployment, Terraform, and Kubernetes operations."
+          ],
+          "speakerNotes": "For the Graduate Cloud Engineer role, I want to be transparent about my background. While I bring Python and SQL experience from my academic dashboard project, I honestly acknowledge that I do not yet have hands-on experience with AWS deployment, Terraform infrastructure, or Kubernetes operations.",
+          "sourceIds": [
+            "job:cmvnmri5h000rd9qsb7p3usb7",
+            "cmvnmri58000nd9qsc9nywf49",
+            "cmvnmri58000qd9qsgg3au8pj"
+          ],
+          "imageIds": []
+        }
+      ],
+      "references": [
+        {
+          "unitId": "title",
+          "sourceIds": [
+            "job:cmvnmri5h000rd9qsb7p3usb7"
+          ]
+        },
+        {
+          "unitId": "slide.0.heading",
+          "sourceIds": [
+            "cmvnmri58000nd9qsc9nywf49"
+          ]
+        },
+        {
+          "unitId": "slide.0.bullet.0",
+          "sourceIds": [
+            "cmvnmri58000nd9qsc9nywf49"
+          ]
+        },
+        {
+          "unitId": "slide.0.notes",
+          "sourceIds": [
+            "cmvnmri58000nd9qsc9nywf49"
+          ]
+        },
+        {
+          "unitId": "slide.1.heading",
+          "sourceIds": [
+            "cmvnmri58000qd9qsgg3au8pj"
+          ]
+        },
+        {
+          "unitId": "slide.1.bullet.0",
+          "sourceIds": [
+            "cmvnmri58000qd9qsgg3au8pj"
+          ]
+        },
+        {
+          "unitId": "slide.1.bullet.1",
+          "sourceIds": [
+            "cmvnmri58000qd9qsgg3au8pj"
+          ]
+        },
+        {
+          "unitId": "slide.1.notes",
+          "sourceIds": [
+            "cmvnmri58000qd9qsgg3au8pj"
+          ]
+        },
+        {
+          "unitId": "slide.2.heading",
+          "sourceIds": [
+            "cmvnmri58000od9qso0mnr38o",
+            "cmvnmri58000pd9qs2fbwpt8j"
+          ]
+        },
+        {
+          "unitId": "slide.2.bullet.0",
+          "sourceIds": [
+            "cmvnmri58000od9qso0mnr38o",
+            "cmvnmri58000pd9qs2fbwpt8j"
+          ]
+        },
+        {
+          "unitId": "slide.2.bullet.1",
+          "sourceIds": [
+            "cmvnmri58000qd9qsgg3au8pj"
+          ]
+        },
+        {
+          "unitId": "slide.2.notes",
+          "sourceIds": [
+            "cmvnmri58000qd9qsgg3au8pj",
+            "cmvnmri58000od9qso0mnr38o",
+            "cmvnmri58000pd9qs2fbwpt8j"
+          ]
+        },
+        {
+          "unitId": "slide.3.heading",
+          "sourceIds": [
+            "job:cmvnmri5h000rd9qsb7p3usb7"
+          ]
+        },
+        {
+          "unitId": "slide.3.bullet.0",
+          "sourceIds": [
+            "cmvnmri58000nd9qsc9nywf49",
+            "job:cmvnmri5h000rd9qsb7p3usb7"
+          ]
+        },
+        {
+          "unitId": "slide.3.bullet.1",
+          "sourceIds": [
+            "cmvnmri58000qd9qsgg3au8pj",
+            "job:cmvnmri5h000rd9qsb7p3usb7"
+          ]
+        },
+        {
+          "unitId": "slide.3.notes",
+          "sourceIds": [
+            "cmvnmri58000qd9qsgg3au8pj",
+            "job:cmvnmri5h000rd9qsb7p3usb7"
+          ]
+        }
+      ]
+    },
+    "review": {
+      "approved": false,
+      "coverageComplete": false,
+      "status": "INCOMPLETE_REVIEW",
+      "findings": [],
+      "limitations": "Automated review was incomplete or invalid (INCOMPLETE_REVIEW). No model findings were accepted. Compare EVERY title, heading, bullet and notes clause with its displayed source and correct unsupported claims before use or export."
+    },
+    "sources": [
+      {
+        "sourceId": "cmvnmri58000nd9qsc9nywf49",
+        "kind": "candidate",
+        "text": "Fictional Acceptance Candidate {\"fullName\":\"Fictional Acceptance Candidate\",\"headline\":\"Graduate Data Analyst\",\"professionalSummary\":\"IT graduate with an academic sales dashboard project. Seeking a first graduate role.\"}"
+      },
+      {
+        "sourceId": "cmvnmri58000od9qso0mnr38o",
+        "kind": "candidate",
+        "text": "SQL {\"id\":\"cmvnmri58000od9qso0mnr38o\",\"name\":\"SQL\",\"category\":null}"
+      },
+      {
+        "sourceId": "cmvnmri58000pd9qs2fbwpt8j",
+        "kind": "candidate",
+        "text": "Python {\"id\":\"cmvnmri58000pd9qs2fbwpt8j\",\"name\":\"Python\",\"category\":null}"
+      },
+      {
+        "sourceId": "cmvnmri58000qd9qsgg3au8pj",
+        "kind": "candidate",
+        "text": "Academic Sales Dashboard {\"id\":\"cmvnmri58000qd9qsgg3au8pj\",\"name\":\"Academic Sales Dashboard\",\"role\":\"Student Developer\",\"url\":null,\"technologies\":\"SQL Python\",\"description\":\"Queried sample sales data with SQL and used Python to prepare a chart for an academic dashboard. This was a student project using synthetic data. No commercial outcomes or cloud deployment.\"}"
+      },
+      {
+        "sourceId": "job:cmvnmri5h000rd9qsb7p3usb7",
+        "kind": "job",
+        "text": "{\"confirmation\":{\"status\":\"CONFIRMED\",\"isConfirmed\":true,\"confirmedAt\":\"2026-10-25T09:33:39.390Z\",\"basis\":\"USER_REVIEW\"},\"jobDescriptionId\":\"cmvnmri5h000rd9qsb7p3usb7\",\"jobTitle\":\"Graduate Cloud Engineer\",\"company\":{\"name\":\"Fictional Employer\",\"information\":null},\"jobReference\":null,\"descriptionText\":\"Graduate Cloud Engineer role requiring AWS deployment, Terraform infrastructure and Kubernetes operations. Candidates should explain cloud experience and acknowledge any missing qualifications honestly.\",\"createdAt\":\"2026-10-25T09:33:39.365Z\",\"lastUpdatedAt\":\"2026-10-25T09:33:39.365Z\"}"
+      }
+    ],
+    "selection": {
+      "method": "Distinct keyword overlap, not semantic ranking",
+      "warning": "Zero-score sources are fallback background, not evidence of fit. Missing words are lexical gaps, not a complete assessment of qualifications.",
+      "zeroMatch": false,
+      "selected": [
+        {
+          "sourceId": "cmvnmri58000nd9qsc9nywf49",
+          "title": "Fictional Acceptance Candidate",
+          "relevanceScore": 0
+        },
+        {
+          "sourceId": "cmvnmri58000qd9qsgg3au8pj",
+          "title": "Academic Sales Dashboard",
+          "relevanceScore": 25
+        },
+        {
+          "sourceId": "cmvnmri58000od9qso0mnr38o",
+          "title": "SQL",
+          "relevanceScore": 0
+        },
+        {
+          "sourceId": "cmvnmri58000pd9qs2fbwpt8j",
+          "title": "Python",
+          "relevanceScore": 0
+        }
+      ],
+      "omitted": [],
+      "jobTermsWithoutLexicalEvidence": [
+        "requiring",
+        "aws",
+        "terraform",
+        "infrastructure",
+        "kubernetes",
+        "operations",
+        "candidates",
+        "should",
+        "explain",
+        "experience",
+        "acknowledge",
+        "any",
+        "missing",
+        "qualifications",
+        "honestly"
+      ]
+    },
+    "omittedImages": [],
+    "metadata": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "reliability-v5-2026-10-23",
+      "calls": 2,
+      "elapsedMs": 11544
+    }
+  },
+  "presentationId": "cmvnmrr3g0019d9qs9y96kuqw",
+  "revision": 1,
+  "updatedAt": "2026-10-25T09:33:50.957Z"
+}

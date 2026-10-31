@@ -1,0 +1,165 @@
+{
+  "contractVersion": "2.0",
+  "targetId": "cmvnmri5p000td9qskh826xzu",
+  "generatedAt": "2026-10-25T09:33:39.397Z",
+  "verificationDisclaimer": "Confirmed information has been reviewed by the user. It has not been independently verified by the application or the university.",
+  "readiness": {
+    "status": "READY",
+    "isReady": true,
+    "readySince": "2026-10-25T09:33:39.390Z",
+    "sections": {
+      "confirmed": 7,
+      "total": 7
+    },
+    "images": {
+      "confirmed": 0,
+      "total": 0
+    },
+    "issues": [
+      {
+        "code": "EMPTY_SECTION",
+        "section": "EDUCATION",
+        "itemId": null,
+        "message": "Education is empty. If that is intended, you can still confirm it.",
+        "severity": "WARNING"
+      },
+      {
+        "code": "EMPTY_SECTION",
+        "section": "EXPERIENCE",
+        "itemId": null,
+        "message": "Work experience is empty. If that is intended, you can still confirm it.",
+        "severity": "WARNING"
+      },
+      {
+        "code": "EMPTY_SECTION",
+        "section": "ACHIEVEMENTS",
+        "itemId": null,
+        "message": "Achievements is empty. If that is intended, you can still confirm it.",
+        "severity": "WARNING"
+      },
+      {
+        "code": "PROJECT_HAS_NO_IMAGES",
+        "section": "PROJECTS",
+        "itemId": "cmvnmri58000qd9qsgg3au8pj",
+        "message": "Project \"Academic Sales Dashboard\" has no images. Images are optional but give the multimodal presentation visual material.",
+        "severity": "WARNING"
+      }
+    ]
+  },
+  "candidate": {
+    "cvProfileId": "cmvnmri58000nd9qsc9nywf49",
+    "createdAt": "2026-10-25T09:33:39.357Z",
+    "lastUpdatedAt": "2026-10-25T09:33:39.357Z",
+    "profile": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-25T09:33:39.387Z",
+        "basis": "USER_REVIEW"
+      },
+      "fullName": "Fictional Acceptance Candidate",
+      "headline": "Graduate Data Analyst",
+      "contact": {
+        "email": "fixture@example.com",
+        "phone": null,
+        "location": "Sydney",
+        "website": null
+      },
+      "professionalSummary": "IT graduate with an academic sales dashboard project. Seeking a first graduate role."
+    },
+    "education": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-25T09:33:39.388Z",
+        "basis": "USER_REVIEW"
+      },
+      "items": []
+    },
+    "workExperience": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-25T09:33:39.389Z",
+        "basis": "USER_REVIEW"
+      },
+      "items": []
+    },
+    "skills": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-25T09:33:39.389Z",
+        "basis": "USER_REVIEW"
+      },
+      "items": [
+        {
+          "id": "cmvnmri58000od9qso0mnr38o",
+          "name": "SQL",
+          "category": null
+        },
+        {
+          "id": "cmvnmri58000pd9qs2fbwpt8j",
+          "name": "Python",
+          "category": null
+        }
+      ]
+    },
+    "projects": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-25T09:33:39.389Z",
+        "basis": "USER_REVIEW"
+      },
+      "items": [
+        {
+          "id": "cmvnmri58000qd9qsgg3au8pj",
+          "name": "Academic Sales Dashboard",
+          "role": "Student Developer",
+          "url": null,
+          "technologies": "SQL Python",
+          "description": "Queried sample sales data with SQL and used Python to prepare a chart for an academic dashboard. This was a student project using synthetic data. No commercial outcomes or cloud deployment.",
+          "images": []
+        }
+      ]
+    },
+    "achievements": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-25T09:33:39.389Z",
+        "basis": "USER_REVIEW"
+      },
+      "items": []
+    },
+    "otherImages": []
+  },
+  "targetJob": {
+    "confirmation": {
+      "status": "CONFIRMED",
+      "isConfirmed": true,
+      "confirmedAt": "2026-10-25T09:33:39.390Z",
+      "basis": "USER_REVIEW"
+    },
+    "jobDescriptionId": "cmvnmri5h000rd9qsb7p3usb7",
+    "jobTitle": "Graduate Cloud Engineer",
+    "company": {
+      "name": "Fictional Employer",
+      "information": null
+    },
+    "jobReference": null,
+    "descriptionText": "Graduate Cloud Engineer role requiring AWS deployment, Terraform infrastructure and Kubernetes operations. Candidates should explain cloud experience and acknowledge any missing qualifications honestly.",
+    "createdAt": "2026-10-25T09:33:39.365Z",
+    "lastUpdatedAt": "2026-10-25T09:33:39.365Z"
+  },
+  "fingerprints": {
+    "PROFILE": "c8f923f1f0cffd2b3a0e888b9bdc0fa48a1f79a3095a843febdeae240453e944",
+    "EDUCATION": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "EXPERIENCE": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "SKILLS": "702fb63e9325614b424d09a7405582401abe70b7b011a65db2240afcc98c31f6",
+    "PROJECTS": "8f7a4f020a08907f21d6e083ab0abd89c2be2a94b4d1b2749d377f30733a7de7",
+    "ACHIEVEMENTS": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "TARGET_JOB": "ea253522eaa21df34963c338a649b9d3379c74d1128b8e9ba6585fbb12d74fca"
+  }
+}

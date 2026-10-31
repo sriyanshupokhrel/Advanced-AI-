@@ -1,0 +1,25 @@
+{
+  "mode": "offline browser acceptance",
+  "passed": [
+    "browser confirmation makes the actual payload ready",
+    "generation loading prevents duplicate clicks",
+    "UI uses actual generation and review API with bounded offline transport",
+    "original review status is visible",
+    "unsaved draft blocks export with an explicit message",
+    "saved wording survives reload",
+    "generated original remains independent from draft",
+    "edited fields cannot inherit the original review",
+    "typing during save preserves newer local input",
+    "only the submitted save snapshot reached the database",
+    "restore affects local draft only until Save",
+    "revision conflict keeps the second window local edits"
+  ],
+  "failures": [
+    "locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('textbox', { name: 'Speaker notes', exact: true })\u001b[22m\n"
+  ],
+  "pageErrors": [],
+  "providerFixtureCalls": 2,
+  "paidProviderRequests": 0,
+  "humanVisualAcceptance": "PENDING",
+  "powerPointOpenEdit": "PENDING"
+}

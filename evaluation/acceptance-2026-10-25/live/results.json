@@ -1,0 +1,48 @@
+{
+  "source": "Integrated project, current final workflow",
+  "mode": "real Gemini",
+  "results": [
+    {
+      "case": "A-analyst-no-image",
+      "httpStatus": 200,
+      "providerRequests": 2,
+      "elapsedMs": 12986,
+      "execution": "RETURNED_UNAPPROVED_DRAFT",
+      "reviewStatus": "HUMAN_REVIEW_REQUIRED",
+      "semanticQuality": "HUMAN_REVIEW_PENDING"
+    },
+    {
+      "case": "B-cloud-no-image",
+      "httpStatus": 200,
+      "providerRequests": 2,
+      "elapsedMs": 11561,
+      "execution": "RETURNED_UNAPPROVED_DRAFT",
+      "reviewStatus": "INCOMPLETE_REVIEW",
+      "semanticQuality": "HUMAN_REVIEW_PENDING"
+    },
+    {
+      "case": "C-unrelated-gradient",
+      "httpStatus": 200,
+      "providerRequests": 3,
+      "elapsedMs": 13202,
+      "execution": "RETURNED_UNAPPROVED_DRAFT",
+      "reviewStatus": "NEEDS_CHANGES",
+      "semanticQuality": "HUMAN_REVIEW_PENDING"
+    },
+    {
+      "case": "D-synthetic-dashboard",
+      "httpStatus": 200,
+      "providerRequests": 3,
+      "elapsedMs": 24562,
+      "execution": "RETURNED_UNAPPROVED_DRAFT",
+      "reviewStatus": "HUMAN_REVIEW_REQUIRED",
+      "semanticQuality": "HUMAN_REVIEW_PENDING"
+    }
+  ],
+  "totalProviderRequests": 10,
+  "hardRequestCap": 10,
+  "blocked": null,
+  "humanQualityReview": "PENDING",
+  "promptInjectionResistance": "NOT_TESTED",
+  "powerPointOpenEdit": "PENDING"
+}

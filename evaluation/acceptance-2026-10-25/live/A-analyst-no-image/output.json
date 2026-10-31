@@ -1,0 +1,631 @@
+{
+  "targetId": "cmvnmr83h0006d9qsol3k5alc",
+  "imageAnalyses": [],
+  "presentation": {
+    "title": "Interview Presentation: Graduate Data Analyst",
+    "slides": [
+      {
+        "heading": "Introduction: Fictional Acceptance Candidate",
+        "bullets": [
+          "IT graduate seeking a first graduate role as a Graduate Data Analyst.",
+          "Brings academic project experience relevant to sales dashboard development."
+        ],
+        "speakerNotes": "Welcome. I am an IT graduate looking to start my career as a Graduate Data Analyst, bringing academic background in building sales dashboards.",
+        "sourceIds": [
+          "cmvnmr82v0000d9qse8m7dnwr",
+          "cmvnmr82w0003d9qsf6o66xt9"
+        ],
+        "imageIds": []
+      },
+      {
+        "heading": "Core Technical Skills: SQL and Python",
+        "bullets": [
+          "Familiarity with SQL for data tasks.",
+          "Familiarity with Python for programming tasks."
+        ],
+        "speakerNotes": "I have foundational skills in both SQL and Python, which form the core of my technical background.",
+        "sourceIds": [
+          "cmvnmr82v0001d9qse4bstmdt",
+          "cmvnmr82w0002d9qs2vtkvug3"
+        ],
+        "imageIds": []
+      },
+      {
+        "heading": "Project Experience: Academic Sales Dashboard",
+        "bullets": [
+          "Queried sample sales data using SQL as a Student Developer.",
+          "Used Python to prepare a chart for an academic dashboard using synthetic data."
+        ],
+        "speakerNotes": "In my academic sales dashboard project, I applied SQL to query sample sales data and Python to prepare charts, working with synthetic data.",
+        "sourceIds": [
+          "cmvnmr82w0003d9qsf6o66xt9"
+        ],
+        "imageIds": []
+      },
+      {
+        "heading": "Closing: Graduate Data Analyst Role",
+        "bullets": [
+          "Ready to apply academic SQL and Python skills to query sales data and prepare charts.",
+          "Eager to learn and grow in my first Graduate Data Analyst position."
+        ],
+        "speakerNotes": "To conclude, I am excited about the Graduate Data Analyst position and ready to bring my foundational SQL and Python experience to your team.",
+        "sourceIds": [
+          "job:cmvnmr8360004d9qsd7bsocqv",
+          "cmvnmr82v0001d9qse4bstmdt",
+          "cmvnmr82w0002d9qs2vtkvug3",
+          "cmvnmr82w0003d9qsf6o66xt9",
+          "cmvnmr82v0000d9qse8m7dnwr"
+        ],
+        "imageIds": []
+      }
+    ]
+  },
+  "generatedAt": "2026-10-25T09:33:39.334Z",
+  "reliability": {
+    "original": {
+      "title": "Interview Presentation: Graduate Data Analyst",
+      "slides": [
+        {
+          "role": "introduction",
+          "heading": "Introduction: Fictional Acceptance Candidate",
+          "bullets": [
+            "IT graduate seeking a first graduate role as a Graduate Data Analyst.",
+            "Brings academic project experience relevant to sales dashboard development."
+          ],
+          "speakerNotes": "Welcome. I am an IT graduate looking to start my career as a Graduate Data Analyst, bringing academic background in building sales dashboards.",
+          "sourceIds": [
+            "cmvnmr82v0000d9qse8m7dnwr",
+            "cmvnmr82w0003d9qsf6o66xt9"
+          ],
+          "imageIds": []
+        },
+        {
+          "role": "evidence",
+          "heading": "Core Technical Skills: SQL and Python",
+          "bullets": [
+            "Familiarity with SQL for data tasks.",
+            "Familiarity with Python for programming tasks."
+          ],
+          "speakerNotes": "I have foundational skills in both SQL and Python, which form the core of my technical background.",
+          "sourceIds": [
+            "cmvnmr82v0001d9qse4bstmdt",
+            "cmvnmr82w0002d9qs2vtkvug3"
+          ],
+          "imageIds": []
+        },
+        {
+          "role": "evidence",
+          "heading": "Project Experience: Academic Sales Dashboard",
+          "bullets": [
+            "Queried sample sales data using SQL as a Student Developer.",
+            "Used Python to prepare a chart for an academic dashboard using synthetic data."
+          ],
+          "speakerNotes": "In my academic sales dashboard project, I applied SQL to query sample sales data and Python to prepare charts, working with synthetic data.",
+          "sourceIds": [
+            "cmvnmr82w0003d9qsf6o66xt9"
+          ],
+          "imageIds": []
+        },
+        {
+          "role": "closing",
+          "heading": "Closing: Graduate Data Analyst Role",
+          "bullets": [
+            "Ready to apply academic SQL and Python skills to query sales data and prepare charts.",
+            "Eager to learn and grow in my first Graduate Data Analyst position."
+          ],
+          "speakerNotes": "To conclude, I am excited about the Graduate Data Analyst position and ready to bring my foundational SQL and Python experience to your team.",
+          "sourceIds": [
+            "job:cmvnmr8360004d9qsd7bsocqv",
+            "cmvnmr82v0001d9qse4bstmdt",
+            "cmvnmr82w0002d9qs2vtkvug3",
+            "cmvnmr82w0003d9qsf6o66xt9",
+            "cmvnmr82v0000d9qse8m7dnwr"
+          ],
+          "imageIds": []
+        }
+      ],
+      "references": [
+        {
+          "unitId": "title",
+          "sourceIds": [
+            "job:cmvnmr8360004d9qsd7bsocqv"
+          ]
+        },
+        {
+          "unitId": "slide.0.heading",
+          "sourceIds": [
+            "cmvnmr82v0000d9qse8m7dnwr"
+          ]
+        },
+        {
+          "unitId": "slide.0.bullet.0",
+          "sourceIds": [
+            "cmvnmr82v0000d9qse8m7dnwr"
+          ]
+        },
+        {
+          "unitId": "slide.0.bullet.1",
+          "sourceIds": [
+            "cmvnmr82v0000d9qse8m7dnwr",
+            "cmvnmr82w0003d9qsf6o66xt9"
+          ]
+        },
+        {
+          "unitId": "slide.0.notes",
+          "sourceIds": [
+            "cmvnmr82v0000d9qse8m7dnwr"
+          ]
+        },
+        {
+          "unitId": "slide.1.heading",
+          "sourceIds": [
+            "cmvnmr82v0001d9qse4bstmdt",
+            "cmvnmr82w0002d9qs2vtkvug3"
+          ]
+        },
+        {
+          "unitId": "slide.1.bullet.0",
+          "sourceIds": [
+            "cmvnmr82v0001d9qse4bstmdt"
+          ]
+        },
+        {
+          "unitId": "slide.1.bullet.1",
+          "sourceIds": [
+            "cmvnmr82w0002d9qs2vtkvug3"
+          ]
+        },
+        {
+          "unitId": "slide.1.notes",
+          "sourceIds": [
+            "cmvnmr82v0001d9qse4bstmdt",
+            "cmvnmr82w0002d9qs2vtkvug3"
+          ]
+        },
+        {
+          "unitId": "slide.2.heading",
+          "sourceIds": [
+            "cmvnmr82w0003d9qsf6o66xt9"
+          ]
+        },
+        {
+          "unitId": "slide.2.bullet.0",
+          "sourceIds": [
+            "cmvnmr82w0003d9qsf6o66xt9"
+          ]
+        },
+        {
+          "unitId": "slide.2.bullet.1",
+          "sourceIds": [
+            "cmvnmr82w0003d9qsf6o66xt9"
+          ]
+        },
+        {
+          "unitId": "slide.2.notes",
+          "sourceIds": [
+            "cmvnmr82w0003d9qsf6o66xt9"
+          ]
+        },
+        {
+          "unitId": "slide.3.heading",
+          "sourceIds": [
+            "job:cmvnmr8360004d9qsd7bsocqv"
+          ]
+        },
+        {
+          "unitId": "slide.3.bullet.0",
+          "sourceIds": [
+            "cmvnmr82v0001d9qse4bstmdt",
+            "cmvnmr82w0002d9qs2vtkvug3",
+            "cmvnmr82w0003d9qsf6o66xt9"
+          ]
+        },
+        {
+          "unitId": "slide.3.bullet.1",
+          "sourceIds": [
+            "cmvnmr82v0000d9qse8m7dnwr",
+            "job:cmvnmr8360004d9qsd7bsocqv"
+          ]
+        },
+        {
+          "unitId": "slide.3.notes",
+          "sourceIds": [
+            "cmvnmr82v0000d9qse8m7dnwr",
+            "job:cmvnmr8360004d9qsd7bsocqv"
+          ]
+        }
+      ]
+    },
+    "review": {
+      "approved": false,
+      "coverageComplete": true,
+      "status": "HUMAN_REVIEW_REQUIRED",
+      "findings": [
+        {
+          "unitId": "title",
+          "slideIndex": -1,
+          "claim": "Interview Presentation: Graduate Data Analyst",
+          "kind": "job",
+          "sourceIds": [
+            "job:cmvnmr8360004d9qsd7bsocqv"
+          ],
+          "evidence": [
+            {
+              "sourceId": "job:cmvnmr8360004d9qsd7bsocqv",
+              "quote": "Graduate Data Analyst"
+            }
+          ],
+          "supported": true,
+          "reason": "The claim refers to the job title from the job source."
+        },
+        {
+          "unitId": "slide.0.heading",
+          "slideIndex": 0,
+          "claim": "Introduction: Fictional Acceptance Candidate",
+          "kind": "label",
+          "sourceIds": [
+            "cmvnmr82v0000d9qse8m7dnwr"
+          ],
+          "evidence": [],
+          "supported": true,
+          "reason": "Plain section label requiring no evidence."
+        },
+        {
+          "unitId": "slide.0.bullet.0",
+          "slideIndex": 0,
+          "claim": "IT graduate seeking a first graduate role as a Graduate Data Analyst.",
+          "kind": "candidate",
+          "sourceIds": [
+            "cmvnmr82v0000d9qse8m7dnwr"
+          ],
+          "evidence": [
+            {
+              "sourceId": "cmvnmr82v0000d9qse8m7dnwr",
+              "quote": "IT graduate with an academic sales dashboard project. Seeking a first graduate role."
+            },
+            {
+              "sourceId": "cmvnmr82v0000d9qse8m7dnwr",
+              "quote": "Graduate Data Analyst"
+            }
+          ],
+          "supported": true,
+          "reason": "Candidate facts are supported by candidate source text."
+        },
+        {
+          "unitId": "slide.0.bullet.1",
+          "slideIndex": 0,
+          "claim": "Brings academic project experience relevant to sales dashboard development.",
+          "kind": "candidate",
+          "sourceIds": [
+            "cmvnmr82v0000d9qse8m7dnwr",
+            "cmvnmr82w0003d9qsf6o66xt9"
+          ],
+          "evidence": [
+            {
+              "sourceId": "cmvnmr82v0000d9qse8m7dnwr",
+              "quote": "academic sales dashboard project"
+            },
+            {
+              "sourceId": "cmvnmr82w0003d9qsf6o66xt9",
+              "quote": "Academic Sales Dashboard"
+            }
+          ],
+          "supported": true,
+          "reason": "Supported by the candidate's CV and project source."
+        },
+        {
+          "unitId": "slide.0.notes",
+          "slideIndex": 0,
+          "claim": "Welcome. I am an IT graduate looking to start my career as a Graduate Data Analyst, bringing academic background in building sales dashboards.",
+          "kind": "candidate",
+          "sourceIds": [
+            "cmvnmr82v0000d9qse8m7dnwr"
+          ],
+          "evidence": [
+            {
+              "sourceId": "cmvnmr82v0000d9qse8m7dnwr",
+              "quote": "Fictional Acceptance Candidate {\"fullName\":\"Fictional Acceptance Candidate\",\"headline\":\"Graduate Data Analyst\",\"professionalSummary\":\"IT graduate with an academic sales dashboard project. Seeking a first graduate role.\"}"
+            }
+          ],
+          "supported": true,
+          "reason": "Supported by candidate background details."
+        },
+        {
+          "unitId": "slide.1.heading",
+          "slideIndex": 1,
+          "claim": "Core Technical Skills: SQL and Python",
+          "kind": "candidate",
+          "sourceIds": [
+            "cmvnmr82v0001d9qse4bstmdt",
+            "cmvnmr82w0002d9qs2vtkvug3"
+          ],
+          "evidence": [
+            {
+              "sourceId": "cmvnmr82v0001d9qse4bstmdt",
+              "quote": "SQL"
+            },
+            {
+              "sourceId": "cmvnmr82w0002d9qs2vtkvug3",
+              "quote": "Python"
+            }
+          ],
+          "supported": true,
+          "reason": "Candidate technical skills are directly supported by candidate sources."
+        },
+        {
+          "unitId": "slide.1.bullet.0",
+          "slideIndex": 1,
+          "claim": "Familiarity with SQL for data tasks.",
+          "kind": "candidate",
+          "sourceIds": [
+            "cmvnmr82v0001d9qse4bstmdt"
+          ],
+          "evidence": [
+            {
+              "sourceId": "cmvnmr82v0001d9qse4bstmdt",
+              "quote": "SQL"
+            }
+          ],
+          "supported": true,
+          "reason": "Supported by candidate's SQL skill source."
+        },
+        {
+          "unitId": "slide.1.bullet.1",
+          "slideIndex": 1,
+          "claim": "Familiarity with Python for programming tasks.",
+          "kind": "candidate",
+          "sourceIds": [
+            "cmvnmr82w0002d9qs2vtkvug3"
+          ],
+          "evidence": [
+            {
+              "sourceId": "cmvnmr82w0002d9qs2vtkvug3",
+              "quote": "Python"
+            }
+          ],
+          "supported": true,
+          "reason": "Supported by candidate's Python skill source."
+        },
+        {
+          "unitId": "slide.1.notes",
+          "slideIndex": 1,
+          "claim": "I have foundational skills in both SQL and Python, which form the core of my technical background.",
+          "kind": "candidate",
+          "sourceIds": [
+            "cmvnmr82v0001d9qse4bstmdt",
+            "cmvnmr82w0002d9qs2vtkvug3"
+          ],
+          "evidence": [
+            {
+              "sourceId": "cmvnmr82v0001d9qse4bstmdt",
+              "quote": "SQL"
+            },
+            {
+              "sourceId": "cmvnmr82w0002d9qs2vtkvug3",
+              "quote": "Python"
+            }
+          ],
+          "supported": true,
+          "reason": "Supported by candidate technical skills."
+        },
+        {
+          "unitId": "slide.2.heading",
+          "slideIndex": 2,
+          "claim": "Project Experience: Academic Sales Dashboard",
+          "kind": "candidate",
+          "sourceIds": [
+            "cmvnmr82w0003d9qsf6o66xt9"
+          ],
+          "evidence": [
+            {
+              "sourceId": "cmvnmr82w0003d9qsf6o66xt9",
+              "quote": "Academic Sales Dashboard"
+            }
+          ],
+          "supported": true,
+          "reason": "Supported by candidate project source."
+        },
+        {
+          "unitId": "slide.2.bullet.0",
+          "slideIndex": 2,
+          "claim": "Queried sample sales data using SQL as a Student Developer.",
+          "kind": "candidate",
+          "sourceIds": [
+            "cmvnmr82w0003d9qsf6o66xt9"
+          ],
+          "evidence": [
+            {
+              "sourceId": "cmvnmr82w0003d9qsf6o66xt9",
+              "quote": "Queried sample sales data with SQL and used Python to prepare a chart for an academic dashboard."
+            },
+            {
+              "sourceId": "cmvnmr82w0003d9qsf6o66xt9",
+              "quote": "role\":\"Student Developer"
+            }
+          ],
+          "supported": true,
+          "reason": "Supported by the candidate project source details."
+        },
+        {
+          "unitId": "slide.2.bullet.1",
+          "slideIndex": 2,
+          "claim": "Used Python to prepare a chart for an academic dashboard using synthetic data.",
+          "kind": "candidate",
+          "sourceIds": [
+            "cmvnmr82w0003d9qsf6o66xt9"
+          ],
+          "evidence": [
+            {
+              "sourceId": "cmvnmr82w0003d9qsf6o66xt9",
+              "quote": "used Python to prepare a chart for an academic dashboard. This was a student project using synthetic data."
+            }
+          ],
+          "supported": true,
+          "reason": "Directly supported by the candidate project description."
+        },
+        {
+          "unitId": "slide.2.notes",
+          "slideIndex": 2,
+          "claim": "In my academic sales dashboard project, I applied SQL to query sample sales data and Python to prepare charts, working with synthetic data.",
+          "kind": "candidate",
+          "sourceIds": [
+            "cmvnmr82w0003d9qsf6o66xt9"
+          ],
+          "evidence": [
+            {
+              "sourceId": "cmvnmr82w0003d9qsf6o66xt9",
+              "quote": "Queried sample sales data with SQL and used Python to prepare a chart for an academic dashboard. This was a student project using synthetic data."
+            }
+          ],
+          "supported": true,
+          "reason": "Supported by candidate project description text."
+        },
+        {
+          "unitId": "slide.3.heading",
+          "slideIndex": 3,
+          "claim": "Closing: Graduate Data Analyst Role",
+          "kind": "job",
+          "sourceIds": [
+            "job:cmvnmr8360004d9qsd7bsocqv"
+          ],
+          "evidence": [
+            {
+              "sourceId": "job:cmvnmr8360004d9qsd7bsocqv",
+              "quote": "Graduate Data Analyst"
+            }
+          ],
+          "supported": true,
+          "reason": "Matches the job title source."
+        },
+        {
+          "unitId": "slide.3.bullet.0",
+          "slideIndex": 3,
+          "claim": "Ready to apply academic SQL and Python skills to query sales data and prepare charts.",
+          "kind": "mixed",
+          "sourceIds": [
+            "cmvnmr82v0001d9qse4bstmdt",
+            "cmvnmr82w0002d9qs2vtkvug3",
+            "cmvnmr82w0003d9qsf6o66xt9"
+          ],
+          "evidence": [
+            {
+              "sourceId": "cmvnmr82v0001d9qse4bstmdt",
+              "quote": "SQL"
+            },
+            {
+              "sourceId": "cmvnmr82w0002d9qs2vtkvug3",
+              "quote": "Python"
+            },
+            {
+              "sourceId": "cmvnmr82w0003d9qsf6o66xt9",
+              "quote": "Queried sample sales data with SQL and used Python to prepare a chart for an academic dashboard."
+            }
+          ],
+          "supported": true,
+          "reason": "Combines candidate skills and project experience, properly supported by candidate sources."
+        },
+        {
+          "unitId": "slide.3.bullet.1",
+          "slideIndex": 3,
+          "claim": "Eager to learn and grow in my first Graduate Data Analyst position.",
+          "kind": "intent",
+          "sourceIds": [
+            "cmvnmr82v0000d9qse8m7dnwr",
+            "job:cmvnmr8360004d9qsd7bsocqv"
+          ],
+          "evidence": [],
+          "supported": true,
+          "reason": "Prospective intention requiring no evidence."
+        },
+        {
+          "unitId": "slide.3.notes",
+          "slideIndex": 3,
+          "claim": "To conclude, I am excited about the Graduate Data Analyst position and ready to bring my foundational SQL and Python experience to your team.",
+          "kind": "intent",
+          "sourceIds": [
+            "cmvnmr82v0000d9qse8m7dnwr",
+            "job:cmvnmr8360004d9qsd7bsocqv"
+          ],
+          "evidence": [],
+          "supported": true,
+          "reason": "Explicitly prospective intention requiring no evidence."
+        }
+      ],
+      "limitations": "Exact coverage, source membership and quoted-excerpt checks passed. These are traceability checks, not semantic proof. A person must compare every field with the displayed source, including labels/intent and all clauses in notes. Model self-review cannot approve facts."
+    },
+    "sources": [
+      {
+        "sourceId": "cmvnmr82v0000d9qse8m7dnwr",
+        "kind": "candidate",
+        "text": "Fictional Acceptance Candidate {\"fullName\":\"Fictional Acceptance Candidate\",\"headline\":\"Graduate Data Analyst\",\"professionalSummary\":\"IT graduate with an academic sales dashboard project. Seeking a first graduate role.\"}"
+      },
+      {
+        "sourceId": "cmvnmr82v0001d9qse4bstmdt",
+        "kind": "candidate",
+        "text": "SQL {\"id\":\"cmvnmr82v0001d9qse4bstmdt\",\"name\":\"SQL\",\"category\":null}"
+      },
+      {
+        "sourceId": "cmvnmr82w0002d9qs2vtkvug3",
+        "kind": "candidate",
+        "text": "Python {\"id\":\"cmvnmr82w0002d9qs2vtkvug3\",\"name\":\"Python\",\"category\":null}"
+      },
+      {
+        "sourceId": "cmvnmr82w0003d9qsf6o66xt9",
+        "kind": "candidate",
+        "text": "Academic Sales Dashboard {\"id\":\"cmvnmr82w0003d9qsf6o66xt9\",\"name\":\"Academic Sales Dashboard\",\"role\":\"Student Developer\",\"url\":null,\"technologies\":\"SQL Python\",\"description\":\"Queried sample sales data with SQL and used Python to prepare a chart for an academic dashboard. This was a student project using synthetic data. No commercial outcomes or cloud deployment.\"}"
+      },
+      {
+        "sourceId": "job:cmvnmr8360004d9qsd7bsocqv",
+        "kind": "job",
+        "text": "{\"confirmation\":{\"status\":\"CONFIRMED\",\"isConfirmed\":true,\"confirmedAt\":\"2026-10-25T09:33:26.355Z\",\"basis\":\"USER_REVIEW\"},\"jobDescriptionId\":\"cmvnmr8360004d9qsd7bsocqv\",\"jobTitle\":\"Graduate Data Analyst\",\"company\":{\"name\":\"Fictional Employer\",\"information\":null},\"jobReference\":null,\"descriptionText\":\"Graduate Data Analyst role using SQL and Python to query sales data, prepare charts and explain data quality limitations to stakeholders.\",\"createdAt\":\"2026-10-25T09:33:26.322Z\",\"lastUpdatedAt\":\"2026-10-25T09:33:26.322Z\"}"
+      }
+    ],
+    "selection": {
+      "method": "Distinct keyword overlap, not semantic ranking",
+      "warning": "Zero-score sources are fallback background, not evidence of fit. Missing words are lexical gaps, not a complete assessment of qualifications.",
+      "zeroMatch": false,
+      "selected": [
+        {
+          "sourceId": "cmvnmr82v0000d9qse8m7dnwr",
+          "title": "Fictional Acceptance Candidate",
+          "relevanceScore": 30
+        },
+        {
+          "sourceId": "cmvnmr82w0003d9qsf6o66xt9",
+          "title": "Academic Sales Dashboard",
+          "relevanceScore": 55
+        },
+        {
+          "sourceId": "cmvnmr82v0001d9qse4bstmdt",
+          "title": "SQL",
+          "relevanceScore": 10
+        },
+        {
+          "sourceId": "cmvnmr82w0002d9qs2vtkvug3",
+          "title": "Python",
+          "relevanceScore": 10
+        }
+      ],
+      "omitted": [],
+      "jobTermsWithoutLexicalEvidence": [
+        "analyst",
+        "query",
+        "charts",
+        "explain",
+        "quality",
+        "limitations",
+        "stakeholders"
+      ]
+    },
+    "omittedImages": [],
+    "metadata": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "reliability-v5-2026-10-23",
+      "calls": 2,
+      "elapsedMs": 12910
+    }
+  },
+  "presentationId": "cmvnmri4v000md9qs3yq60jii",
+  "revision": 1,
+  "updatedAt": "2026-10-25T09:33:39.343Z"
+}

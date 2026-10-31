@@ -1,0 +1,185 @@
+{
+  "contractVersion": "2.0",
+  "targetId": "cmvnms1d90027d9qsqhz6ji7k",
+  "generatedAt": "2026-10-25T09:34:04.294Z",
+  "verificationDisclaimer": "Confirmed information has been reviewed by the user. It has not been independently verified by the application or the university.",
+  "readiness": {
+    "status": "READY",
+    "isReady": true,
+    "readySince": "2026-10-25T09:34:04.286Z",
+    "sections": {
+      "confirmed": 7,
+      "total": 7
+    },
+    "images": {
+      "confirmed": 1,
+      "total": 1
+    },
+    "issues": [
+      {
+        "code": "EMPTY_SECTION",
+        "section": "EDUCATION",
+        "itemId": null,
+        "message": "Education is empty. If that is intended, you can still confirm it.",
+        "severity": "WARNING"
+      },
+      {
+        "code": "EMPTY_SECTION",
+        "section": "EXPERIENCE",
+        "itemId": null,
+        "message": "Work experience is empty. If that is intended, you can still confirm it.",
+        "severity": "WARNING"
+      },
+      {
+        "code": "EMPTY_SECTION",
+        "section": "ACHIEVEMENTS",
+        "itemId": null,
+        "message": "Achievements is empty. If that is intended, you can still confirm it.",
+        "severity": "WARNING"
+      }
+    ]
+  },
+  "candidate": {
+    "cvProfileId": "cmvnms1cb001zd9qszb6qqh7g",
+    "createdAt": "2026-10-25T09:34:04.235Z",
+    "lastUpdatedAt": "2026-10-25T09:34:04.235Z",
+    "profile": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-25T09:34:04.284Z",
+        "basis": "USER_REVIEW"
+      },
+      "fullName": "Fictional Acceptance Candidate",
+      "headline": "Graduate Data Analyst",
+      "contact": {
+        "email": "fixture@example.com",
+        "phone": null,
+        "location": "Sydney",
+        "website": null
+      },
+      "professionalSummary": "IT graduate with an academic sales dashboard project. Seeking a first graduate role."
+    },
+    "education": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-25T09:34:04.285Z",
+        "basis": "USER_REVIEW"
+      },
+      "items": []
+    },
+    "workExperience": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-25T09:34:04.285Z",
+        "basis": "USER_REVIEW"
+      },
+      "items": []
+    },
+    "skills": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-25T09:34:04.286Z",
+        "basis": "USER_REVIEW"
+      },
+      "items": [
+        {
+          "id": "cmvnms1cb0020d9qszj5t9y61",
+          "name": "SQL",
+          "category": null
+        },
+        {
+          "id": "cmvnms1cb0021d9qss5s0qk3b",
+          "name": "Python",
+          "category": null
+        }
+      ]
+    },
+    "projects": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-25T09:34:04.286Z",
+        "basis": "USER_REVIEW"
+      },
+      "items": [
+        {
+          "id": "cmvnms1cb0022d9qsy5cy650y",
+          "name": "Academic Sales Dashboard",
+          "role": "Student Developer",
+          "url": null,
+          "technologies": "SQL Python",
+          "description": "Queried sample sales data with SQL and used Python to prepare a chart for an academic dashboard. This was a student project using synthetic data. No commercial outcomes or cloud deployment.",
+          "images": [
+            {
+              "imageId": "cmvnms1cv0025d9qslx5wyqj2",
+              "kind": "PROJECT_SCREENSHOT",
+              "url": "/api/images/cmvnms1cv0025d9qslx5wyqj2?v=7458b349a1cb",
+              "mimeType": "image/png",
+              "originalFileName": "synthetic-fixture.png",
+              "sizeBytes": 18777,
+              "width": 800,
+              "height": 500,
+              "sha256": "7458b349a1cb874983f0c58fdd7a6bae734b0472270fb1f0688f85ec5e0c14eb",
+              "fileAvailable": true,
+              "description": {
+                "altText": "Synthetic test fixture. Authorship and real work outcomes are not verified.",
+                "caption": null,
+                "source": "USER_PROVIDED"
+              },
+              "provenance": "USER_UPLOADED_UNVERIFIED",
+              "confirmation": {
+                "status": "CONFIRMED",
+                "isConfirmed": true,
+                "confirmedAt": "2026-10-25T09:34:04.260Z",
+                "basis": "USER_REVIEW"
+              },
+              "uploadedAt": "2026-10-25T09:34:04.256Z",
+              "updatedAt": "2026-10-25T09:34:04.262Z"
+            }
+          ]
+        }
+      ]
+    },
+    "achievements": {
+      "confirmation": {
+        "status": "CONFIRMED",
+        "isConfirmed": true,
+        "confirmedAt": "2026-10-25T09:34:04.286Z",
+        "basis": "USER_REVIEW"
+      },
+      "items": []
+    },
+    "otherImages": []
+  },
+  "targetJob": {
+    "confirmation": {
+      "status": "CONFIRMED",
+      "isConfirmed": true,
+      "confirmedAt": "2026-10-25T09:34:04.286Z",
+      "basis": "USER_REVIEW"
+    },
+    "jobDescriptionId": "cmvnms1ci0023d9qs545apdwj",
+    "jobTitle": "Graduate Data Analyst",
+    "company": {
+      "name": "Fictional Employer",
+      "information": null
+    },
+    "jobReference": null,
+    "descriptionText": "Graduate Data Analyst role using SQL and Python to query sales data, prepare charts and explain data quality limitations to stakeholders.",
+    "createdAt": "2026-10-25T09:34:04.243Z",
+    "lastUpdatedAt": "2026-10-25T09:34:04.243Z"
+  },
+  "fingerprints": {
+    "PROFILE": "c8f923f1f0cffd2b3a0e888b9bdc0fa48a1f79a3095a843febdeae240453e944",
+    "EDUCATION": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "EXPERIENCE": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "SKILLS": "d6088bcd78889b2f582ee7d43d878b397cf136b4630b4ef009d34806b187c9da",
+    "PROJECTS": "5b8b2c7a53c41a16d5c8b35d168f0df389b35394d66062b2a7d7d23f9676214b",
+    "ACHIEVEMENTS": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "TARGET_JOB": "05f644d1cf69d167685c734aecd825923bb79d25ad7ae5c3b616dbb74000b60e"
+  }
+}
